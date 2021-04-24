@@ -65,6 +65,7 @@ namespace Intalk
                 jwt.TokenValidationParameters = tokenValidationParams;
             });
 
+            // TODO: Replace IdentityUser
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApiDbContext>();
 
