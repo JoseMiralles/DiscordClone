@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Intalk.Configuration;
 using Intalk.Data;
+using Intalk.Models;
 using Intalk.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -65,8 +66,7 @@ namespace Intalk
                 jwt.TokenValidationParameters = tokenValidationParams;
             });
 
-            // TODO: Replace IdentityUser
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApiDbContext>();
 
             services.AddControllers();
