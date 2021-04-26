@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Intalk.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20210424074206_Initial Migration with Refresh Token Table")]
-    partial class InitialMigrationwithRefreshTokenTable
+    [Migration("20210426152201_InitialAuthMigration")]
+    partial class InitialAuthMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

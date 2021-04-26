@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Intalk.Migrations
 {
-    public partial class InitialMigrationwithRefreshTokenTable : Migration
+    public partial class InitialAuthMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
