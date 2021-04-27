@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace TodoApp.Models
+namespace Intalk.Models
 {
     public class RefreshToken
     {
@@ -16,6 +16,6 @@ namespace TodoApp.Models
         public DateTime ExpiryDate { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public IdentityUser User {get;set;}
+        public ApplicationUser User {get;set;}
     }
 }

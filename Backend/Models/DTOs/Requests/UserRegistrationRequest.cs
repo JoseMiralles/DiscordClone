@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TodoApp.Models.DTOs.Requests
+namespace Intalk.Models.DTOs.Requests
 {
     public class UserRegistrationRequest
     {

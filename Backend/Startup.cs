@@ -105,6 +105,8 @@ namespace Intalk
 
             app.UseAuthorization();
 
+            app.UseCors("Open");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

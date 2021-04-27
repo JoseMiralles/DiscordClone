@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using TodoApp.Models;
+using Intalk.Models;
 
 namespace Intalk.Data
 {

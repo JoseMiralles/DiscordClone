@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TodoApp.Models.DTOs.Requests
+namespace Intalk.Models.DTOs.Requests
 {
     /// <summary>
     /// This is used to validate incoming requests to login a user.
