@@ -20,18 +20,19 @@ namespace Intalk.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Define UserServer custom relationship.
             modelBuilder.Entity<ApplicationUser>()
-                .HasMany(u => u.Servers)
-                .WithMany(s => s.Users)
+                .HasMany(users => users.Servers)    // ApplicationUser has many Servers
+                .WithMany(servers => servers.Users) // These servers have many ApplicationUsers
                 .UsingEntity<UserServer>(
-                    j => j
-                        .HasOne(us => us.Server)
-                        .WithMany(s => s.UserServers)
-                        .HasForeignKey(us => us.ServerId),
-                    j => j
-                        .HasOne(us => us.User)
-                        .WithMany(u => u.UserServers)
-                        .HasForeignKey(us => us.UserId)
+                    US => US
+                        .HasOne(userServer => userServer.Server)
+                        .WithMany(server => server.UserServers)
+                        .HasForeignKey(userServer => userServer.ServerId),
+                    US => US
+                        .HasOne(userServer => userServer.User)
+                        .WithMany(user => user.UserServers)
+                        .HasForeignKey(userServer => userServer.UserId)
                 );
         }
     }
