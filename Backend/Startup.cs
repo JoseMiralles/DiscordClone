@@ -40,6 +40,9 @@ namespace Intalk
             services.AddDbContext<ApiDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
+            // Register repositories.
+            services.AddScoped(typeof(IServerRepository), typeof(ServerRepository));
+
             var key = Encoding.ASCII.GetBytes(Configuration["JwtConfig:Secret"]);
             var tokenValidationParams = new TokenValidationParameters
             {
