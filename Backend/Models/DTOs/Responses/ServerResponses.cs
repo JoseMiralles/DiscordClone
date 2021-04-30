@@ -6,7 +6,7 @@ namespace Intalk.Models.DTOs.Responses
     /// </summary>
     public class SingleServerResponseItem
     {
-        public string Id { get; set; }
+        public long Id { get; set; }
         public string Title { get; set; }
 
         // TODO: Add channels
@@ -15,10 +15,11 @@ namespace Intalk.Models.DTOs.Responses
 
     /// <summary>
     /// A response class for when multiple servers get requested.
+    /// Used to avoid overposting.
     /// </summary>
     public class MultipleServersResponseItem
     {
-        public string Id { get; set; }
+        public long Id { get; set; }
         public string Title { get; set; }
     }
 }

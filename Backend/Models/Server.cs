@@ -6,8 +6,8 @@ namespace Intalk.Models
 {
     public class Server
     {
-        [Required]
-        public string Id { get; set; }
+        [Key]
+        public long Id { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -19,15 +19,15 @@ namespace Intalk.Models
     public class UserServer
     {
         [Key]
-        public string Id { get; set; }
+        public long Id { get; set; }
 
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
         public Server Server { get; set; }
-        public string ServerId { get; set; }
+        public long ServerId { get; set; }
 
-        public int Role { get; set; }
+        public long Role { get; set; }
 
         public enum Roles
         {

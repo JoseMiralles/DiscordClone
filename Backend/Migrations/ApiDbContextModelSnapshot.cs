@@ -56,8 +56,10 @@ namespace Intalk.Migrations
 
             modelBuilder.Entity("Intalk.Models.Server", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -70,14 +72,16 @@ namespace Intalk.Migrations
 
             modelBuilder.Entity("Intalk.Models.UserServer", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("Role")
-                        .HasColumnType("integer");
+                    b.Property<long>("Role")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("ServerId")
-                        .HasColumnType("text");
+                    b.Property<long>("ServerId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("UserId")
                         .HasColumnType("text");
@@ -315,7 +319,9 @@ namespace Intalk.Migrations
                 {
                     b.HasOne("Intalk.Models.Server", "Server")
                         .WithMany("UserServers")
-                        .HasForeignKey("ServerId");
+                        .HasForeignKey("ServerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Intalk.Models.ApplicationUser", "User")
                         .WithMany("UserServers")
