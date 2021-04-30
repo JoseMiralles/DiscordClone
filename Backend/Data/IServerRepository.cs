@@ -12,8 +12,9 @@ namespace Intalk.Data
     {
         Task<ActionResult<IEnumerable<MultipleServersResponseItem>>> GetUserServers(string userId);
         Task<SingleServerResponseItem> GetServerById(long serverId);
-        Task<long> CreateServer
-            (CreateServerRequest createServerRequest, string userIdentifier);
-        Task DeleteServer(long serverId);
+        Task<long> CreateServer(CreateServerRequest createServerRequest, string userIdentifier);
+        Task<long> DeleteServer(long serverId);
+
+        Task<SingleServerResponseItem> PatchServer(long id, )
     }
 }
