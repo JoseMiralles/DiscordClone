@@ -40,7 +40,7 @@ namespace Intalk.Data
         /// <param name="userIdentifier">The identifier of the owner user</param>
         /// <returns>The Id of the new server</returns>
         public async Task<long> CreateServer
-            (CreateServerRequest createServerRequest, string userIdentifier)
+            (CreateServerRequest createServerRequest, string userId)
         {
             // Create server
             var server = new Server
@@ -49,8 +49,8 @@ namespace Intalk.Data
             };
 
             var user = await _context.Users.OfType<ApplicationUser>()
-                    .Include(u => u.Servers)
-                    .FirstAsync(u => u.Email == userIdentifier);
+                .Include(u => u.Servers)
+                .FirstAsync(u => u.Id == userId);
 
             user.Servers.Add(server);
             await _context.SaveChangesAsync();
