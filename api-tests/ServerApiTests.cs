@@ -55,7 +55,7 @@ namespace api_tests
             var instance = JsonConvert.DeserializeObject<AuthResponse>(content);
             this._client.DefaultRequestHeaders.Authorization
                 = new System.Net.Http.Headers.AuthenticationHeaderValue(
-                    "Bearer " + instance.Token
+                    "Bearer", instance.Token
                 );
             Console.WriteLine(_client.DefaultRequestHeaders.Authorization);
         }
