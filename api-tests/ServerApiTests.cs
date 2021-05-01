@@ -7,6 +7,8 @@ using api_tests.DTOs;
 using Intalk;
 using Intalk.Controllers;
 using Intalk.Data;
+using Intalk.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Newtonsoft.Json;
@@ -24,7 +26,7 @@ namespace api_tests
             CustomWebApplicationFactory<Intalk.Startup> factory
         )
         {
-            this._factory = factory;
+            _factory = factory;
             _client = factory.CreateClient
                 (new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions
                 {
@@ -84,6 +86,49 @@ namespace api_tests
             // Assert that the titles are correct.
             Assert.Contains("Server title", servers[0].Title);
             Assert.Contains("Server title", servers[2].Title);
+        }
+
+        [Fact]
+        public async Task PatchServer()
+        {
+            await LoginUser();
+
+            int serverId = 2;
+            string newTitle = "new server title";
+            var response = await _client.PatchAsync
+            ("api/Server/" + serverId,
+            new StringContent(
+                @"[
+                    {
+                        ""op"": ""replace"",
+                        ""path"": ""/title"",
+                        ""value"":" + "\"" + newTitle + "\"" + @",
+                    }
+                ]",
+                Encoding.UTF8, "application/json"
+            ));
+
+            var stringContent = await response.Content.ReadAsStringAsync();
+            var responseServer = JsonConvert.DeserializeObject
+                <Intalk.Models.DTOs.Responses.SingleServerResponseItem>
+                (stringContent);
+            // Asssert that the title from the patch response is the new title.
+            Assert.Equal(responseServer.Title, newTitle);
+
+            var server = await GetServer(serverId);
+            // Assert that the title of the server from the get request is the new title.
+            Assert.Equal(server.Title, newTitle);
+        }
+
+        private async Task<Intalk.Models.DTOs.Responses.SingleServerResponseItem>
+            GetServer(long serverId)
+        {
+            var response = await _client.GetAsync(
+                "/api/Server/" + serverId);
+            var content = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject
+                <Intalk.Models.DTOs.Responses.SingleServerResponseItem>
+                (content);
         }
 
         /// <summary>
