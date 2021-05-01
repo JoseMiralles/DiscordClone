@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Intalk;
+using Intalk.Data;
 using Intalk.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +19,7 @@ namespace api_tests
 
         private Intalk.Data.ApiDbContext _context;
         private UserManager<ApplicationUser> _userManager;
+        private IServerRepository _serverRepository;
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
@@ -39,15 +41,18 @@ namespace api_tests
                 
                 using (var scope = serviceProvicer.CreateScope())
                 {
+                    // Request services
                     var scopedServices = scope.ServiceProvider;
                     _context = scopedServices.GetRequiredService<Intalk.Data.ApiDbContext>();
                     var logger = scopedServices
                         .GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
                     _context.Database.EnsureCreated();
                     _userManager = scopedServices.GetRequiredService<UserManager<ApplicationUser>>();
+                    _serverRepository = scopedServices.GetRequiredService<IServerRepository>();
                     try
                     {
-                        var utilites = new Utilities(_context, _userManager);
+                        var utilites = new Utilities
+                            (_context, _userManager, _serverRepository);
                         utilites.InitializeDbForTests();
                     }
                     catch(Exception ex)

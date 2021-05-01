@@ -53,8 +53,7 @@ namespace api_tests
 
             // Get server
             response = await _client.GetAsync(
-                "/api/Server/" + serverId
-            );
+                "/api/Server/" + serverId);
             content = await response.Content.ReadAsStringAsync();
             var server = JsonConvert.DeserializeObject
                 <Intalk.Models.DTOs.Responses.SingleServerResponseItem>
@@ -62,6 +61,29 @@ namespace api_tests
             
             // Check if returned title is the same as the one created.
             Assert.Equal(server.Title, newServerTitle);
+        }
+
+        /// <summary>
+        /// Gets the servers for the logged in user, and asserts that there are at least
+        /// two servers, and that the title of 2 of the servers are correct.
+        /// </summary>
+        [Fact]
+        public async Task GetUserServers()
+        {
+            await LoginUser();
+            var response = await _client.GetAsync(
+                "/api/Server/");
+            var stringContent = await response.Content.ReadAsStringAsync();
+            var servers = JsonConvert.DeserializeObject
+                <List<Intalk.Models.DTOs.Responses.MultipleServersResponseItem>>
+                (stringContent);
+
+            // Assert that there are at least 2 servers in the list.
+            Assert.InRange(servers.Count, 2, int.MaxValue);
+
+            // Assert that the titles are correct.
+            Assert.Contains("Server title", servers[0].Title);
+            Assert.Contains("Server title", servers[2].Title);
         }
 
         /// <summary>
