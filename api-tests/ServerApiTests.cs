@@ -33,11 +33,35 @@ namespace api_tests
         }
 
         [Fact]
-        public async Task CreateServer()
+        public async Task CreateAndGetServer()
         {
             await LoginUser();
+            string newServerTitle = "new server title";
 
-            Assert.Equal("test", "test");
+            // Create server
+            var response = await _client.PostAsync(
+                "/api/Server",
+                new StringContent(
+                    "{\"title\":\"" + newServerTitle + "\"}",
+                    Encoding.UTF8, "application/json")
+            );
+            var content = await response.Content.ReadAsStringAsync();
+            var serverId = JsonConvert.DeserializeObject<long>(content);
+
+            // Check if returned server id is bigger than 0.
+            Assert.InRange(serverId, 1, long.MaxValue);
+
+            // Get server
+            response = await _client.GetAsync(
+                "/api/Server/" + serverId
+            );
+            content = await response.Content.ReadAsStringAsync();
+            var server = JsonConvert.DeserializeObject
+                <Intalk.Models.DTOs.Responses.SingleServerResponseItem>
+                (content);
+            
+            // Check if returned title is the same as the one created.
+            Assert.Equal(server.Title, newServerTitle);
         }
 
         /// <summary>
@@ -57,7 +81,7 @@ namespace api_tests
                 = new System.Net.Http.Headers.AuthenticationHeaderValue(
                     "Bearer", instance.Token
                 );
-            Console.WriteLine(_client.DefaultRequestHeaders.Authorization);
+            // Console.WriteLine(_client.DefaultRequestHeaders.Authorization);
         }
     }
 }
