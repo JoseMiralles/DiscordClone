@@ -65,9 +65,7 @@ namespace Intalk.Controllers
             (long id, [FromBody] JsonPatchDocument<Server> pathDoc)
         {
             // Validate user ownership of server.
-            string userId = _userManager.GetUserId(this.User);
-            if (await _serverRepo.userIsOwner(userId: userId, serverId: id) == false)
-                return Unauthorized();
+            if (!await CheckIfOwner(id)) return Unauthorized();
 
             // Perform patch
             Server server = await _serverRepo.GetCompleteServerById(id);
@@ -80,9 +78,20 @@ namespace Intalk.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<SingleServerResponseItem>> DELETE(long id)
         {
+            if (!await CheckIfOwner(id)) return Unauthorized();
+
             var server = await _serverRepo.DeleteServer(id);
             if (server == null) return NotFound();
             return base.Ok(server);
+        }
+
+        /// <summary>
+        /// Checks if the authenticated user is an owner of the server with the given id.
+        /// </summary>
+        private async Task<bool> CheckIfOwner(long serverId)
+        {
+            string userId = _userManager.GetUserId(this.User);
+            return await _serverRepo.userIsOwner(userId: userId, serverId: serverId);
         }
     }
 }

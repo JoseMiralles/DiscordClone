@@ -128,7 +128,7 @@ namespace Intalk.Data
                 .FirstOrDefaultAsync(us =>
                 us.UserId == userId
                 && us.ServerId == serverId
-                // && us.Role == (int) UserServer.Roles.Owner
+                && us.Role == (int) UserServer.Roles.Owner
             );
             return userServer != null ? true : false;
         }

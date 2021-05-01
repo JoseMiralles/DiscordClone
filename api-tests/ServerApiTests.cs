@@ -123,7 +123,7 @@ namespace api_tests
 
             var server = await GetServer(serverId);
             // Assert that the title of the server from the get request is the new title.
-            Assert.Equal(server.Title, newTitle);
+            Assert.Equal(newTitle, server.Title);
         }
 
         [Fact]
