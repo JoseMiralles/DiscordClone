@@ -48,13 +48,24 @@ namespace Intalk.Data
                 Title = createServerRequest.Title
             };
 
-            var user = await _context.Users.OfType<ApplicationUser>()
+            var user = await _context.Users
+                .OfType<ApplicationUser>()
                 .Include(u => u.Servers)
                 .FirstAsync(u => u.Id == userId);
 
             user.Servers.Add(server);
             await _context.SaveChangesAsync();
+            AddServerOwner(user.Id, server.Id);
             return server.Id;
+        }
+
+        private async void AddServerOwner(string userId, long serverId)
+        {
+            var userServer = await _context.UserServers.FirstAsync(
+                us => us.UserId == userId && us.ServerId == serverId
+            );
+            userServer.Role = (int) UserServer.Roles.Owner;
+            await _context.SaveChangesAsync();
         }
 
         public async Task<SingleServerResponseItem> DeleteServer(long serverId)
