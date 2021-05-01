@@ -54,6 +54,47 @@ namespace Intalk.Migrations
                     b.ToTable("RefreshToken");
                 });
 
+            modelBuilder.Entity("Intalk.Models.Server", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Server");
+                });
+
+            modelBuilder.Entity("Intalk.Models.UserServer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<long>("Role")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ServerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServerId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserServers");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -274,6 +315,23 @@ namespace Intalk.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Intalk.Models.UserServer", b =>
+                {
+                    b.HasOne("Intalk.Models.Server", "Server")
+                        .WithMany("UserServers")
+                        .HasForeignKey("ServerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Intalk.Models.ApplicationUser", "User")
+                        .WithMany("UserServers")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Server");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -323,6 +381,16 @@ namespace Intalk.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Intalk.Models.Server", b =>
+                {
+                    b.Navigation("UserServers");
+                });
+
+            modelBuilder.Entity("Intalk.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("UserServers");
                 });
 #pragma warning restore 612, 618
         }
