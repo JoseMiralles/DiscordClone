@@ -59,7 +59,7 @@ namespace Intalk.Controllers
                 serverId
             );
         }
-    
+
         [HttpPatch("{id}")]
         public async Task<ActionResult<SingleServerResponseItem>> PATCH
             (long id, [FromBody] JsonPatchDocument<Server> pathDoc)
@@ -75,6 +75,14 @@ namespace Intalk.Controllers
             pathDoc.ApplyTo(server);
             await _serverRepo.SaveChanges();
             return Ok(server);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<SingleServerResponseItem>> DELETE(long id)
+        {
+            var server = await _serverRepo.DeleteServer(id);
+            if (server == null) return NotFound();
+            return base.Ok(server);
         }
     }
 }

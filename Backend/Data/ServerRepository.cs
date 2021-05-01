@@ -57,9 +57,13 @@ namespace Intalk.Data
             return server.Id;
         }
 
-        public Task<long> DeleteServer(long serverId)
+        public async Task<SingleServerResponseItem> DeleteServer(long serverId)
         {
-            throw new NotImplementedException();
+            var server = await _context.Server.FindAsync(serverId);
+            if (server == null) return null;
+            var deleted = _context.Server.Remove(server);
+            await _context.SaveChangesAsync();
+            return serverToSingleServerResponseItem(server);
         }
 
         public async Task<SingleServerResponseItem> GetServerById(long serverId)

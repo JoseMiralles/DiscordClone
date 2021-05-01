@@ -41,12 +41,14 @@ namespace api_tests
             string newServerTitle = "new server title";
 
             // Create server
+            string json = JsonConvert.SerializeObject(
+                new {
+                    title = newServerTitle
+                }
+            );
             var response = await _client.PostAsync(
                 "/api/Server",
-                new StringContent(
-                    "{\"title\":\"" + newServerTitle + "\"}",
-                    Encoding.UTF8, "application/json")
-            );
+                new StringContent(json, Encoding.UTF8, "application/json"));
             var content = await response.Content.ReadAsStringAsync();
             var serverId = JsonConvert.DeserializeObject<long>(content);
 
@@ -88,6 +90,10 @@ namespace api_tests
             Assert.Contains("Server title", servers[2].Title);
         }
 
+        /// <summary>
+        /// Edits the title of a server, and asserts that it was modified.
+        /// The response
+        /// </summary>
         [Fact]
         public async Task PatchServer()
         {
@@ -95,18 +101,18 @@ namespace api_tests
 
             int serverId = 2;
             string newTitle = "new server title";
+            string json = JsonConvert.SerializeObject(
+            new[] {
+                new {
+                    op = "replace",
+                    path = "/title",
+                    value = newTitle
+                }
+            }    
+            , Formatting.Indented);
             var response = await _client.PatchAsync
             ("api/Server/" + serverId,
-            new StringContent(
-                @"[
-                    {
-                        ""op"": ""replace"",
-                        ""path"": ""/title"",
-                        ""value"":" + "\"" + newTitle + "\"" + @",
-                    }
-                ]",
-                Encoding.UTF8, "application/json"
-            ));
+            new StringContent(json, Encoding.UTF8, "application/json"));
 
             var stringContent = await response.Content.ReadAsStringAsync();
             var responseServer = JsonConvert.DeserializeObject
@@ -120,15 +126,40 @@ namespace api_tests
             Assert.Equal(server.Title, newTitle);
         }
 
+        [Fact]
+        public async Task DeleteServer()
+        {
+            await LoginUser();
+            int serverId = 1;
+            var response = await _client.DeleteAsync("/api/Server/" + serverId);
+            var responseString = await response.Content.ReadAsStringAsync();
+            var deletedServer = JsonConvert.DeserializeObject
+                <Intalk.Models.DTOs.Responses.SingleServerResponseItem>
+                (responseString);
+
+            // Assert that delete response contains id field.
+            Assert.Equal(deletedServer.Id, serverId);
+
+            var server = await GetServer(serverId);
+            Assert.Null(server);
+        }
+
+        /// <summary>
+        /// Gets the server with the given id.
+        /// </summary>
+        /// <returns>null if not found</returns>
         private async Task<Intalk.Models.DTOs.Responses.SingleServerResponseItem>
             GetServer(long serverId)
         {
             var response = await _client.GetAsync(
                 "/api/Server/" + serverId);
             var content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject
+            var server = JsonConvert.DeserializeObject
                 <Intalk.Models.DTOs.Responses.SingleServerResponseItem>
                 (content);
+            if (server.Title == "Not Found" && server.Id == 0)
+                return null;
+            return server;
         }
 
         /// <summary>
@@ -136,10 +167,21 @@ namespace api_tests
         /// </summary>
         private async Task LoginUser()
         {
+            /*
+            Users are created in CustomWebApplicationFactory.ConfigureWebHost by
+            calling Utilities.InitializeDbForTests() which uses a UserManager.
+            This method logs in using an existing user's credentials.
+            */
+            string json = JsonConvert.SerializeObject(
+                new {
+                    email = "test@test.com",
+                    password = "!testPassword123456"
+                }
+            );
             var response = await _client.PostAsync(
                 "/api/AuthManagment/Login",
                 new StringContent(
-                    "{\"email\": \"test@test.com\", \"Password\": \"!testPassword123456\"}",
+                    json,
                     Encoding.UTF8, "application/json")
             );
             string content = await response.Content.ReadAsStringAsync();
