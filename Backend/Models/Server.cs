@@ -27,7 +27,7 @@ namespace Intalk.Models
         public Server Server { get; set; }
         public long ServerId { get; set; }
 
-        public long Role { get; set; }
+        public int Role { get; set; }
 
         public enum Roles
         {

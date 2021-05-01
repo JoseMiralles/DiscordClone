@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Intalk.Models;
 using Intalk.Models.DTOs.Requests;
 using Intalk.Models.DTOs.Responses;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,18 @@ namespace Intalk.Data
     {
         private ApiDbContext _context;
         private bool _disposed;
+
+        private ApplicationUser _currentUser;
+
+        public async Task<ApplicationUser> CurrentUser(string id)
+        {
+            if (_currentUser == null)
+            {
+                _currentUser = await _context.Users.OfType<ApplicationUser>()
+                    .FirstAsync(u => u.Id == id);
+            }
+            return _currentUser;
+        }
 
         public ServerRepository(ApiDbContext context)
         {
@@ -33,59 +46,45 @@ namespace Intalk.Data
             var server = new Server
             {
                 Title = createServerRequest.Title
-                // Users = new List<ApplicationUser>
-                // {
-                //     await _context.Users.OfType<ApplicationUser>()
-                //         .FirstOrDefaultAsync(u => u.Email == userIdentifier)
-                // }
             };
 
             var user = await _context.Users.OfType<ApplicationUser>()
                     .Include(u => u.Servers)
-                    .FirstOrDefaultAsync(u => u.Email == userIdentifier);
+                    .FirstAsync(u => u.Email == userIdentifier);
 
             user.Servers.Add(server);
-
-            // _context.Server.Add(server);
             await _context.SaveChangesAsync();
             return server.Id;
         }
 
-        public Task DeleteServer(long serverId)
+        public Task<long> DeleteServer(long serverId)
         {
             throw new NotImplementedException();
         }
 
-        public void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-            }
-            this._disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
         public async Task<SingleServerResponseItem> GetServerById(long serverId)
         {
+            // TODO: Check is user is member of this server.
             Server server = await _context.Server.FindAsync(serverId);
             if (server == null) return null;
             return serverToSingleServerResponseItem(server);
         }
 
-        public async Task<ActionResult<IEnumerable<MultipleServersResponseItem>>> GetUserServers(string userId)
+        public async Task<Server> GetCompleteServerById(long id)
+        {
+            return await _context.Server.FindAsync(id);
+        }
+
+        public async Task SaveChanges()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<MultipleServersResponseItem>> GetUserServers(string userId)
         {
             var User = await _context.Users.OfType<ApplicationUser>()
                 .Include(u => u.Servers)
-                .FirstOrDefaultAsync(u => u.Email == userId);
+                .FirstOrDefaultAsync(u => u.Id == userId);
             Console.WriteLine(User);
             return await Task.FromResult(
                 User.Servers.Select(
@@ -114,5 +113,38 @@ namespace Intalk.Data
                 Title = server.Title
             };
         }
+
+        /// <summary>
+        /// Checks to see if the user with the given id, is a owner of the server with the given id.
+        /// </summary>
+        /// <returns>True if the user is an owner, false otherwise.</returns>
+        public async Task<bool> userIsOwner(string userId, long serverId)
+        {
+            var userServer = await _context.UserServers
+                .FirstOrDefaultAsync(us =>
+                us.UserId == userId
+                && us.ServerId == serverId
+                // && us.Role == (int) UserServer.Roles.Owner
+            );
+            return userServer != null ? true : false;
+        }
+
+        public void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
     }
 }
