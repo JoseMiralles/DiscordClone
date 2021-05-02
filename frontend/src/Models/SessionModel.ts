@@ -4,3 +4,8 @@ export interface ISessionState {
     readonly jwt: string | null;
     readonly loading: boolean;
 }
+
+export interface ILoginDTO {
+    email: string;
+    password: string;
+}
