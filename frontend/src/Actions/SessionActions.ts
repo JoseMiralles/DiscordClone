@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { ILoginDTO, ISessionState } from "../Models/SessionModel";
-import { utilLogin } from "../Util/SessionUtil";
+import { utilLogin, utilRefreshToken } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).
 export const GETTING_SESSION = "GETTING_SESSION";
@@ -26,11 +26,22 @@ export type SessionActions =
     | ReturnType<typeof receiveSession>
     | ReturnType<typeof removeSession>;
 
-export const login = async (loginDTO: ILoginDTO) =>
-    async (dispatch: Dispatch<SessionActions>) => {
+export const login = (loginDTO: ILoginDTO) =>
+    (dispatch: Dispatch<SessionActions>) => {
         dispatch(gettingSession());
-        return await utilLogin(loginDTO).then(
-            (res: ISessionState) => dispatch(receiveSession(res)));
+        return utilLogin(loginDTO)
+            .then((res: ISessionState) => dispatch(receiveSession(res)))
+            .catch(error => {
+                console.log(error)
+            });
+    };
+
+export const refreshToken = () =>
+    (dispatch: Dispatch<SessionActions>) => {
+        dispatch(gettingSession());
+        return utilRefreshToken()
+            .then((res: ISessionState) => dispatch(receiveSession(res)))
+            .catch(error => console.log(error));
     };
 
 /// Attempts to refresh tokens, and calls callback if successful.

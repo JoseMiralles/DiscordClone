@@ -74,7 +74,7 @@ namespace Intalk
 
             services.AddControllers()
             .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Intalk", Version = "v1" });
@@ -90,6 +90,15 @@ namespace Intalk
 
                 c.OperationFilter<AuthResponsesOperationFilter>();
             });
+
+            services.AddCors(options =>
+                options.AddPolicy("CorsPolicy", builder =>
+                    builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithOrigins(new string[]{"http://localhost:3000"})
+                )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -108,9 +117,9 @@ namespace Intalk
 
             app.UseAuthentication();
 
-            app.UseAuthorization();
+            app.UseCors("CorsPolicy");
 
-            app.UseCors("Open");
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

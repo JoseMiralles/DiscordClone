@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import { Provider, useDispatch } from 'react-redux';
+import React from 'react';
+import { Provider } from 'react-redux';
 import './App.css';
+import { AuthManager } from './Components/AuthManager';
 import { configureStore } from './store';
 
 function App() {
@@ -8,11 +9,10 @@ function App() {
   const store = configureStore();
 
   return (
-    <Provider store={ store }>
-      <div className="App">
-        <header className="App-header">
-        </header>
-      </div>
+    <Provider store={store}>
+      <AuthManager>
+        <h1>Helllooo</h1>
+      </AuthManager>
     </Provider>
   );
 }

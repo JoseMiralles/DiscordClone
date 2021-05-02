@@ -1,4 +1,5 @@
-import { Store, createStore, combineReducers } from "redux";
+import { Store, createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import { ISessionState } from "./Models/SessionModel";
 import { sessionReducer } from "./Reducers/SessionReducer";
 
@@ -13,6 +14,6 @@ const rootReducer = combineReducers<IAppSate>({
 });
 
 export const configureStore = (): Store<IAppSate> => {
-    const store = createStore(rootReducer, undefined);
+    const store = createStore(rootReducer, applyMiddleware(thunk));
     return store;
 };

@@ -3,7 +3,6 @@ import { ISessionState } from "../Models/SessionModel";
 
 const initialState: ISessionState = {
     userId: null,
-    jwt: null,
     loading: false
 };
 
@@ -23,7 +22,6 @@ export const sessionReducer = (state: ISessionState = initialState, action: Sess
         case RECEIVE_SESSION: {
             return {
                 userId: action.session.userId,
-                jwt: action.session.jwt,
                 loading: false
             }
         }
