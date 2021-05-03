@@ -1,17 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login, logout, tokensRefreshed } from "../Actions/SessionActions";
-import { ISessionState } from "../Models/SessionModel";
-import { IAppSate } from "../store";
-import { refreshAccessToken, setupAxiosTokenRefresh } from "../Util/SessionUtil";
+import { useDispatch } from "react-redux";
+import { logout, tokensRefreshed } from "../../Actions/SessionActions";
+import { ISessionState } from "../../Models/SessionModel";
+import { refreshAccessToken, setupAxiosTokenRefresh } from "../../Util/SessionUtil";
 
 interface Props {
     children: JSX.Element
 };
 
 export const AuthManager = (props: Props) => {
-
-    var userId = useSelector((state: IAppSate) => state.session.userId);
     const dispatch = useDispatch();
 
     // Attempt to restore previous session if refresh token exists.
@@ -27,10 +23,6 @@ export const AuthManager = (props: Props) => {
         }
         );
     }
-
-    useEffect(() => {
-        // Attempt to refresh token if one is present.
-    });
 
     return props.children;
 };

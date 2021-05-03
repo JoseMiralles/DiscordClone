@@ -15,6 +15,6 @@ const rootReducer = combineReducers<IAppSate>({
 });
 
 export const configureStore = (): Store<IAppSate> => {
-    const store = createStore(rootReducer, applyMiddleware(thunk));
+    const store = createStore(rootReducer, applyMiddleware(thunk, logger));
     return store;
 };

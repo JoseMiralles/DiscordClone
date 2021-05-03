@@ -55,7 +55,12 @@ export const setupAxiosTokenRefresh =
 
 export const refreshAccessToken =
     async (onSuccess?: (data: ISessionState) => void): Promise<IAuthResponseDTO | null> => {
-        if (localStorage.getItem("RT") && localStorage.getItem("T")) {
+        if (
+            localStorage.getItem("RT")
+            && localStorage.getItem("RT") != "null"
+            && localStorage.getItem("T")
+            && localStorage.getItem("T") != "null"
+        ) {
             const rtr: IRefreshTokenRequest = {
                 token: localStorage.getItem("T") || "",
                 refreshToken: localStorage.getItem("RT") || ""
@@ -75,6 +80,9 @@ export const refreshAccessToken =
         return null;
     };
 
+/**
+ * Extracts userId claim from jwt.
+ */
 const getUserId = (jwt: string): string => {
     return "placeholderId"
 };

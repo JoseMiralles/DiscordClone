@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import './App.css';
-import { AuthManager } from './Components/AuthManager';
+import { AuthManager } from './Components/session/AuthManager';
 import { configureStore } from './store';
 
 function App() {
