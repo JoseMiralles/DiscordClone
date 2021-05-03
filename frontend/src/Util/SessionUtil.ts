@@ -80,6 +80,11 @@ export const refreshAccessToken =
         return null;
     };
 
+export const utilLogout = () => {
+    localStorage.removeItem("RT");
+    localStorage.removeItem("T");
+}
+
 /**
  * Extracts userId claim from jwt.
  */

@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../Actions/SessionActions";
 import { IAppSate } from "../store";
 
 interface Props {
@@ -7,6 +8,9 @@ interface Props {
 }
 
 const NavBar = ({ isAuthenticated }: Props) => {
+
+    const dispatch = useDispatch();
+
     return (
         <nav>
             <div>
@@ -19,7 +23,7 @@ const NavBar = ({ isAuthenticated }: Props) => {
                             <Link to="/login">login</Link>
                             <Link to="/register">register</Link>
                         </>
-                        : <Link to="/logout">logout</Link>}
+                        : <button onClick={()=>dispatch(logout())}>logout</button>}
                 </div>
             </div>
         </nav>

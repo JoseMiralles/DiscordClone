@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { ILoginDTO, ISessionState } from "../Models/SessionModel";
-import { utilLogin } from "../Util/SessionUtil";
+import { utilLogin, utilLogout } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).
 export const GETTING_SESSION = "GETTING_SESSION";
@@ -37,8 +37,10 @@ export const login = (loginDTO: ILoginDTO) =>
     };
 
 export const logout = () =>
-    (dispatch: Dispatch<SessionActions>) =>
+    (dispatch: Dispatch<SessionActions>) => {
+        utilLogout();
         dispatch(removeSession());
+    }
 
 export const tokensRefreshed = (sessionState: ISessionState) =>
     (dispatch: Dispatch<SessionActions>) => {
