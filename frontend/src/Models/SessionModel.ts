@@ -12,7 +12,7 @@ export interface ILoginDTO {
 export interface IAuthResponseDTO {
     readonly token: string;
     readonly refreshToken: string;
-    readonly errors: string[];
+    readonly errors?: string[];
 }
 
 export interface IRefreshTokenRequest {

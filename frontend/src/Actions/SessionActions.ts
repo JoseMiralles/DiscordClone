@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { ILoginDTO, ISessionState } from "../Models/SessionModel";
-import { utilLogin, utilRefreshToken } from "../Util/SessionUtil";
+import { utilLogin } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).
 export const GETTING_SESSION = "GETTING_SESSION";
@@ -36,15 +36,11 @@ export const login = (loginDTO: ILoginDTO) =>
             });
     };
 
-export const refreshToken = () =>
-    (dispatch: Dispatch<SessionActions>) => {
-        dispatch(gettingSession());
-        return utilRefreshToken()
-            .then((res: ISessionState) => dispatch(receiveSession(res)))
-            .catch(error => console.log(error));
-    };
+export const logout = () =>
+    (dispatch: Dispatch<SessionActions>) =>
+        dispatch(removeSession());
 
-/// Attempts to refresh tokens, and calls callback if successful.
-const refreshTokens = (callback: Function) => {
-    // If refreshToken exists refresh.
-};
+export const tokensRefreshed = (sessionState: ISessionState) =>
+    (dispatch: Dispatch<SessionActions>) => {
+        dispatch(receiveSession(sessionState));
+    };
