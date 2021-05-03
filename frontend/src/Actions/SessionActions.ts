@@ -32,7 +32,7 @@ export const login = (loginDTO: ILoginDTO) =>
         return utilLogin(loginDTO)
             .then((res: ISessionState) => dispatch(receiveSession(res)))
             .catch(error => {
-                console.log(error)
+                console.log(error);
             });
     };
 

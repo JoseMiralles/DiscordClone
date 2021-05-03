@@ -3,7 +3,7 @@ import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, ISessionState } from
 
 export const utilLogin = async (loginDTO: ILoginDTO): Promise<ISessionState> => {
     return await axios.post(
-        "https://localhost:5001/api/AuthManagment/Login",
+        "/api/AuthManagment/Login",
         loginDTO
     ).then((res: AxiosResponse<IAuthResponseDTO>) => {
         updateAxiosBearer(res.data.token);
@@ -57,16 +57,16 @@ export const refreshAccessToken =
     async (onSuccess?: (data: ISessionState) => void): Promise<IAuthResponseDTO | null> => {
         if (
             localStorage.getItem("RT")
-            && localStorage.getItem("RT") != "null"
+            && localStorage.getItem("RT") !== "null"
             && localStorage.getItem("T")
-            && localStorage.getItem("T") != "null"
+            && localStorage.getItem("T") !== "null"
         ) {
             const rtr: IRefreshTokenRequest = {
                 token: localStorage.getItem("T") || "",
                 refreshToken: localStorage.getItem("RT") || ""
             };
             const res = await axios.post(
-                "https://localhost:5001/api/AuthManagment/RefreshToken",
+                "/api/AuthManagment/RefreshToken",
                 rtr
             );
             localStorage.setItem("RT", res.data.refreshToken);
