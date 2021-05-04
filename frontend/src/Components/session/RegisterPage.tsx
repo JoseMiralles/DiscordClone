@@ -12,9 +12,12 @@ const RegisterPage = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(register({
-            email, username, password
-        }));
+        const act = async () => {
+            dispatch(await register({
+                email, username, password
+            }));
+        };
+        act();
     };
 
     return (
@@ -32,7 +35,7 @@ const RegisterPage = () => {
                         onChange={(e) => { setUsername(e.target.value) }} />
                     
                     <label htmlFor="password">Password:</label>
-                    <input type="text" id="password"
+                    <input type="password" id="password"
                         value={password}
                         onChange={(e) => { setPassword(e.target.value) }} />
                     

@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { Console } from "node:console";
 import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, IRegisterDTO, ISessionState } from "../Models/SessionModel";
 
 export const utilLogin = async (loginDTO: ILoginDTO): Promise<ISessionState> => {
@@ -13,7 +14,8 @@ export const utilLogin = async (loginDTO: ILoginDTO): Promise<ISessionState> => 
         });
         return {
             userId: getUserId(res.data.token),
-            loading: false
+            loading: false,
+            restoringSession: false
         };
     });
 };
@@ -30,7 +32,8 @@ export const utilRegister = async (registerDTO: IRegisterDTO): Promise<ISessionS
         });
         return {
             userId: getUserId(res.data.token),
-            loading: false
+            loading: false,
+            restoringSession: false
         };
     });
 };
@@ -61,7 +64,8 @@ export const setupAxiosTokenRefresh =
                     updateAxiosBearer(authResponse.token);
                     successfulRefresh({
                         userId: getUserId(authResponse.token),
-                        loading: false
+                        loading: false,
+                        restoringSession: false
                     });
                     return axios(originalRequest);
                 } else {
@@ -73,29 +77,38 @@ export const setupAxiosTokenRefresh =
     };
 
 export const refreshAccessToken =
-    async (onSuccess?: (data: ISessionState) => void): Promise<IAuthResponseDTO | null> => {
+    async (onSuccess?: (data: ISessionState) => void, onFailure?: (reason: any) => void): Promise<IAuthResponseDTO | null> => {
+        console.log("refreshing tokens");
         const tokenSet: ITokenSet = getTokenSet();
         if (
             tokenSet.jwt && tokenSet.refreshToken
         ) {
+            console.log("tokens found");
             const rtr: IRefreshTokenRequest = {
                 token: tokenSet.jwt || "",
                 refreshToken: tokenSet.refreshToken || ""
             };
-            const res = await axios.post(
+            await axios.post(
                 "/api/AuthManagment/RefreshToken",
                 rtr
-            );
-            persistTokens({
-                jwt: res.data.token,
-                refreshToken: res.data.refreshToken
+            ).then((res: AxiosResponse<IAuthResponseDTO>) => {
+                console.log("success");
+                persistTokens({
+                    jwt: res.data.token,
+                    refreshToken: res.data.refreshToken
+                });
+                if (onSuccess) onSuccess({
+                    userId: getUserId(res.data.token),
+                    loading: false,
+                    restoringSession: false
+                });
+                return res.data;
+            }, (reason) => {
+                console.log("failure");
+                if (onFailure) onFailure(reason);
             });
-            if (onSuccess) onSuccess({
-                userId: getUserId(res.data.token),
-                loading: false
-            });
-            return res.data;
         }
+        console.log("tokens not found");
         return null;
     };
 

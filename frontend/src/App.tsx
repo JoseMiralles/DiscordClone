@@ -11,7 +11,8 @@ import RegisterPage from './Components/session/RegisterPage';
 
 function App() {
   
-  const isAuthenticated = useSelector((s: IAppSate) => s.session.userId) ? true : false;
+  const { userId, restoringSession } = useSelector((s: IAppSate) => s.session);
+  const isAuthenticated = userId ? true : false;
   
   return (
     <AuthManager>
@@ -22,7 +23,7 @@ function App() {
         <Switch>
           <ProtectedRoute path="/s" authenticationPath="/login"
             component={()=>(<h1>test</h1>)}
-            isAuthenticated={isAuthenticated} />
+            isAuthenticated={isAuthenticated || restoringSession} />
           
           <AuthenticationRoute path="/register" redirectTo="/home"
             component={RegisterPage}

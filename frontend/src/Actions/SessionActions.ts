@@ -26,20 +26,20 @@ export type SessionActions =
     | ReturnType<typeof receiveSession>
     | ReturnType<typeof removeSession>;
 
-export const login = (loginDTO: ILoginDTO) =>
-    (dispatch: Dispatch<SessionActions>) => {
+export const login = async (loginDTO: ILoginDTO) =>
+    async (dispatch: Dispatch<SessionActions>) => {
         dispatch(gettingSession());
-        return utilLogin(loginDTO)
+        return await utilLogin(loginDTO)
             .then((res: ISessionState) => dispatch(receiveSession(res)))
             .catch(error => {
                 console.log(error);
             });
     };
 
-export const register = (registerDTO: IRegisterDTO) =>
-    (dispatch: Dispatch<SessionActions>) => {
+export const register = async (registerDTO: IRegisterDTO) =>
+    async (dispatch: Dispatch<SessionActions>) => {
         dispatch(gettingSession());
-        return utilRegister(registerDTO)
+        return await utilRegister(registerDTO)
             .then((res: ISessionState) => dispatch(receiveSession(res)))
             .catch(error => {
                 console.log(error);
