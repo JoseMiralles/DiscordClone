@@ -2,6 +2,7 @@
 export interface ISessionState {
     readonly userId: string | null;
     readonly loading: boolean;
+    readonly restoringSession: boolean;
 }
 
 export interface ILoginDTO {

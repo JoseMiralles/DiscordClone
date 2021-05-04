@@ -38,7 +38,11 @@ namespace Intalk
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
 
             services.AddDbContext<ApiDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                {
+                    options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+                    options.LogTo(Console.WriteLine);
+                    options.EnableSensitiveDataLogging(false);
+                });
 
             // Register repositories.
             services.AddScoped(typeof(IServerRepository), typeof(ServerRepository));

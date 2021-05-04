@@ -11,9 +11,12 @@ const LoginPage = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(login({
-            email, password
-        }));
+        const act = async () => {
+            dispatch(await login({
+                email, password
+            }));
+        };
+        act();
     };
 
     return (
