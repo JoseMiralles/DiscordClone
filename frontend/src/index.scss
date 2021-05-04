@@ -26,3 +26,24 @@ html {
 .hidden {
     display: none;
 }
+
+.btn {
+    background: none;
+    border: none;
+    padding: $common-padding / 2;
+    color: $main;
+    border-radius: 100px;
+
+    &:hover{
+        background-color: $secondary-light;
+    }
+}
+
+.btn-main {
+    color: $light;
+    background: $main;
+
+    &:hover{
+        background-color: $secondary;
+    }
+}

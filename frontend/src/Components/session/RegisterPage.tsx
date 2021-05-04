@@ -21,26 +21,31 @@ const RegisterPage = () => {
     };
 
     return (
-        <section>
-            <div>
-                <form onSubmit={onSubmit}>
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" id="email"
-                        value={email}
-                        onChange={(e) => { setEmail(e.target.value) }} />
-                    
-                    <label htmlFor="username">User name:</label>
-                    <input type="text" id="username"
-                        value={username}
-                        onChange={(e) => { setUsername(e.target.value) }} />
-                    
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password"
-                        value={password}
-                        onChange={(e) => { setPassword(e.target.value) }} />
-                    
-                    <button>register</button>
-                </form>
+        <section className="auth-form-section">
+            <div className="container">
+                <div className="auth-form-wrapper">
+
+                    <div className="auth-form-title">Register</div>
+
+                    <form className="auth-form" onSubmit={onSubmit}>
+                        <label htmlFor="email">Email:</label>
+                        <input type="text" id="email"
+                            value={email}
+                            onChange={(e) => { setEmail(e.target.value) }} />
+
+                        <label htmlFor="username">User name:</label>
+                        <input type="text" id="username"
+                            value={username}
+                            onChange={(e) => { setUsername(e.target.value) }} />
+
+                        <label htmlFor="password">Password:</label>
+                        <input type="password" id="password"
+                            value={password}
+                            onChange={(e) => { setPassword(e.target.value) }} />
+
+                        <button className="btn btn-main">submit</button>
+                    </form>
+                </div>
             </div>
         </section>
     );
