@@ -173,10 +173,10 @@ namespace Intalk.Controllers
             var key = Encoding.ASCII.GetBytes(_jwtConfig.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor{
                 Subject = new ClaimsIdentity(new []{
-                    new Claim("Id", existingUser.Id),
+                    // new Claim("Id", existingUser.Id),
                     new Claim(JwtRegisteredClaimNames.NameId, existingUser.Id),
-                    new Claim(JwtRegisteredClaimNames.Email, existingUser.Email),
-                    new Claim(JwtRegisteredClaimNames.Sub, existingUser.Email),
+                    // new Claim(JwtRegisteredClaimNames.Email, existingUser.Email),
+                    // new Claim(JwtRegisteredClaimNames.Sub, existingUser.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(10),

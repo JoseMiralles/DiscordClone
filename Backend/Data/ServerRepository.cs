@@ -55,11 +55,11 @@ namespace Intalk.Data
 
             user.Servers.Add(server);
             await _context.SaveChangesAsync();
-            AddServerOwner(user.Id, server.Id);
+            await AddServerOwner(user.Id, server.Id);
             return server.Id;
         }
 
-        private async void AddServerOwner(string userId, long serverId)
+        private async Task AddServerOwner(string userId, long serverId)
         {
             var userServer = await _context.UserServers.FirstAsync(
                 us => us.UserId == userId && us.ServerId == serverId
