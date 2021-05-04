@@ -1,3 +1,4 @@
+import "./NavBar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../Actions/SessionActions";
@@ -12,19 +13,25 @@ const NavBar = ({ isAuthenticated }: Props) => {
     const dispatch = useDispatch();
 
     return (
-        <nav>
-            <div>
+        <nav className="section">
+            <div className="container" id="nav-bar">
                 <div>
-                    <h3>InTalk</h3>
+                    <div id="nav-logo" className="logo">InTalk</div>
                 </div>
-                <div>
+                <div id="nav-menu-button">
+                    <div className="material-icons">menu</div>
+                </div>
+            </div>
+            <div id="nav-menu-wrapper" className="container">
+                <ul id="nav-menu">
                     {!isAuthenticated
                         ? <>
-                            <Link to="/login">login</Link>
-                            <Link to="/register">register</Link>
+                            <li><Link to="/login">login</Link></li>
+                            <li><Link to="/register">register</Link></li>
                         </>
-                        : <button onClick={()=>dispatch(logout())}>logout</button>}
-                </div>
+                        : <li><button onClick={() => dispatch(logout())}>logout</button></li>
+                    }
+                </ul>
             </div>
         </nav>
     );

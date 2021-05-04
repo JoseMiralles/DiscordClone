@@ -1,0 +1,24 @@
+
+@import "./Style_variables/reset.scss";
+
+@import "./Style_variables/fonts.scss";
+@import "./Style_variables/vars.scss";
+@import "./Style_variables/colors.scss";
+
+html {
+    font-family: "Segoe UI",Arial,sans-serif;
+}
+
+.section{
+    width: 100%;
+}
+
+.container {
+    max-width: $content-width;
+    margin:auto;
+}
+
+.logo {
+    color: $main;
+    font-family: 'Poppins', sans-serif;
+}

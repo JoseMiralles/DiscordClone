@@ -1,0 +1,41 @@
+@import "../Style_variables/vars.scss";
+@import "../Style_variables/colors.scss";
+
+#nav-bar {
+    display: flex;
+    height: $nav-height;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+}
+
+#nav-logo {
+    font-size: 28px;
+    padding-left: $common-padding;
+}
+
+#nav-menu-button{
+    padding-right: $common-padding;
+}
+
+#nav-menu-wrapper{
+    position: relative;
+}
+
+#nav-menu{
+    position: absolute;
+    right: 0;
+    border-bottom: solid 3px $main;
+
+    li{
+        padding: $common-padding;
+        padding-left: $common-padding * 2;
+        padding-right: $common-padding * 2;
+        background-color: $light;
+        &:hover{
+            background-color: $secondary-light;
+        }
+    }
+}
