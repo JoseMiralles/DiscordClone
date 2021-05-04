@@ -4,9 +4,10 @@ import { login } from "../../Actions/SessionActions";
 
 const LoginPage = () => {
 
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const dispatch = useDispatch();
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

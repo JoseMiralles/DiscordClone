@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
-import { ILoginDTO, ISessionState } from "../Models/SessionModel";
-import { utilLogin, utilLogout } from "../Util/SessionUtil";
+import { ILoginDTO, IRegisterDTO, ISessionState } from "../Models/SessionModel";
+import { utilLogin, utilLogout, utilRegister } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).
 export const GETTING_SESSION = "GETTING_SESSION";
@@ -30,6 +30,16 @@ export const login = (loginDTO: ILoginDTO) =>
     (dispatch: Dispatch<SessionActions>) => {
         dispatch(gettingSession());
         return utilLogin(loginDTO)
+            .then((res: ISessionState) => dispatch(receiveSession(res)))
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+export const register = (registerDTO: IRegisterDTO) =>
+    (dispatch: Dispatch<SessionActions>) => {
+        dispatch(gettingSession());
+        return utilRegister(registerDTO)
             .then((res: ISessionState) => dispatch(receiveSession(res)))
             .catch(error => {
                 console.log(error);

@@ -1,12 +1,15 @@
 import { GETTING_SESSION, RECEIVE_SESSION, REMOVE_SESSION, SessionActions } from "../Actions/SessionActions";
 import { ISessionState } from "../Models/SessionModel";
+import { getTokenSet } from "../Util/SessionUtil";
 
-const initialState: ISessionState = {
-    userId: null,
-    loading: false
+const getInitalState = (): ISessionState => {
+    return {
+        userId: getTokenSet().refreshToken ? "..." : null,
+        loading: false
+    }
 };
 
-export const sessionReducer = (state: ISessionState = initialState, action: SessionActions) => {
+export const sessionReducer = (state: ISessionState = getInitalState(), action: SessionActions) => {
 
     Object.freeze(state);
 
@@ -26,9 +29,7 @@ export const sessionReducer = (state: ISessionState = initialState, action: Sess
             }
         }
             
-        case REMOVE_SESSION: {
-            return initialState;
-        }
+        case REMOVE_SESSION: return getInitalState();
             
         default: return state;
     }

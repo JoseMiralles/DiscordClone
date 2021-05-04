@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, ISessionState } from "../Models/SessionModel";
+import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, IRegisterDTO, ISessionState } from "../Models/SessionModel";
 
 export const utilLogin = async (loginDTO: ILoginDTO): Promise<ISessionState> => {
     return await axios.post(
@@ -7,8 +7,27 @@ export const utilLogin = async (loginDTO: ILoginDTO): Promise<ISessionState> => 
         loginDTO
     ).then((res: AxiosResponse<IAuthResponseDTO>) => {
         updateAxiosBearer(res.data.token);
-        localStorage.setItem("RT", res.data.refreshToken);
-        localStorage.setItem("T", res.data.token);
+        persistTokens({
+            jwt: res.data.token,
+            refreshToken: res.data.token
+        });
+        return {
+            userId: getUserId(res.data.token),
+            loading: false
+        };
+    });
+};
+
+export const utilRegister = async (registerDTO: IRegisterDTO): Promise<ISessionState> => {
+    return await axios.post(
+        "api/AuthManagment/register",
+        registerDTO
+    ).then((res: AxiosResponse<IAuthResponseDTO>) => {
+        updateAxiosBearer(res.data.token);
+        persistTokens({
+            jwt: res.data.token,
+            refreshToken: res.data.token
+        });
         return {
             userId: getUserId(res.data.token),
             loading: false
@@ -55,22 +74,22 @@ export const setupAxiosTokenRefresh =
 
 export const refreshAccessToken =
     async (onSuccess?: (data: ISessionState) => void): Promise<IAuthResponseDTO | null> => {
+        const tokenSet: ITokenSet = getTokenSet();
         if (
-            localStorage.getItem("RT")
-            && localStorage.getItem("RT") !== "null"
-            && localStorage.getItem("T")
-            && localStorage.getItem("T") !== "null"
+            tokenSet.jwt && tokenSet.refreshToken
         ) {
             const rtr: IRefreshTokenRequest = {
-                token: localStorage.getItem("T") || "",
-                refreshToken: localStorage.getItem("RT") || ""
+                token: tokenSet.jwt || "",
+                refreshToken: tokenSet.refreshToken || ""
             };
             const res = await axios.post(
                 "/api/AuthManagment/RefreshToken",
                 rtr
             );
-            localStorage.setItem("RT", res.data.refreshToken);
-            localStorage.setItem("T", res.data.token);
+            persistTokens({
+                jwt: res.data.token,
+                refreshToken: res.data.refreshToken
+            });
             if (onSuccess) onSuccess({
                 userId: getUserId(res.data.token),
                 loading: false
@@ -84,6 +103,21 @@ export const utilLogout = () => {
     localStorage.removeItem("RT");
     localStorage.removeItem("T");
 }
+
+interface ITokenSet {
+    jwt: string;
+    refreshToken: string;
+}
+const persistTokens = (set: ITokenSet) => {
+    localStorage.setItem("RT", set.refreshToken);
+    localStorage.setItem("T", set.jwt);
+};
+export const getTokenSet = (): ITokenSet => {
+    return {
+        jwt: localStorage.getItem("T") || "",
+        refreshToken: localStorage.getItem("RT") || ""
+    };
+};
 
 /**
  * Extracts userId claim from jwt.

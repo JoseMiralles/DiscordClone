@@ -9,6 +9,12 @@ export interface ILoginDTO {
     password: string;
 }
 
+export interface IRegisterDTO {
+    email: string;
+    username: string;
+    password: string;
+}
+
 export interface IAuthResponseDTO {
     readonly token: string;
     readonly refreshToken: string;
