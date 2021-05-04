@@ -18,6 +18,9 @@
 
 #nav-menu-button{
     padding-right: $common-padding;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 #nav-menu-wrapper{
@@ -30,10 +33,13 @@
     border-bottom: solid 3px $main;
 
     li{
+        width: 100vw;
+        max-width: 400px;
         padding: $common-padding;
-        padding-left: $common-padding * 2;
-        padding-right: $common-padding * 2;
+        padding-left: 0;
+        padding-right: 0;
         background-color: $light;
+        text-align: center;
         &:hover{
             background-color: $secondary-light;
         }
