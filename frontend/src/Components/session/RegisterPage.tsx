@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../Actions/SessionActions";
+import DemoLoginButton from "./DemoLoginButton";
 
 const RegisterPage = () => {
 
@@ -42,6 +43,8 @@ const RegisterPage = () => {
                         <input type="password" id="password"
                             value={password}
                             onChange={(e) => { setPassword(e.target.value) }} />
+
+                        <DemoLoginButton/>
 
                         <button className="btn btn-main">submit</button>
                     </form>

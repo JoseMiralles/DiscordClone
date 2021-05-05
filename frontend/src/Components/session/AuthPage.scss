@@ -47,13 +47,12 @@
         }
 
         &:last-of-type{
-            margin-bottom: 0px;
+            margin-bottom: $common-padding * 1.5;
         }
     }
 
     button{
-        margin-top: $common-padding * 2;
-        margin-bottom: $common-padding * 2;
+        margin-bottom: $common-padding;
     }
 }
 

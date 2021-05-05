@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./AuthPage.scss";
 import { login } from "../../Actions/SessionActions";
+import DemoLoginButton from "./DemoLoginButton";
 
 const LoginPage = () => {
 
@@ -38,6 +39,8 @@ const LoginPage = () => {
                         <input id="password" type="password"
                             onChange={(e) => setPassword(e.target.value)}
                             value={password} />
+                        
+                        <DemoLoginButton/>
 
                         <button className="btn btn-main">submit</button>
                     </form>
