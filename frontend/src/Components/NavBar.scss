@@ -1,0 +1,79 @@
+@import "../Style_variables/vars.scss";
+@import "../Style_variables/colors.scss";
+
+#nav-bar {
+    display: flex;
+    height: $nav-height;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+}
+
+#nav-logo {
+    font-size: 28px;
+    padding-left: $common-padding;
+}
+
+#nav-menu-button{
+    padding-right: $common-padding;
+    color: $main;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+#nav-menu-wrapper{
+    position: relative;
+}
+
+#nav-menu{
+    position: absolute;
+    right: 0;
+    border-bottom: solid 3px $main;
+    height: $nav-height;
+
+    li{
+        width: 100vw;
+        height: $nav-height;
+        line-height: $nav-height;
+        padding: 0;
+        text-align: center;
+        border-radius: 0px;
+        &:not(.btn){
+                background-color: $light;
+            &:hover{
+                background-color: $secondary-light;
+            }
+        }
+    }
+}
+
+@media (min-width:641px){
+    #nav-section{
+        display: flex;
+        justify-content: space-between;
+        .container{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+    #nav-menu{
+        display: flex;
+        position: inherit;
+        border: none;
+        li {
+            width:auto;
+            padding-left: $common-padding;
+            padding-right: $common-padding;
+        }
+    }
+    #nav-menu-button{
+        display: none;
+    }
+    #nav-menu-wrapper{
+        display: block;
+    }
+}

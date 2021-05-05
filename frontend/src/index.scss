@@ -1,0 +1,52 @@
+
+@import "./Style_variables/reset.scss";
+
+@import "./Style_variables/fonts.scss";
+@import "./Style_variables/vars.scss";
+@import "./Style_variables/colors.scss";
+
+html {
+    font-family: "Segoe UI",Arial,sans-serif;
+    color: $dark;
+}
+
+.section{
+    width: 100%;
+}
+
+.container {
+    max-width: $content-width;
+    margin:auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.logo {
+    color: $main;
+    font-family: 'Poppins', sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    background: none;
+    border: none;
+    padding: $common-padding / 2;
+    color: $main;
+    border-radius: $bRadius;
+
+    &:hover{
+        background-color: $secondary-light;
+    }
+}
+
+.btn-main {
+    color: $light;
+    background: $main;
+
+    &:hover{
+        background-color: $secondary;
+    }
+}
