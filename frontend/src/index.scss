@@ -33,7 +33,7 @@ html {
     border: none;
     padding: $common-padding / 2;
     color: $main;
-    border-radius: 100px;
+    border-radius: $bRadius;
 
     &:hover{
         background-color: $secondary-light;
