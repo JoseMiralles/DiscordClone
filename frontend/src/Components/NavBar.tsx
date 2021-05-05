@@ -22,25 +22,27 @@ const NavBar = ({ isAuthenticated }: Props) => {
     const icon = menuClosed ? "menu" : "close";
 
     return (
-        <nav className="section">
-            <div className="container" id="nav-bar">
-                <div>
-                    <div id="nav-logo" className="logo">InTalk</div>
+        <nav className="section" id="nav-section">
+            <div className="container">
+                <div id="nav-bar">
+                    <div>
+                        <Link to="/"><div id="nav-logo" className="logo">InTalk</div></Link>
+                    </div>
+                    <div onClick={flipMenu} id="nav-menu-button">
+                        <div className="material-icons">{ icon }</div>
+                    </div>
                 </div>
-                <div onClick={flipMenu} id="nav-menu-button">
-                    <div className="material-icons">{ icon }</div>
+                <div onClick={itemSelected} id="nav-menu-wrapper" className={`${menuClass}`}>
+                    <ul id="nav-menu">
+                        {!isAuthenticated
+                            ? <>
+                                <Link to="/login"><li>login</li></Link>
+                                <Link to="/register"><li className="btn btn-main">register</li></Link>
+                            </>
+                            : <li><button className="btn" onClick={() => dispatch(logout())}>logout</button></li>
+                        }
+                    </ul>
                 </div>
-            </div>
-            <div onClick={itemSelected} id="nav-menu-wrapper" className={`container ${menuClass}`}>
-                <ul id="nav-menu">
-                    {!isAuthenticated
-                        ? <>
-                            <li><Link to="/login">login</Link></li>
-                            <li><Link to="/register">register</Link></li>
-                        </>
-                        : <li><button onClick={() => dispatch(logout())}>logout</button></li>
-                    }
-                </ul>
             </div>
         </nav>
     );

@@ -32,17 +32,48 @@
     position: absolute;
     right: 0;
     border-bottom: solid 3px $main;
+    height: $nav-height;
 
     li{
         width: 100vw;
-        max-width: 400px;
-        padding: $common-padding;
-        padding-left: 0;
-        padding-right: 0;
-        background-color: $light;
+        height: $nav-height;
+        line-height: $nav-height;
+        padding: 0;
         text-align: center;
-        &:hover{
-            background-color: $secondary-light;
+        border-radius: 0px;
+        &:not(.btn){
+                background-color: $light;
+            &:hover{
+                background-color: $secondary-light;
+            }
         }
+    }
+}
+
+@media (min-width:641px){
+    #nav-section{
+        display: flex;
+        justify-content: space-between;
+        .container{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+    #nav-menu{
+        display: flex;
+        position: inherit;
+        border: none;
+        li {
+            width:auto;
+            padding-left: $common-padding;
+            padding-right: $common-padding;
+        }
+    }
+    #nav-menu-button{
+        display: none;
+    }
+    #nav-menu-wrapper{
+        display: block;
     }
 }
