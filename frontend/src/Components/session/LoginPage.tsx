@@ -40,7 +40,7 @@ const LoginPage = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             value={password} />
                         
-                        <DemoLoginButton/>
+                        <DemoLoginButton userNumber={1}>User 1</DemoLoginButton>
 
                         <button className="btn btn-main">submit</button>
                     </form>
