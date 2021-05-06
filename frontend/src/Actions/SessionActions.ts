@@ -78,5 +78,5 @@ export const logout = () =>
 
 export const tokensRefreshed = (sessionState: ISessionState) =>
     (dispatch: Dispatch<SessionActions>) => {
-        dispatch(receiveSession(sessionState));
+        dispatch(receiveSession(sessionState.userId));
     };

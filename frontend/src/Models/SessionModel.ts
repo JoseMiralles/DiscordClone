@@ -29,7 +29,7 @@ export type SessionActionTypes =
     receiveSessionErrors;
 
 export interface ISessionState {
-    readonly userId: string | null;
+    readonly userId: string;
     readonly loading: boolean;
     readonly restoringSession: boolean;
     readonly errors?: ISessionErrors;
