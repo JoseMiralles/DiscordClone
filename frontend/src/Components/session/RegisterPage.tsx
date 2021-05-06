@@ -63,12 +63,12 @@ const RegisterPage = () => {
                             value={password}
                             onChange={(e) => { setPassword(e.target.value) }} />
 
-                        <DemoLoginButton userNumber={1}>user 1</DemoLoginButton>
-
                         <button className="btn btn-main" disabled={loading}>
                             { loading ? "loading..." : "submit" }
                         </button>
                     </form>
+
+                    <DemoLoginButton userNumber={1}>user 1</DemoLoginButton>
                 </div>
             </div>
         </section>

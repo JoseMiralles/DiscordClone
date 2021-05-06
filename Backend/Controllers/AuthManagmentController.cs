@@ -103,6 +103,7 @@ namespace Intalk.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] UserLoginRequest userRequest)
         {
+            Console.WriteLine($"REQUEST: {userRequest.Email}");
             if (this.ModelState.IsValid)
             {
                 // Check if there is a user with the given email.
@@ -189,6 +190,7 @@ namespace Intalk.Controllers
                 Subject = new ClaimsIdentity(new []{
                     // new Claim("Id", existingUser.Id),
                     new Claim(JwtRegisteredClaimNames.NameId, existingUser.Id),
+                    new Claim("username", existingUser.UserName),
                     // new Claim(JwtRegisteredClaimNames.Email, existingUser.Email),
                     // new Claim(JwtRegisteredClaimNames.Sub, existingUser.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())

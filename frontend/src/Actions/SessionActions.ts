@@ -1,8 +1,10 @@
 import { Dispatch } from "redux";
 import { AppActions } from "../Models/AppModel";
 import { ILoginDTO, IRegisterDTO, ISessionErrors, ISessionState } from "../Models/SessionModel";
+import { IUser } from "../Models/UserModel";
 import { AppState } from "../store";
-import { utilLogin, utilLogout, utilRegister, getUserId } from "../Util/SessionUtil";
+import { utilLogin, utilLogout, utilRegister, decodeUser } from "../Util/SessionUtil";
+import { receiveUser } from "./UserActions";
 
 // When a login or register form is submitted (show loading anim).
 export const gettingSession = (): AppActions => ({
@@ -29,8 +31,12 @@ export const login = async (loginDTO: ILoginDTO) =>
     async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
         dispatch(gettingSession());
         try {
-            const res = await utilLogin(loginDTO)
-            dispatch(receiveSession(getUserId(res.data.token)));
+            const res = await utilLogin(loginDTO);
+            const user = decodeUser(res.data.token);
+            dispatch(receiveSession(
+                user.id
+            ));
+            dispatch(receiveUser(user));
         } catch (error) {
             dispatch(receiveSessionErrors(
                 error.response.data.errors
@@ -43,9 +49,11 @@ export const register = async (registerDTO: IRegisterDTO) =>
         dispatch(gettingSession());
         try {
             const res = await utilRegister(registerDTO);
+            const user = decodeUser(res.data.token);
             dispatch(receiveSession(
-                getUserId(res.data.token)
+                user.id
             ));
+            dispatch(receiveUser(user));
         } catch (error) {
             dispatch(receiveSessionErrors(
                 error.response.data.errors
@@ -68,7 +76,8 @@ export const logout = () =>
         dispatch(removeSession());
     }
 
-export const tokensRefreshed = (sessionState: ISessionState) =>
+export const tokensRefreshed = (user: IUser) =>
     (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-        dispatch(receiveSession(sessionState.userId));
+        dispatch(receiveSession(user.id));
+        dispatch(receiveUser(user));
     };
