@@ -1,6 +1,5 @@
-import { GETTING_SESSION, RECEIVE_SESSION, REMOVE_SESSION, SessionActions } from "../Actions/SessionActions";
+import { GETTING_SESSION, RECEIVE_SESSION, RECEIVE_SESSION_ERRORS, REMOVE_SESSION, SessionActions } from "../Actions/SessionActions";
 import { ISessionState } from "../Models/SessionModel";
-import { getTokenSet } from "../Util/SessionUtil";
 
 const initialState: ISessionState = {
     userId: null,
@@ -34,6 +33,10 @@ export const sessionReducer = (state: ISessionState = initialState, action: Sess
             loading: false,
             restoringSession: false
         };
+
+        case RECEIVE_SESSION_ERRORS: return {
+
+        }
             
         default: return state;
     }

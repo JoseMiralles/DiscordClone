@@ -20,22 +20,19 @@ export const utilLogin = async (loginDTO: ILoginDTO): Promise<ISessionState> => 
     });
 };
 
-export const utilRegister = async (registerDTO: IRegisterDTO): Promise<ISessionState> => {
-    return await axios.post(
+export const utilRegister = (registerDTO: IRegisterDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
+    const request = axios.post(
         "api/AuthManagment/register",
         registerDTO
-    ).then((res: AxiosResponse<IAuthResponseDTO>) => {
+    );
+    request.then((res: AxiosResponse<IAuthResponseDTO>) => {
         updateAxiosBearer(res.data.token);
         persistTokens({
             jwt: res.data.token,
             refreshToken: res.data.token
         });
-        return {
-            userId: getUserId(res.data.token),
-            loading: false,
-            restoringSession: false
-        };
     });
+    return request;
 };
 
 /**
@@ -135,7 +132,7 @@ export const getTokenSet = (): ITokenSet => {
 /**
  * Extracts userId claim from jwt.
  */
-const getUserId = (jwt: string): string => {
+export const getUserId = (jwt: string): string => {
     return "placeholderId"
 };
 

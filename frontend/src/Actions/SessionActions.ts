@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
-import { ILoginDTO, IRegisterDTO, ISessionState } from "../Models/SessionModel";
-import { utilLogin, utilLogout, utilRegister } from "../Util/SessionUtil";
+import { ILoginDTO, IRegisterDTO, ISessionErrors, ISessionState } from "../Models/SessionModel";
+import { utilLogin, utilLogout, utilRegister, getUserId } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).
 export const GETTING_SESSION = "GETTING_SESSION";
@@ -21,10 +21,17 @@ export const removeSession = () => ({
     type: REMOVE_SESSION
 } as const);
 
+export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const receiveSessionErrors = (errors: ISessionErrors) => ({
+    type: RECEIVE_SESSION_ERRORS,
+    errors
+});
+
 export type SessionActions =
     | ReturnType<typeof gettingSession>
     | ReturnType<typeof receiveSession>
-    | ReturnType<typeof removeSession>;
+    | ReturnType<typeof removeSession>
+    | ReturnType<typeof receiveSessionErrors>;
 
 export const login = async (loginDTO: ILoginDTO) =>
     async (dispatch: Dispatch<SessionActions>) => {
@@ -39,12 +46,27 @@ export const login = async (loginDTO: ILoginDTO) =>
 export const register = async (registerDTO: IRegisterDTO) =>
     async (dispatch: Dispatch<SessionActions>) => {
         dispatch(gettingSession());
-        return await utilRegister(registerDTO)
-            .then((res: ISessionState) => dispatch(receiveSession(res)))
-            .catch(error => {
-                console.log(error);
-            });
+        try {
+            const res = await utilRegister(registerDTO);
+            dispatch(receiveSession({
+                userId: getUserId(res.data.token),
+                loading: false,
+                restoringSession: false
+            }));
+        } catch (error) {
+            dispatch(receiveSessionErrors(
+                error.response.data.errors
+            ));
+        }
     };
+
+export const clearSessionErrors = () => (dispatch: Dispatch<SessionActions>) => {
+    dispatch(receiveSessionErrors({
+        Email: [],
+        Password: [],
+        Username: []
+    }));
+};
 
 export const logout = () =>
     (dispatch: Dispatch<SessionActions>) => {

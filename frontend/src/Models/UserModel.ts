@@ -1,3 +1,4 @@
+import { Identifier } from "typescript";
 
 // Users
 export interface IUser {
@@ -6,5 +7,6 @@ export interface IUser {
 }
 
 export interface IUserState {
-    readonly users: IUser[];
+    // Comparable to Dictionary<string, IUser>
+    readonly users: {[Identifier: string]: IUser};
 }

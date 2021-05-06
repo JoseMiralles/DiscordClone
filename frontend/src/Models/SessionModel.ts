@@ -3,6 +3,13 @@ export interface ISessionState {
     readonly userId: string | null;
     readonly loading: boolean;
     readonly restoringSession: boolean;
+    readonly errors?: ISessionErrors;
+}
+
+export interface ISessionErrors {
+    Email: string[],
+    Password: string[],
+    Username: string[]
 }
 
 export interface ILoginDTO {

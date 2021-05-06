@@ -43,15 +43,28 @@ namespace Intalk.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] UserRegistrationRequest userRequest)
         {
+            Console.WriteLine("REGISTERING");
             if (this.ModelState.IsValid)
             {
-                // Check if someone is already using this email.
+                // Check if Email is already taken.
                 var existingUser = await _userManager.FindByEmailAsync(userRequest.Email);
                 if (existingUser != null)
                 {
                     return BadRequest(new RegistrationResponse(){
                         Errors = new List<string>() {
                             "Email already in use"
+                        }
+                    });
+                }
+
+                // Check if Username is already taken.
+                existingUser = await _userManager.FindByNameAsync(userRequest.Username);
+                if (existingUser != null)
+                {
+                    return BadRequest(new RegistrationResponse()
+                    {
+                        Errors = new List<string>(){
+                            "User Name is already in use"
                         }
                     });
                 }
@@ -63,7 +76,8 @@ namespace Intalk.Controllers
                     UserName = userRequest.Username
                 };
                 var createdUser = await _userManager.CreateAsync(newUser, userRequest.Password);
-                if (createdUser.Succeeded)
+
+                if (createdUser != null && createdUser.Succeeded)
                 {
                     AuthResult jwtToken = await GenerateJwtTokenAsync(newUser);
                     return Ok(jwtToken);

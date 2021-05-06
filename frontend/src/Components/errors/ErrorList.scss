@@ -1,0 +1,9 @@
+@import "../../Style_variables/colors.scss";
+@import "../../Style_variables/vars.scss";
+
+.errors-list{
+    color: $warning;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: $common-padding / 3;
+}

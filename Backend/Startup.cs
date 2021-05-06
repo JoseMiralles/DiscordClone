@@ -40,8 +40,8 @@ namespace Intalk
             services.AddDbContext<ApiDbContext>(options =>
                 {
                     options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
-                    options.LogTo(Console.WriteLine);
-                    options.EnableSensitiveDataLogging(false);
+                    // options.LogTo(Console.WriteLine);
+                    // options.EnableSensitiveDataLogging(false);
                 });
 
             // Register repositories.
