@@ -10,7 +10,12 @@ export const AuthManager: React.FC = ({ children }) => {
     const { restoringSession } = useSelector((s: AppState) => s.session);
 
     // Attempt to restore previous session if refresh token exists.
-    if (localStorage.getItem("RT") && restoringSession) {
+    const tokens = getTokenSet();
+    if (
+        tokens.refreshToken
+        && tokens.refreshToken !== "null"
+        && restoringSession
+    ) {
         refreshAccessToken(user => {
             dispatch(tokensRefreshed(user));
             setupAxiosTokenRefresh(

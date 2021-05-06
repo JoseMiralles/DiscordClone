@@ -10,11 +10,10 @@ export const utilLogin = (loginDTO: ILoginDTO): Promise<AxiosResponse<IAuthRespo
     );
     req.then((res: AxiosResponse<IAuthResponseDTO>) => {
         console.log();
-        debugger
         updateAxiosBearer(res.data.token);
         persistTokens({
             jwt: res.data.token,
-            refreshToken: res.data.token
+            refreshToken: res.data.refreshToken
         });
     });
     return req;
@@ -29,7 +28,7 @@ export const utilRegister = (registerDTO: IRegisterDTO): Promise<AxiosResponse<I
         updateAxiosBearer(res.data.token);
         persistTokens({
             jwt: res.data.token,
-            refreshToken: res.data.token
+            refreshToken: res.data.refreshToken
         });
     });
     return request;
