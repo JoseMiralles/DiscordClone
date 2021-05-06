@@ -2,22 +2,19 @@ import axios, { AxiosResponse } from "axios";
 import { Console } from "node:console";
 import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, IRegisterDTO, ISessionState } from "../Models/SessionModel";
 
-export const utilLogin = async (loginDTO: ILoginDTO): Promise<ISessionState> => {
-    return await axios.post(
+export const utilLogin = (loginDTO: ILoginDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
+    const req = axios.post(
         "/api/AuthManagment/Login",
         loginDTO
-    ).then((res: AxiosResponse<IAuthResponseDTO>) => {
+    );
+    req.then((res: AxiosResponse<IAuthResponseDTO>) => {
         updateAxiosBearer(res.data.token);
         persistTokens({
             jwt: res.data.token,
             refreshToken: res.data.token
         });
-        return {
-            userId: getUserId(res.data.token),
-            loading: false,
-            restoringSession: false
-        };
     });
+    return req;
 };
 
 export const utilRegister = (registerDTO: IRegisterDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {

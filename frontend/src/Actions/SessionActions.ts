@@ -1,31 +1,28 @@
 import { Dispatch } from "react";
+import { AppActions } from "../Models/AppModel";
 import { ILoginDTO, IRegisterDTO, ISessionErrors, ISessionState } from "../Models/SessionModel";
 import { utilLogin, utilLogout, utilRegister, getUserId } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).
-export const GETTING_SESSION = "GETTING_SESSION";
-export const gettingSession = () => ({
-    type: GETTING_SESSION
+export const gettingSession = (): AppActions => ({
+    type: "GETTING_SESSION"
 } as const);
 
 // When the response of the auth request comes back.
-export const RECEIVE_SESSION = "RECEIVE_SESSION";
-export const receiveSession = (session: ISessionState) => ({
-    type: RECEIVE_SESSION,
-    session: session
+export const receiveSession = (userId: string): AppActions => ({
+    type: "RECEIVE_SESSION",
+    userId
 } as const);
 
 // When the user logs out.
-export const REMOVE_SESSION = "REMOVE_SESSION";
 export const removeSession = () => ({
-    type: REMOVE_SESSION
+    type: "REMOVE_SESSION"
 } as const);
 
-export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const receiveSessionErrors = (errors: ISessionErrors) => ({
-    type: RECEIVE_SESSION_ERRORS,
+    type: "RECEIVE_SESSION_ERRORS",
     errors
-});
+} as const);
 
 export type SessionActions =
     | ReturnType<typeof gettingSession>
@@ -36,11 +33,18 @@ export type SessionActions =
 export const login = async (loginDTO: ILoginDTO) =>
     async (dispatch: Dispatch<SessionActions>) => {
         dispatch(gettingSession());
-        return await utilLogin(loginDTO)
-            .then((res: ISessionState) => dispatch(receiveSession(res)))
-            .catch(error => {
-                console.log(error);
-            });
+        try {
+            const res = await utilLogin(loginDTO)
+            dispatch(receiveSession(getUserId(res.data.token)));
+        } catch (error) {
+            dispatch(receiveSessionErrors(
+                error.response.data.errors
+            ));
+        }
+            // .then((res: ISessionState) => dispatch(receiveSession(res)))
+            // .catch(error => {
+            //     console.log(error);
+            // });
     };
 
 export const register = async (registerDTO: IRegisterDTO) =>
@@ -48,11 +52,9 @@ export const register = async (registerDTO: IRegisterDTO) =>
         dispatch(gettingSession());
         try {
             const res = await utilRegister(registerDTO);
-            dispatch(receiveSession({
-                userId: getUserId(res.data.token),
-                loading: false,
-                restoringSession: false
-            }));
+            dispatch(receiveSession(
+                getUserId(res.data.token)
+            ));
         } catch (error) {
             dispatch(receiveSessionErrors(
                 error.response.data.errors
