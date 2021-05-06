@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSessionErrors, register } from "../../Actions/SessionActions";
 import { ISessionErrors } from "../../Models/SessionModel";
-import { IAppSate } from "../../store";
+import { AppState } from "../../store";
 import ErrorList from "../errors/ErrorList";
 import DemoLoginButton from "./DemoLoginButton";
 
@@ -15,8 +15,8 @@ const RegisterPage = () => {
     const [password, setPassword] = useState("");
     let errors: ISessionErrors = { Email: [], Password: [], Username: [] };
     let loading = false;
-    useSelector((s: IAppSate) => {
-        if (s.session.errors) errors = s.session.errors;
+    useSelector((s: AppState) => {
+        if (s.session.errors != undefined) errors = s.session.errors;
         loading = s.session.loading;
     });
 

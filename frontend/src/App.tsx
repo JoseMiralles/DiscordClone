@@ -5,13 +5,13 @@ import Header from './Components/Header';
 import { AuthManager } from './Components/session/AuthManager';
 import ProtectedRoute from './Components/session/ProtectedRoute';
 import AuthenticationRoute from "./Components/session/AuthenticationRoute";
-import { IAppSate } from './store';
+import { AppState } from './store';
 import LoginPage from './Components/session/LoginPage';
 import RegisterPage from './Components/session/RegisterPage';
 
 function App() {
   
-  const { userId, restoringSession } = useSelector((s: IAppSate) => s.session);
+  const { userId, restoringSession } = useSelector((s: AppState) => s.session);
   const isAuthenticated = userId ? true : false;
   
   return (

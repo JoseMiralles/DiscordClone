@@ -2,7 +2,7 @@ import { AppActions } from "../Models/AppModel";
 import { ISessionState } from "../Models/SessionModel";
 
 const initialState = {
-    userId: null,
+    userId: "",
     loading: false,
     restoringSession: true
 };
@@ -27,7 +27,7 @@ export const sessionReducer = (state = initialState, action: AppActions): ISessi
         }
             
         case "REMOVE_SESSION": return {
-            userId: null,
+            userId: "",
             loading: false,
             restoringSession: false
         };

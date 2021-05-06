@@ -2,7 +2,7 @@ import "./NavBar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../Actions/SessionActions";
-import { IAppSate } from "../store";
+import { AppState } from "../store";
 import { useState } from "react";
 
 interface Props {

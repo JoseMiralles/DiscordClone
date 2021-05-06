@@ -1,6 +1,7 @@
-import { Dispatch } from "react";
+import { Dispatch } from "redux";
 import { AppActions } from "../Models/AppModel";
 import { ILoginDTO, IRegisterDTO, ISessionErrors, ISessionState } from "../Models/SessionModel";
+import { AppState } from "../store";
 import { utilLogin, utilLogout, utilRegister, getUserId } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).
@@ -24,14 +25,8 @@ export const receiveSessionErrors = (errors: ISessionErrors) => ({
     errors
 } as const);
 
-export type SessionActions =
-    | ReturnType<typeof gettingSession>
-    | ReturnType<typeof receiveSession>
-    | ReturnType<typeof removeSession>
-    | ReturnType<typeof receiveSessionErrors>;
-
 export const login = async (loginDTO: ILoginDTO) =>
-    async (dispatch: Dispatch<SessionActions>) => {
+    async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
         dispatch(gettingSession());
         try {
             const res = await utilLogin(loginDTO)
@@ -41,14 +36,10 @@ export const login = async (loginDTO: ILoginDTO) =>
                 error.response.data.errors
             ));
         }
-            // .then((res: ISessionState) => dispatch(receiveSession(res)))
-            // .catch(error => {
-            //     console.log(error);
-            // });
     };
 
 export const register = async (registerDTO: IRegisterDTO) =>
-    async (dispatch: Dispatch<SessionActions>) => {
+    async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
         dispatch(gettingSession());
         try {
             const res = await utilRegister(registerDTO);
@@ -62,21 +53,22 @@ export const register = async (registerDTO: IRegisterDTO) =>
         }
     };
 
-export const clearSessionErrors = () => (dispatch: Dispatch<SessionActions>) => {
-    dispatch(receiveSessionErrors({
-        Email: [],
-        Password: [],
-        Username: []
-    }));
-};
+export const clearSessionErrors = () =>
+    (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
+        dispatch(receiveSessionErrors({
+            Email: [],
+            Password: [],
+            Username: []
+        }));
+    };
 
 export const logout = () =>
-    (dispatch: Dispatch<SessionActions>) => {
+    (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
         utilLogout();
         dispatch(removeSession());
     }
 
 export const tokensRefreshed = (sessionState: ISessionState) =>
-    (dispatch: Dispatch<SessionActions>) => {
+    (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
         dispatch(receiveSession(sessionState.userId));
     };

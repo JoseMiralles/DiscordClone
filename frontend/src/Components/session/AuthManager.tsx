@@ -2,12 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, tokensRefreshed } from "../../Actions/SessionActions";
 import { ISessionState } from "../../Models/SessionModel";
-import { IAppSate } from "../../store";
+import { AppState } from "../../store";
 import { refreshAccessToken, setupAxiosTokenRefresh } from "../../Util/SessionUtil";
 
 export const AuthManager: React.FC = ({children}) => {
     const dispatch = useDispatch();
-    const { restoringSession } = useSelector((s: IAppSate) => s.session);
+    const { restoringSession } = useSelector((s: AppState) => s.session);
 
     // Attempt to restore previous session if refresh token exists.
     if (localStorage.getItem("RT") && restoringSession) {

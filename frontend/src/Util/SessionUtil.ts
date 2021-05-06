@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Console } from "node:console";
 import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, IRegisterDTO, ISessionState } from "../Models/SessionModel";
+import { IUser } from "../Models/UserModel";
 
 export const utilLogin = (loginDTO: ILoginDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
     const req = axios.post(
@@ -131,6 +132,14 @@ export const getTokenSet = (): ITokenSet => {
  */
 export const getUserId = (jwt: string): string => {
     return "placeholderId"
+};
+
+/**
+ * Decodes a jwt, and returns a IUser object containing relevant claims.
+ * @param jwt Token from which to decode the user claims.
+ */
+export const decodeUser = (jwt: string): IUser => {
+
 };
 
 /**
