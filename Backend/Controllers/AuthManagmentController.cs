@@ -91,9 +91,6 @@ namespace Intalk.Controllers
             }
 
             // Incoming payload did not match model.
-            // response.Success = false;
-            // response.Errors.General.Add("Invalid payload");
-            // return BadRequest(response);
             return ValidationFailed(response);
         }
 
