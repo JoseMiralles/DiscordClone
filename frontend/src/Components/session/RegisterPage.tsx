@@ -13,11 +13,11 @@ const RegisterPage = () => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    let errors: ISessionErrors = { Email: [], Password: [], Username: [] };
-    let loading = false;
-    useSelector((s: AppState) => {
-        if (s.session.errors != undefined) errors = s.session.errors;
-        loading = s.session.loading;
+    const { errors, loading } = useSelector((s: AppState) => {
+        return {
+            errors: s.session.errors,
+            loading: s.session.loading
+        };
     });
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,22 +43,24 @@ const RegisterPage = () => {
 
                     <div className="auth-form-title">Register</div>
 
+                    {errors && errors.general ? <ErrorList errors={errors.general}/> : "" }
+
                     <form className="auth-form" onSubmit={onSubmit}>
                         <label htmlFor="email">Email:</label>
-                        {errors && errors.Email ? <ErrorList errors={errors.Email}/> : "" }
+                        {errors && errors.email ? <ErrorList errors={errors.email}/> : "" }
                         <input type="text" id="email"
                             value={email}
                             onChange={(e) => { setEmail(e.target.value) }} />
 
                         <label htmlFor="username">User name:</label>
-                        {errors && errors.Username ? <ErrorList errors={errors.Username}/> : "" }
+                        {errors && errors.username ? <ErrorList errors={errors.username}/> : "" }
                         <input type="text" id="username"
                             value={username}
                             onChange={(e) => { setUsername(e.target.value) }} />
 
                         
                         <label htmlFor="password">Password:</label>
-                        {errors && errors.Password ? <ErrorList errors={errors.Password}/> : "" }
+                        {errors && errors.password ? <ErrorList errors={errors.password}/> : "" }
                         <input type="password" id="password"
                             value={password}
                             onChange={(e) => { setPassword(e.target.value) }} />

@@ -1,5 +1,5 @@
 import { AppActions } from "../Models/AppModel";
-import { ISessionState } from "../Models/SessionModel";
+import { ISessionErrors, ISessionState } from "../Models/SessionModel";
 
 const initialState = {
     userId: "",
@@ -17,7 +17,7 @@ export const sessionReducer = (state = initialState, action: AppActions): ISessi
                 loading: true
             }
         }
-            
+
         case "RECEIVE_SESSION": {
             return {
                 userId: action.userId,
@@ -25,19 +25,26 @@ export const sessionReducer = (state = initialState, action: AppActions): ISessi
                 restoringSession: false
             }
         }
-            
+
         case "REMOVE_SESSION": return {
             userId: "",
             loading: false,
             restoringSession: false
         };
 
-        case "RECEIVE_SESSION_ERRORS": return {
-            ...state,
-            errors: action.errors,
-            loading: false
+        case "RECEIVE_SESSION_ERRORS": {
+            return {
+                ...state,
+                errors: action.errors,
+                loading: false
+            }
         }
-            
+
+        case "CLEAR_SESSION_ERRORS": return {
+            ...state,
+            errors: undefined
+        }
+
         default: return state;
     }
 

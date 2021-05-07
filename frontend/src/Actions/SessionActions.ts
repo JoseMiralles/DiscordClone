@@ -27,6 +27,10 @@ export const receiveSessionErrors = (errors: ISessionErrors) => ({
     errors
 } as const);
 
+export const clearSessionErrors = () => ({
+    type: "CLEAR_SESSION_ERRORS"
+});
+
 export const login = async (loginDTO: ILoginDTO) =>
     async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
         dispatch(gettingSession());
@@ -39,7 +43,7 @@ export const login = async (loginDTO: ILoginDTO) =>
             dispatch(receiveUser(user));
         } catch (error) {
             dispatch(receiveSessionErrors(
-                error.response.data.errors
+                error.response.data
             ));
         }
     };
@@ -59,15 +63,6 @@ export const register = async (registerDTO: IRegisterDTO) =>
                 error.response.data.errors
             ));
         }
-    };
-
-export const clearSessionErrors = () =>
-    (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-        dispatch(receiveSessionErrors({
-            Email: [],
-            Password: [],
-            Username: []
-        }));
     };
 
 export const logout = () =>

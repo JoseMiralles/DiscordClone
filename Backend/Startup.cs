@@ -74,6 +74,11 @@ namespace Intalk
                 jwt.TokenValidationParameters = tokenValidationParams;
             });
 
+            services.Configure<ApiBehaviorOptions>(options => {
+                // Prevent model validation from automatically returning errors.
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
             services.AddDefaultIdentity<ApplicationUser>(options => {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.Password.RequireLowercase = false;
@@ -81,8 +86,7 @@ namespace Intalk
                 options.Password.RequiredUniqueChars = 0;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
-            })
-                .AddEntityFrameworkStores<ApiDbContext>();
+            }).AddEntityFrameworkStores<ApiDbContext>();
 
             services.AddControllers()
             .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

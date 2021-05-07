@@ -25,6 +25,8 @@ namespace Intalk.Identity
                 });
             }
 
+            
+
             return errors.Count == 0 ? IdentityResult.Success : IdentityResult.Failed(errors.ToArray());
         }
 

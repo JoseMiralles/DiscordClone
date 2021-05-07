@@ -3,6 +3,7 @@ export const GETTING_SESSION = "GETTING_SESSION";
 export const RECEIVE_SESSION = "RECEIVE_SESSION";
 export const REMOVE_SESSION = "REMOVE_SESSION";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 export interface gettingSession {
     type: typeof GETTING_SESSION;
@@ -22,11 +23,16 @@ export interface receiveSessionErrors {
     errors: ISessionErrors;
 }
 
+export interface clearSessionErrors {
+    type: typeof CLEAR_SESSION_ERRORS
+}
+
 export type SessionActionTypes =
     gettingSession |
     receiveSession |
     removeSession |
-    receiveSessionErrors;
+    receiveSessionErrors |
+    clearSessionErrors;
 
 export interface ISessionState {
     readonly userId: string;
@@ -36,9 +42,10 @@ export interface ISessionState {
 }
 
 export interface ISessionErrors {
-    Email?: string[],
-    Password?: string[],
-    Username?: string[]
+    email?: string[],
+    password?: string[],
+    username?: string[],
+    general?: string[],
 }
 
 export interface ILoginDTO {
