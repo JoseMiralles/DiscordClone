@@ -43,7 +43,6 @@ namespace Intalk.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] UserRegistrationRequest userRequest)
         {
-            Console.WriteLine("REGISTERING");
             if (this.ModelState.IsValid)
             {
                 // Check if Email is already taken.

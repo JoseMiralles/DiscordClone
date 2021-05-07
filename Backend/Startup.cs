@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Intalk.Configuration;
 using Intalk.Data;
+using Intalk.Identity;
 using Intalk.Models;
 using Intalk.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -36,7 +37,7 @@ namespace Intalk
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
-
+            services.AddTransient<IUserValidator<ApplicationUser>, CustomUsernameEmailPolicy>();
             services.AddDbContext<ApiDbContext>(options =>
                 {
                     options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
@@ -73,7 +74,14 @@ namespace Intalk
                 jwt.TokenValidationParameters = tokenValidationParams;
             });
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
                 .AddEntityFrameworkStores<ApiDbContext>();
 
             services.AddControllers()
