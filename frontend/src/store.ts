@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { sessionReducer } from "./Reducers/SessionReducer";
 import { usersReducer } from "./Reducers/UsersReducer";
+import modalReducer from "./Reducers/ModalReducer";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    users: usersReducer
+    users: usersReducer,
+    modal: modalReducer
 });
 
 // Automatically infer type from reducer's return type.
