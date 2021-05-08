@@ -12,9 +12,9 @@ export const gettingSession = (): AppActions => ({
 } as const);
 
 // When the response of the auth request comes back.
-export const receiveSession = (userId: string): AppActions => ({
+export const receiveSession = (user: IUser): AppActions => ({
     type: "RECEIVE_SESSION",
-    userId
+    user
 } as const);
 
 // When the user logs out.
@@ -37,10 +37,7 @@ export const login = async (loginDTO: ILoginDTO) =>
         try {
             const res = await utilLogin(loginDTO);
             const user = decodeUser(res.data.token);
-            dispatch(receiveSession(
-                user.id
-            ));
-            dispatch(receiveUser(user));
+            dispatch(receiveSession(user));
         } catch (error) {
             dispatch(receiveSessionErrors(
                 error.response.data
@@ -54,10 +51,7 @@ export const register = async (registerDTO: IRegisterDTO) =>
         try {
             const res = await utilRegister(registerDTO);
             const user = decodeUser(res.data.token);
-            dispatch(receiveSession(
-                user.id
-            ));
-            dispatch(receiveUser(user));
+            dispatch(receiveSession(user));
         } catch (error) {
             dispatch(receiveSessionErrors(
                 error.response.data.errors
@@ -73,6 +67,5 @@ export const logout = () =>
 
 export const tokensRefreshed = (user: IUser) =>
     (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-        dispatch(receiveSession(user.id));
-        dispatch(receiveUser(user));
+        dispatch(receiveSession(user));
     };

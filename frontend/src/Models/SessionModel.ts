@@ -1,3 +1,4 @@
+import { IUser } from "./UserModel";
 
 export const GETTING_SESSION = "GETTING_SESSION";
 export const RECEIVE_SESSION = "RECEIVE_SESSION";
@@ -11,7 +12,7 @@ export interface gettingSession {
 
 export interface receiveSession {
     type: typeof RECEIVE_SESSION;
-    userId: string;
+    user: IUser;
 }
 
 export interface removeSession {

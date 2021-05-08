@@ -51,13 +51,7 @@ namespace Intalk.Controllers
             CreateServerRequest createServerRequest)
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            long serverId = await _serverRepo.CreateServer(createServerRequest, userId);
-
-            return CreatedAtAction(
-                nameof(GET),
-                new { id = serverId },
-                serverId
-            );
+            return await _serverRepo.CreateServer(createServerRequest, userId);
         }
 
         [HttpPatch("{id}")]

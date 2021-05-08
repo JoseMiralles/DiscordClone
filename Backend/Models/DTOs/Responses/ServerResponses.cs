@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Intalk.Models.DTOs.Responses
 {
 
@@ -8,6 +10,8 @@ namespace Intalk.Models.DTOs.Responses
     {
         public long Id { get; set; }
         public string Title { get; set; }
+
+        public List<UserServer> UsersServers { get; set; }
 
         // TODO: Add channels
         // public IEnumerable<MultipleChannelsResponseItem> MyProperty { get; set; }

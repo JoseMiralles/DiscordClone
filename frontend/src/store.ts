@@ -4,11 +4,13 @@ import logger from "redux-logger";
 import { sessionReducer } from "./Reducers/SessionReducer";
 import { usersReducer } from "./Reducers/UsersReducer";
 import modalReducer from "./Reducers/ModalReducer";
+import serverReducer from "./Reducers/ServersReducer";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     users: usersReducer,
-    modal: modalReducer
+    servers: serverReducer,
+    modal: modalReducer,
 });
 
 // Automatically infer type from reducer's return type.

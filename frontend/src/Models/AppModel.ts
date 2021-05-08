@@ -1,4 +1,5 @@
 import { ModalActionTypes } from "./ModalModel";
+import { serverActionTypes } from "./ServerModel";
 import { SessionActionTypes } from "./SessionModel";
 import { UserActionTypes } from "./UserModel";
 
@@ -6,4 +7,5 @@ import { UserActionTypes } from "./UserModel";
 export type AppActions =
     SessionActionTypes |
     UserActionTypes |
-    ModalActionTypes;
+    ModalActionTypes |
+    serverActionTypes;

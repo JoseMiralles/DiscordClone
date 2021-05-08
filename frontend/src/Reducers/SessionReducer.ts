@@ -20,7 +20,7 @@ export const sessionReducer = (state = initialState, action: AppActions): ISessi
 
         case "RECEIVE_SESSION": {
             return {
-                userId: action.userId,
+                userId: action.user.id,
                 loading: false,
                 restoringSession: false
             }

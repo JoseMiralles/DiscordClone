@@ -22,7 +22,7 @@ function App() {
         <Switch>
 
           <ProtectedRoute
-            isAuthenticated={isAuthenticated || restoringSession}
+            isAuthenticated={isAuthenticated || !restoringSession}
             path="/app"
             authenticationPath="/login"
             component={Client}/>
@@ -32,7 +32,7 @@ function App() {
             <Switch>
               <ProtectedRoute path="/s" authenticationPath="/login"
                 component={() => (<h1>test</h1>)}
-                isAuthenticated={isAuthenticated || restoringSession} />
+                isAuthenticated={isAuthenticated || !restoringSession} />
 
               <AuthenticationRoute path="/register" redirectTo="/app"
                 component={RegisterPage}

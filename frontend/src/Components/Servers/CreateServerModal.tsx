@@ -1,14 +1,22 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../Actions/ModalActions";
+import { createServer } from "../../Actions/ServerActions";
 
-const CreateServerModal = () => {
+interface Props {
+    username: string;
+}
+
+const CreateServerModal = (props: Props) => {
 
     const dispatch = useDispatch();
-    const [serverName, setServerName] = useState("");
+    const [serverName, setServerName] = useState(props.username + "'s server");
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        dispatch(createServer({
+            title: serverName
+        }));
     };
 
     const close = () => {

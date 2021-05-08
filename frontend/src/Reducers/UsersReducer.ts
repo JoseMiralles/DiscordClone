@@ -12,6 +12,7 @@ export const usersReducer = (
 
     switch (action.type) {
 
+        case "RECEIVE_SESSION":
         case "RECEIVE_USER": {
             const newState = Object.assign({}, state);
             newState.users[action.user.id] = action.user;

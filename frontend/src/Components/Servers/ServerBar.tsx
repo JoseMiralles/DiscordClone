@@ -6,14 +6,19 @@ import CreateServerModal from "./CreateServerModal";
 
 const ServerBar = () => {
 
-    const selectedModal: Modals = useSelector((s: AppState) => s.modal.modal);
+    const { selectedModal, username } = useSelector((s: AppState) => {
+        return {
+            selectedModal: s.modal.modal,
+            username: s.users.users[s.session.userId].userName
+        }
+    });
 
     return (
         <section id="server-bar-section">
             <ul id="server-list">
                 <CreateServerButton />
             </ul>
-            {(selectedModal === Modals.createServer) && <CreateServerModal/>}
+            {(selectedModal === Modals.createServer) && <CreateServerModal username={username}/>}
         </section>
     )
 };
