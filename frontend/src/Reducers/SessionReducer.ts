@@ -1,40 +1,50 @@
-import { GETTING_SESSION, RECEIVE_SESSION, REMOVE_SESSION, SessionActions } from "../Actions/SessionActions";
-import { ISessionState } from "../Models/SessionModel";
-import { getTokenSet } from "../Util/SessionUtil";
+import { AppActions } from "../Models/AppModel";
+import { ISessionErrors, ISessionState } from "../Models/SessionModel";
 
-const initialState: ISessionState = {
-    userId: null,
+const initialState = {
+    userId: "",
     loading: false,
     restoringSession: true
 };
 
-export const sessionReducer = (state: ISessionState = initialState, action: SessionActions) => {
-
-    Object.freeze(state);
+export const sessionReducer = (state = initialState, action: AppActions): ISessionState => {
 
     switch (action.type) {
 
-        case GETTING_SESSION: {
+        case "GETTING_SESSION": {
             return {
                 ...state,
                 loading: true
             }
         }
-            
-        case RECEIVE_SESSION: {
+
+        case "RECEIVE_SESSION": {
             return {
-                userId: action.session.userId,
+                userId: action.userId,
                 loading: false,
                 restoringSession: false
             }
         }
-            
-        case REMOVE_SESSION: return {
-            userId: null,
+
+        case "REMOVE_SESSION": return {
+            userId: "",
             loading: false,
             restoringSession: false
         };
-            
+
+        case "RECEIVE_SESSION_ERRORS": {
+            return {
+                ...state,
+                errors: action.errors,
+                loading: false
+            }
+        }
+
+        case "CLEAR_SESSION_ERRORS": return {
+            ...state,
+            errors: undefined
+        }
+
         default: return state;
     }
 

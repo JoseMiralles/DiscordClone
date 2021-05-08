@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/net5.0/Intalk.dll",
+            // "program": "${workspaceFolder}/bin/Debug/net5.0/Intalk.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -30,6 +30,7 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
+            // "processId": "4603"
             "processId": "${command:pickProcess}"
         }
     ]

@@ -1,41 +1,37 @@
 import axios, { AxiosResponse } from "axios";
-import { Console } from "node:console";
-import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, IRegisterDTO, ISessionState } from "../Models/SessionModel";
+import jwtDecode from "jwt-decode";
+import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, IRegisterDTO } from "../Models/SessionModel";
+import { IUser } from "../Models/UserModel";
 
-export const utilLogin = async (loginDTO: ILoginDTO): Promise<ISessionState> => {
-    return await axios.post(
+export const utilLogin = (loginDTO: ILoginDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
+    const req = axios.post(
         "/api/AuthManagment/Login",
         loginDTO
-    ).then((res: AxiosResponse<IAuthResponseDTO>) => {
+    );
+    req.then((res: AxiosResponse<IAuthResponseDTO>) => {
+        console.log();
         updateAxiosBearer(res.data.token);
         persistTokens({
             jwt: res.data.token,
-            refreshToken: res.data.token
+            refreshToken: res.data.refreshToken
         });
-        return {
-            userId: getUserId(res.data.token),
-            loading: false,
-            restoringSession: false
-        };
     });
+    return req;
 };
 
-export const utilRegister = async (registerDTO: IRegisterDTO): Promise<ISessionState> => {
-    return await axios.post(
-        "api/AuthManagment/register",
+export const utilRegister = (registerDTO: IRegisterDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
+    const request = axios.post(
+        "/api/AuthManagment/register",
         registerDTO
-    ).then((res: AxiosResponse<IAuthResponseDTO>) => {
+    );
+    request.then((res: AxiosResponse<IAuthResponseDTO>) => {
         updateAxiosBearer(res.data.token);
         persistTokens({
             jwt: res.data.token,
-            refreshToken: res.data.token
+            refreshToken: res.data.refreshToken
         });
-        return {
-            userId: getUserId(res.data.token),
-            loading: false,
-            restoringSession: false
-        };
     });
+    return request;
 };
 
 /**
@@ -44,73 +40,52 @@ export const utilRegister = async (registerDTO: IRegisterDTO): Promise<ISessionS
  */
 export const setupAxiosTokenRefresh =
     async (
-        oldJwt: string,
-        successfulRefresh: (sesStt: ISessionState) => void,
-        failedRefresh: () => void
-        // TODO: Might have to also take "gettingSession" dispatch.
+        onSuccess: (user: IUser) => void,
+        onFailure: () => void
     ) => {
         axios.interceptors.response.use(response => {
             return response; // Initial request was successful, return response.
         }, async (error) => {
             // Request failed, attempt to refresh tokens if that was the issue.
-            // Call successfulRefresh if the tokens were refreshed.
+            // Call onSuccess if the tokens were refreshed.
             const originalRequest = error.config;
-            if (error.response.status === 403 && !originalRequest._retry) {
+            if (error.response?.status === 403 && !originalRequest._retry) {
                 originalRequest._retry = true;
-                const authResponse: IAuthResponseDTO | null = await refreshAccessToken();
-
-                if (authResponse) {
-                    // Refresh successfull, dispatch refreshToken action.
-                    updateAxiosBearer(authResponse.token);
-                    successfulRefresh({
-                        userId: getUserId(authResponse.token),
-                        loading: false,
-                        restoringSession: false
-                    });
-                    return axios(originalRequest);
-                } else {
-                    // Unsuccsesful, dispatch logout action.
-                    failedRefresh();
-                }
+                await refreshAccessToken((user) => {
+                    onSuccess(user);
+                }, onFailure);
+                return axios(originalRequest);
             }
         });
     };
 
-export const refreshAccessToken =
-    async (onSuccess?: (data: ISessionState) => void, onFailure?: (reason: any) => void): Promise<IAuthResponseDTO | null> => {
-        console.log("refreshing tokens");
-        const tokenSet: ITokenSet = getTokenSet();
-        if (
-            tokenSet.jwt && tokenSet.refreshToken
-        ) {
-            console.log("tokens found");
-            const rtr: IRefreshTokenRequest = {
-                token: tokenSet.jwt || "",
-                refreshToken: tokenSet.refreshToken || ""
-            };
-            await axios.post(
+export const refreshAccessToken = async (
+    onSuccess?: (user: IUser) => void,
+    onFailure?: (reason: any) => void
+) => {
+    const tokenSet = getTokenSet();
+    if (tokenSet.jwt && tokenSet.refreshToken) {
+        const rtr: IRefreshTokenRequest = {
+            token: tokenSet.jwt,
+            refreshToken: tokenSet.refreshToken
+        };
+        try {
+            const res = await axios.post (
                 "/api/AuthManagment/RefreshToken",
                 rtr
-            ).then((res: AxiosResponse<IAuthResponseDTO>) => {
-                console.log("success");
-                persistTokens({
-                    jwt: res.data.token,
-                    refreshToken: res.data.refreshToken
-                });
-                if (onSuccess) onSuccess({
-                    userId: getUserId(res.data.token),
-                    loading: false,
-                    restoringSession: false
-                });
-                return res.data;
-            }, (reason) => {
-                console.log("failure");
-                if (onFailure) onFailure(reason);
+            );
+            updateAxiosBearer(res.data.token);
+            persistTokens({
+                jwt: res.data.token,
+                refreshToken: res.data.refreshToken
             });
+            const user = decodeUser(res.data.token);
+            if (onSuccess) onSuccess(user);
+        } catch (error) {
+            if (onFailure) onFailure(error);
         }
-        console.log("tokens not found");
-        return null;
-    };
+    }
+};
 
 export const utilLogout = () => {
     localStorage.removeItem("RT");
@@ -133,10 +108,16 @@ export const getTokenSet = (): ITokenSet => {
 };
 
 /**
- * Extracts userId claim from jwt.
+ * Decodes a jwt, and returns a IUser object containing relevant claims.
+ * @param jwt Token from which to decode the user claims.
  */
-const getUserId = (jwt: string): string => {
-    return "placeholderId"
+export const decodeUser = (jwt: string): IUser => {
+    const decoded: { nameid: string, username: string }
+        = jwtDecode(jwt);
+    return {
+        userName: decoded.username,
+        id: decoded.nameid
+    };
 };
 
 /**

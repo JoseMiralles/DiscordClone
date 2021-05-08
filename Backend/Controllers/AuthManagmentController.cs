@@ -10,6 +10,7 @@ using Intalk.Data;
 using Intalk.Models;
 using Intalk.Models.DTOs.Requests;
 using Intalk.Models.DTOs.Responses;
+using Intalk.Util;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -43,17 +44,28 @@ namespace Intalk.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] UserRegistrationRequest userRequest)
         {
+            var response = new RegistrationResponse();
             if (this.ModelState.IsValid)
             {
-                // Check if someone is already using this email.
+                // Check if Email is already taken.
                 var existingUser = await _userManager.FindByEmailAsync(userRequest.Email);
                 if (existingUser != null)
                 {
-                    return BadRequest(new RegistrationResponse(){
-                        Errors = new List<string>() {
-                            "Email already in use"
-                        }
-                    });
+                    response.Errors["email"].Add("Email already in use");
+                    response.Success = false;
+                }
+
+                // Check if Username is already taken.
+                existingUser = await _userManager.FindByNameAsync(userRequest.Username);
+                if (existingUser != null)
+                {
+                    response.Errors["username"].Add("Username already in use");
+                    response.Success = false;
+                }
+
+                // One of the two previous validations failed.
+                if (response.Errors["email"].Count > 0 || response.Errors["username"].Count > 0){
+                    return BadRequest(response);
                 }
 
                 // Attempt to create a new user, and return tokens if successful.
@@ -63,56 +75,48 @@ namespace Intalk.Controllers
                     UserName = userRequest.Username
                 };
                 var createdUser = await _userManager.CreateAsync(newUser, userRequest.Password);
-                if (createdUser.Succeeded)
+
+                // SUCCESS Return auth result
+                if (createdUser != null && createdUser.Succeeded)
                 {
                     AuthResult jwtToken = await GenerateJwtTokenAsync(newUser);
                     return Ok(jwtToken);
                 }
-                
+
                 // The user creation failed, return a list of error descriptions.
-                return BadRequest(new RegistrationResponse(){
-                    Errors = createdUser.Errors.Select(x => x.Description).ToList(),
-                    Success = false
-                });
+                response.Errors["general"] = response.Errors["general"].Concat(
+                    createdUser.Errors.Select(x => x.Description)
+                    ).ToList();
+                return BadRequest(response);
             }
 
             // Incoming payload did not match model.
-            return BadRequest(new RegistrationResponse() {
-                Errors = new List<string>(){
-                    "Invalid payload"
-                },
-                Success = false
-            });
+            return ValidationFailed(response);
         }
 
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] UserLoginRequest userRequest)
         {
+            var response = new RegistrationResponse();
             if (this.ModelState.IsValid)
             {
                 // Check if there is a user with the given email.
                 var existingUser = await _userManager.FindByEmailAsync(userRequest.Email);
                 if (existingUser == null)
                 {
-                    return BadRequest(new RegistrationResponse(){
-                        Errors = new List<string>(){
-                            "Invalid login request"
-                        },
-                        Success = false
-                    });
+                    response.Success = false;
+                    response.Errors["general"].Add("Wrong Email or Password");
+                    return BadRequest(response);
                 }
 
                 // Check if the password is correct.
                 bool correctPassword = await _userManager.CheckPasswordAsync(existingUser, userRequest.Password);
                 if (!correctPassword)
                 {
-                    return BadRequest(new RegistrationResponse(){
-                        Errors = new List<string>() {
-                            "Invalid login request"
-                        },
-                        Success = false
-                    });
+                    response.Success = false;
+                    response.Errors["general"].Add("Wrong Email or Password");
+                    return BadRequest(response);
                 }
 
                 // Auth was successful, return tokens and OK response.
@@ -121,12 +125,9 @@ namespace Intalk.Controllers
             }
 
             // Incoming payload did not match model.
-            return BadRequest(new RegistrationResponse(){
-                Errors = new List<string>(){
-                    "Invalid payload"
-                },
-                Success = false
-            });
+            response.Success = false;
+            response.Errors["general"].Add("Invalid payload");
+            return BadRequest(response);
         }
 
         /// <summary>
@@ -145,7 +146,7 @@ namespace Intalk.Controllers
                 AuthResult result = await VerifyAndGenerateToken(tokenRequest);
                 if (result == null)
                 {
-                    return BadRequest(new RegistrationResponse()
+                    return BadRequest(new AuthResult()
                     {
                         Errors = new List<string>(){
                             "Invalid token"
@@ -158,13 +159,28 @@ namespace Intalk.Controllers
             }
 
             // Incoming payload did not match model.
-            return BadRequest(new RegistrationResponse()
+            return BadRequest(new AuthResult()
             {
                 Errors = new List<string>(){
                     "Invalid payload"
                 },
                 Success = false
             });
+        }
+
+        /// <summary>
+        /// Merges the response errors with the errors from ModelState.
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        private ActionResult ValidationFailed(RegistrationResponse response)
+        {   
+            foreach(var field in ModelState){
+                response.Errors[field.Key.ToCamelCase()].AddRange(
+                    field.Value.Errors.Select(e => e.ErrorMessage).ToList());
+            }
+
+            return BadRequest(response);
         }
 
         private async Task<AuthResult> GenerateJwtTokenAsync(ApplicationUser existingUser)
@@ -175,6 +191,7 @@ namespace Intalk.Controllers
                 Subject = new ClaimsIdentity(new []{
                     // new Claim("Id", existingUser.Id),
                     new Claim(JwtRegisteredClaimNames.NameId, existingUser.Id),
+                    new Claim("username", existingUser.UserName),
                     // new Claim(JwtRegisteredClaimNames.Email, existingUser.Email),
                     // new Claim(JwtRegisteredClaimNames.Sub, existingUser.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())

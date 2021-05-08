@@ -2,8 +2,8 @@ import "./NavBar.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../Actions/SessionActions";
-import { IAppSate } from "../store";
 import { useState } from "react";
+import { AppState } from "../store";
 
 interface Props {
     isAuthenticated: boolean
@@ -12,6 +12,9 @@ interface Props {
 const NavBar = ({ isAuthenticated }: Props) => {
 
     const dispatch = useDispatch();
+
+    const userName = useSelector((s: AppState) =>
+            s.users.users[s.session.userId]?.userName);
 
     const [menuClosed, setMenuClosed] = useState(true);
 
@@ -34,6 +37,7 @@ const NavBar = ({ isAuthenticated }: Props) => {
                 </div>
                 <div onClick={itemSelected} id="nav-menu-wrapper" className={`${menuClass}`}>
                     <ul id="nav-menu">
+                        {userName && <li>{ userName }</li>}
                         {!isAuthenticated
                             ? <>
                                 <Link to="/login"><li>login</li></Link>

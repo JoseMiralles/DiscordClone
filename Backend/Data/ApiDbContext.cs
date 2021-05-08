@@ -4,7 +4,7 @@ using Intalk.Models;
 
 namespace Intalk.Data
 {
-    public class ApiDbContext : IdentityDbContext
+    public class ApiDbContext : IdentityDbContext<ApplicationUser>
     {
         public virtual DbSet<RefreshToken> RefreshToken { get; set; }
 

@@ -6,7 +6,6 @@ import "./index.scss";
 import axios from 'axios';
 import { configureStore } from './store';
 import { Provider } from 'react-redux';
-import { getTokenSet } from "./Util/SessionUtil";
 
 axios.defaults.baseURL = "https://localhost:5001";
 

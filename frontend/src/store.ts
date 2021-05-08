@@ -1,20 +1,18 @@
 import { Store, createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { ISessionState } from "./Models/SessionModel";
 import { sessionReducer } from "./Reducers/SessionReducer";
+import { usersReducer } from "./Reducers/UsersReducer";
 
-export interface IAppSate {
-    readonly session: ISessionState;
-    // readonly servers: IServerState;
-    // readonly users: IUserState;
-}
-
-const rootReducer = combineReducers<IAppSate>({
-    session: sessionReducer
+const rootReducer = combineReducers({
+    session: sessionReducer,
+    users: usersReducer
 });
 
-export const configureStore = (): Store<IAppSate> => {
+// Automatically infer type from reducer's return type.
+export type AppState = ReturnType<typeof rootReducer>
+
+export const configureStore = (): Store<AppState> => {
     const store = createStore(rootReducer, applyMiddleware(thunk, logger));
     return store;
 };
