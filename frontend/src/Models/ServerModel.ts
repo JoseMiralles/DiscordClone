@@ -2,6 +2,7 @@ export const FETCHING_SERVERS = "FETCHING_SERVERS";
 export const RECEIVE_SERVER = "RECEIVE_SERVER";
 export const RECEIVE_ALL_SERVERS = "RECEIVE_ALL_SERVERS";
 export const REMOVE_SERVER = "REMOVE_SERVER";
+export const RECEIVE_SERVER_USERS = "RECEIVE_SERVER_USERS";
 
 export interface IFetchingServers {
     type: "FETCHING_SERVERS"
@@ -20,6 +21,11 @@ export interface IReceiveAllServers {
 export interface IRemoveServer {
     type: "REMOVE_SERVER",
     serverId: number
+}
+
+export interface IReceiveServerUsers {
+    type: "RECEIVE_SERVER_USERS",
+    users: IUserServer[]
 }
 
 export type serverActionTypes =

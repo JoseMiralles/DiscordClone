@@ -6,6 +6,7 @@ using Intalk.Models;
 using Intalk.Models.DTOs.Requests;
 using Intalk.Models.DTOs.Responses;
 using Microsoft.EntityFrameworkCore;
+using static Intalk.Models.UserServer;
 
 namespace Intalk.Data
 {
@@ -63,6 +64,30 @@ namespace Intalk.Data
             Server server = await _context.Server.FindAsync(serverId);
             if (server == null) return null;
             return serverToSingleServerResponseItem(server);
+        }
+
+        public async Task<IEnumerable<MultipleUserResponseItem>> GetServerUsers(long serverId)
+        {
+            var server = await _context.Server
+                .Include(s => s.UserServers)
+                .ThenInclude(us => us.User)
+                .FirstOrDefaultAsync(s => s.Id == serverId);
+
+            IEnumerable<MultipleUserResponseItem> res = ServerToMultipleUserResponseItems(server);
+            return res;
+        }
+
+        private IEnumerable<MultipleUserResponseItem> ServerToMultipleUserResponseItems(Server server)
+        {
+            var result = new List<MultipleUserResponseItem>();
+            foreach(var userServer in server.UserServers){
+                result.Add(new MultipleUserResponseItem(){
+                    UserId = userServer.UserId,
+                    UserName = userServer.User.UserName,
+                    Role = (Roles)userServer.Role
+                });
+            }
+            return result;
         }
 
         private async Task AddServerOwner(string userId, long serverId)
@@ -123,8 +148,7 @@ namespace Intalk.Data
             return new SingleServerResponseItem
             {
                 Id = server.Id,
-                Title = server.Title,
-                UsersServers = server.UserServers
+                Title = server.Title
             };
         }
 
@@ -139,6 +163,20 @@ namespace Intalk.Data
                 us.UserId == userId
                 && us.ServerId == serverId
                 && us.Role == (int) UserServer.Roles.Owner
+            );
+            return userServer != null ? true : false;
+        }
+
+        /// <summary>
+        /// Checks to see if the user is either a member or a owner of the server.
+        /// </summary>
+        /// <returns>True if the user is part of the server.</returns>
+        public async Task<bool> userIsMember(string userId, long serverId)
+        {
+            var userServer = await _context.UserServers
+                .FirstOrDefaultAsync(us =>
+                us.UserId == userId
+                && us.ServerId == serverId
             );
             return userServer != null ? true : false;
         }
@@ -159,6 +197,5 @@ namespace Intalk.Data
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }
