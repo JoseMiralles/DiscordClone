@@ -1,5 +1,5 @@
 import { AppActions } from "../Models/AppModel";
-import { IServerState } from "../Models/ServerModel";
+import { IServer, IServerState, serverRole } from "../Models/ServerModel";
 
 const initialState: IServerState = {
     loading: false,
@@ -29,10 +29,31 @@ const serverReducer = (
         }
             
         case "RECEIVE_ALL_SERVERS": {
+            const newAll: {[Identifier: number]: IServer} = {};
+            action.servers.forEach(s => {newAll[s.id] = s});
             return {
                 loading: false,
                 selected: -1,
-                all: action.servers
+                all: newAll
+            }
+        }
+            
+        case "RECEIVE_SERVER_USERS": {
+            const updatedServer: IServer = {
+                ...state.all[action.serverId],
+                usersServers: action.users.map(u => ({
+                    role: u.role,
+                    userId: u.userId
+                }))
+            };
+            const newAll = {
+                ...state.all
+            };
+            newAll[updatedServer.id] = updatedServer;
+            return {
+                ...state,
+                loading: false,
+                all: newAll
             }
         }
             
@@ -48,6 +69,13 @@ const serverReducer = (
         
         case "REMOVE_SESSION": {
             return initialState;
+        }
+            
+        case "SELECT_SERVER": {
+            return {
+                ...state,
+                selected: action.serverId
+            }
         }
             
         default: return state;

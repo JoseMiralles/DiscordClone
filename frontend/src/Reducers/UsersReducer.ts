@@ -21,7 +21,10 @@ export const usersReducer = (
             
         case "RECEIVE_SERVER_USERS": {
             const newState = Object.assign({}, state);
-            action.users.forEach(u => newState.users[u.id] = u);
+            action.users.forEach(u => newState.users[u.userId] = ({
+                id: u.userId,
+                userName: u.userName
+            }));
             return newState;
         }
             

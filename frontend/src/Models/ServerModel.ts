@@ -1,8 +1,11 @@
+import { IMultipleUserResponseItem } from "./UserModel";
+
 export const FETCHING_SERVERS = "FETCHING_SERVERS";
 export const RECEIVE_SERVER = "RECEIVE_SERVER";
 export const RECEIVE_ALL_SERVERS = "RECEIVE_ALL_SERVERS";
 export const REMOVE_SERVER = "REMOVE_SERVER";
 export const RECEIVE_SERVER_USERS = "RECEIVE_SERVER_USERS";
+export const SELECT_SERVER = "SELECT_SERVER";
 
 export interface IFetchingServers {
     type: "FETCHING_SERVERS"
@@ -25,19 +28,29 @@ export interface IRemoveServer {
 
 export interface IReceiveServerUsers {
     type: "RECEIVE_SERVER_USERS",
-    users: IUserServer[]
+    users: IMultipleUserResponseItem[],
+    serverId: number
+}
+
+export interface ISelectServer {
+    type: "SELECT_SERVER",
+    serverId: number
 }
 
 export type serverActionTypes =
     IFetchingServers |
     IReceiveServer |
     IReceiveAllServers |
-    IRemoveServer;
+    IRemoveServer |
+    IReceiveServerUsers |
+    ISelectServer;
+
 
 // DTOs
 export interface ICreateServerDTO {
     title: string;
 }
+
 
 // State
 export enum serverRole {

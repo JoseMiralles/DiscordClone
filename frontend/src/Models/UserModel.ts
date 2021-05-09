@@ -1,20 +1,20 @@
 import { Identifier } from "typescript";
+import { serverRole } from "./ServerModel";
 
-export const RECEIVE_SERVER_USERS = "RECEIVE_SERVER_USERS";
 export const RECEIVE_USER = "RECEIVE_USER";
-
-export interface receiveServerUsers {
-    type: "RECEIVE_SERVER_USERS";
-    users: IUser[];
-}
 
 export interface receiveUser {
     type: "RECEIVE_USER";
     user: IUser
 }
 
+export interface IMultipleUserResponseItem {
+    userId: string,
+    userName: string,
+    role: serverRole
+}
+
 export type UserActionTypes =
-    receiveServerUsers |
     receiveUser;
 
 
