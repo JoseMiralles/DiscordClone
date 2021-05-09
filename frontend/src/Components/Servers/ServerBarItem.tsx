@@ -6,11 +6,16 @@ interface Props {
 }
 
 const ServerBarItem = ({ server, selected }: Props) => {
-    
+
+    const isSelected = selected.toString() === server.id.toString();
+
     return (
         <li>
-            <button id={server.id.toString()} className="server-icon">{ server.title[0] }</button>
-            { selected === server.id && <span>{ server.title }</span> }
+            <div>
+                <div id={server.id.toString()} className={`btn ${isSelected && "selected"}`}>
+                    { isSelected ? server.title : server.title[0] }
+                </div>
+            </div>
         </li>
     );
 };

@@ -11,11 +11,11 @@ const CreateServerButton = () => {
     };
 
     return (
-        <li onClick={onClick} id="create-server-button">
-            <button className="circular-button btn">
-                <span className="material-icons">add</span>
-            </button>
-        </li>
+        <div onClick={onClick}>
+            <div>
+                <div id="new-server-button" className="material-icons btn">add</div>
+            </div>
+        </div>
     );
 };
 

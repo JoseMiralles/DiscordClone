@@ -5,6 +5,7 @@ import { serverRole } from "../../Models/ServerModel";
 import { IUser } from "../../Models/UserModel";
 import { AppState } from "../../store";
 import UserBarItem from "./UserBarItem";
+import "./UserBar.scss"
 
 const UserBar = () => {
 

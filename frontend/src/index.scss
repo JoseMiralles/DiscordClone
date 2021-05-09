@@ -37,6 +37,7 @@ html {
     padding: $common-padding / 2;
     color: $main;
     border-radius: $bRadius;
+    cursor: default;
 
     &:hover{
         background-color: $secondary-light;
@@ -50,4 +51,9 @@ html {
     &:hover{
         background-color: $secondary;
     }
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
 }

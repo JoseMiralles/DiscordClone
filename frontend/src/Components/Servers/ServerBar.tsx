@@ -6,6 +6,7 @@ import { AppState } from "../../store";
 import CreateServerButton from "./CreateServerButton"
 import CreateServerModal from "./CreateServerModal";
 import ServerBarItem from "./ServerBarItem";
+import "./ServerBar.scss";
 
 const ServerBar = () => {
 
@@ -18,6 +19,8 @@ const ServerBar = () => {
             selectedServer: s.servers.selected
         }
     });
+
+    console.log(selectedServer);
 
     const barItems = Object.values(servers).map(s => (
         <ServerBarItem key={s.id} server={s} selected={selectedServer} />
@@ -33,10 +36,12 @@ const ServerBar = () => {
 
     return (
         <section id="server-bar-section">
-            <ul onClick={onClick} id="server-list">
-                {barItems}
+            <div className="row">
+                <ul onClick={onClick} id="server-list">
+                    {barItems}
+                </ul>
                 <CreateServerButton />
-            </ul>
+            </div>
             {(selectedModal === Modals.createServer) && <CreateServerModal username={username}/>}
         </section>
     )
