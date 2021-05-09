@@ -22,7 +22,7 @@ export const AuthManager: React.FC = ({ children }) => {
                 (userr: IUser) => dispatch(tokensRefreshed(userr)),
                 () => dispatch(logout())
             );
-        });
+        }, () => dispatch(logout()));
     } else if (restoringSession) {
         dispatch(logout());
     }

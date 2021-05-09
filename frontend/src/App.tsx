@@ -12,7 +12,7 @@ import Client from './Components/Client';
 
 function App() {
 
-  const { userId, restoringSession } = useSelector((s: AppState) => s.session);
+  const { userId } = useSelector((s: AppState) => s.session);
   const isAuthenticated = userId ? true : false;
 
   return (
@@ -22,7 +22,7 @@ function App() {
         <Switch>
 
           <ProtectedRoute
-            isAuthenticated={isAuthenticated || !restoringSession}
+            isAuthenticated={isAuthenticated}
             path="/app"
             authenticationPath="/login"
             component={Client}/>
@@ -32,7 +32,7 @@ function App() {
             <Switch>
               <ProtectedRoute path="/s" authenticationPath="/login"
                 component={() => (<h1>test</h1>)}
-                isAuthenticated={isAuthenticated || !restoringSession} />
+                isAuthenticated={isAuthenticated} />
 
               <AuthenticationRoute path="/register" redirectTo="/app"
                 component={RegisterPage}

@@ -9,6 +9,7 @@ namespace Intalk.Models
         public long Id { get; set; }
 
         [Required]
+        [MaxLength(25)]
         public string Title { get; set; }
 
         public ICollection<ApplicationUser> Users { get; set; }
@@ -23,12 +24,15 @@ namespace Intalk.Models
         [Key]
         public long Id { get; set; }
 
+        [Required]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
+        [Required]
         public long ServerId { get; set; }
         public Server Server { get; set; }
 
+        [Required]
         public int Role { get; set; }
 
         public enum Roles
