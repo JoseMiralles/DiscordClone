@@ -3,35 +3,30 @@ import jwtDecode from "jwt-decode";
 import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, IRegisterDTO } from "../Models/SessionModel";
 import { IUser } from "../Models/UserModel";
 
-export const utilLogin = (loginDTO: ILoginDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
-    const req = axios.post(
+export const utilLogin = async (loginDTO: ILoginDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
+    const res = await axios.post(
         "/api/AuthManagment/Login",
         loginDTO
     );
-    req.then((res: AxiosResponse<IAuthResponseDTO>) => {
-        console.log();
-        updateAxiosBearer(res.data.token);
-        persistTokens({
-            jwt: res.data.token,
-            refreshToken: res.data.refreshToken
-        });
+    updateAxiosBearer(res.data.token);
+    persistTokens({
+        jwt: res.data.token,
+        refreshToken: res.data.refreshToken
     });
-    return req;
+    return res;
 };
 
-export const utilRegister = (registerDTO: IRegisterDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
-    const request = axios.post(
+export const utilRegister = async (registerDTO: IRegisterDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
+    const res = await axios.post(
         "/api/AuthManagment/register",
         registerDTO
     );
-    request.then((res: AxiosResponse<IAuthResponseDTO>) => {
-        updateAxiosBearer(res.data.token);
-        persistTokens({
-            jwt: res.data.token,
-            refreshToken: res.data.refreshToken
-        });
+    updateAxiosBearer(res.data.token);
+    persistTokens({
+        jwt: res.data.token,
+        refreshToken: res.data.refreshToken
     });
-    return request;
+    return res;
 };
 
 /**
@@ -49,7 +44,8 @@ export const setupAxiosTokenRefresh =
             // Request failed, attempt to refresh tokens if that was the issue.
             // Call onSuccess if the tokens were refreshed.
             const originalRequest = error.config;
-            if (error.response?.status === 403 && !originalRequest._retry) {
+            if ((error.response?.status === 403 || error.response?.status === 401)
+                && !originalRequest._retry) {
                 originalRequest._retry = true;
                 await refreshAccessToken((user) => {
                     onSuccess(user);

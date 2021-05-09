@@ -1,10 +1,11 @@
 import { AppActions } from "../Models/AppModel";
 import { ISessionErrors, ISessionState } from "../Models/SessionModel";
+import { getTokenSet } from "../Util/SessionUtil";
 
 const initialState = {
     userId: "",
     loading: false,
-    restoringSession: true
+    restoringSession: getTokenSet().refreshToken ? true : false
 };
 
 export const sessionReducer = (state = initialState, action: AppActions): ISessionState => {

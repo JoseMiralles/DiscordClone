@@ -58,3 +58,12 @@ html {
     flex-direction: row;
     justify-content: center;
 }
+
+.padded-component {
+    padding-top: $appComponentPadding;
+    padding-bottom: $appComponentPadding;
+
+    @media (min-width:641px) {
+        padding: $appComponentPadding;
+    }
+}

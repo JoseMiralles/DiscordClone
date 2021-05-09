@@ -35,7 +35,7 @@ const ServerBar = () => {
     };
 
     return (
-        <section id="server-bar-section">
+        <section className="padded-component" id="server-bar-section">
             <div className="row">
                 <ul onClick={onClick} id="server-list">
                     {barItems}
