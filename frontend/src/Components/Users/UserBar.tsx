@@ -9,10 +9,8 @@ import UserBarItem from "./UserBarItem";
 const UserBar = () => {
 
     const dispatch = useDispatch();
-    const {admins, members, serverId} = useSelector((s: AppState) => {
-
-        // const admins: { [Identifier: string]: IUser } = {};
-        // const members: { [Identifier: string]: IUser } = {};
+    const { admins, members, serverId } = useSelector((s: AppState) => {
+        
         const admins: JSX.Element[] = [];
         const members: JSX.Element[] = [];
         const server = s.servers.all[s.servers.selected];
@@ -30,7 +28,7 @@ const UserBar = () => {
 
     useEffect(() => {
         dispatch(fetchServerUsers(serverId));
-    }, []);
+    }, [serverId]);
 
     return (
         <section>
@@ -43,7 +41,7 @@ const UserBar = () => {
             <div>
                 <span>MEMEBERS</span>
                 <ul>
-                    {members}
+                    {members.length ? members : <li>No other members</li>}
                 </ul>
             </div>
         </section>

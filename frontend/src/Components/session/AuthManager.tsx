@@ -27,5 +27,5 @@ export const AuthManager: React.FC = ({ children }) => {
         dispatch(logout());
     }
 
-    return <>{children}</>;
+    return <>{ restoringSession ? <h1>LOADING</h1> : children }</>;
 };
