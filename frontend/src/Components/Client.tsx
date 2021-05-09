@@ -10,7 +10,7 @@ const Client = () => {
     return (
         <section id="client-section">
             <ServerBar />
-            { selected !== -1 && <UserBar/> }
+            { selected !== null && <UserBar/> }
         </section>
     );
 };

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intalk.Models
 {
@@ -16,6 +15,9 @@ namespace Intalk.Models
         public List<UserServer> UserServers { get; set; }
     }
 
+    /// <summary>
+    /// Represents the user-server join table.
+    /// </summary>
     public class UserServer
     {
         [Key]
@@ -24,8 +26,8 @@ namespace Intalk.Models
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        public Server Server { get; set; }
         public long ServerId { get; set; }
+        public Server Server { get; set; }
 
         public int Role { get; set; }
 

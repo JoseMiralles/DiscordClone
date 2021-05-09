@@ -14,21 +14,24 @@ const UserBar = () => {
         
         const admins: JSX.Element[] = [];
         const members: JSX.Element[] = [];
-        const server = s.servers.all[s.servers.selected];
-        if (server && server.usersServers) {
-            s.servers.all[s.servers.selected].usersServers.forEach(us => {
-                const user: IUser = s.users.users[us.userId];
-                const el = (<UserBarItem key={user.id} user={user} role={us.role}/>);
-                (us.role === serverRole.owner)
-                    ? admins.push(el)
-                    : members.push(el);
-            });
+        if (s.servers.selected) {
+            const server = s.servers.all[s.servers.selected];
+            if (server && server.usersServers) {
+                s.servers.all[s.servers.selected].usersServers.forEach(us => {
+                    const user: IUser = s.users.users[us.userId];
+                    const el = (<UserBarItem key={user.id} user={user} role={us.role}/>);
+                    (us.role === serverRole.owner)
+                        ? admins.push(el)
+                        : members.push(el);
+                });
+            }
         }
         return { admins, members, serverId: s.servers.selected };
     });
 
     useEffect(() => {
-        dispatch(fetchServerUsers(serverId));
+        if (serverId)
+            dispatch(fetchServerUsers(serverId));
     }, [serverId]);
 
     return (

@@ -3,7 +3,7 @@ import { IServer, IServerState, serverRole } from "../Models/ServerModel";
 
 const initialState: IServerState = {
     loading: false,
-    selected: -1,
+    selected: null,
     all: {}
 };
 
@@ -33,7 +33,7 @@ const serverReducer = (
             action.servers.forEach(s => {newAll[s.id] = s});
             return {
                 loading: false,
-                selected: -1,
+                selected: null,
                 all: newAll
             }
         }
@@ -62,7 +62,7 @@ const serverReducer = (
             delete servers[action.serverId];
             return {
                 loading: false,
-                selected: -1,
+                selected: null,
                 all: servers
             }
         }

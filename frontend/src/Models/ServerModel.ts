@@ -72,6 +72,6 @@ export interface IServer {
 
 export interface IServerState {
     readonly loading: boolean;
-    readonly selected: number;
+    readonly selected: number | null;
     readonly all: {[Identifier: number]: IServer};
 }

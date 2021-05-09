@@ -2,12 +2,12 @@ import { IServer } from "../../Models/ServerModel";
 
 interface Props {
     server: IServer,
-    selected: number
+    selected: number | null
 }
 
 const ServerBarItem = ({ server, selected }: Props) => {
 
-    const isSelected = selected.toString() === server.id.toString();
+    const isSelected = (selected !== null) && (selected.toString() === server.id.toString());
 
     return (
         <li>
