@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Intalk.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Intalk.Data
 {
@@ -34,6 +35,9 @@ namespace Intalk.Data
                         .WithMany(user => user.UserServers)
                         .HasForeignKey(userServer => userServer.UserId)
                 );
+
+            // Seed data usin custom seeder.
+            Seed.Run(ref modelBuilder);
         }
     }
 }

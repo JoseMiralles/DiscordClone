@@ -1,0 +1,53 @@
+@import "../../Style_variables/colors.scss";
+@import "../../Style_variables/vars.scss";
+
+#server-bar-section {
+    padding: $appComponentRadious;
+    $border-size: 1px;
+
+    .btn {
+        $size: 30px;
+        height: $size;
+        min-width: $size;
+        line-height: $size;
+        text-align: center;
+        font-size: 15px;
+        border-radius: 0px;
+        border-bottom: solid $main $border-size;
+        // margin: 3px;
+    }
+
+    .selected{
+        // border-radius: 10px 10px 0px 0px;
+        padding-left: 30px;
+        padding-right: 30px;
+        border-top: solid $main $border-size;
+        border-right: solid $main $border-size;
+        border-left: solid $main $border-size;
+        border-bottom: 0px;
+        &:hover {
+            background-color: unset;
+        }
+    }
+}
+
+#server-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+
+    // Hide scrollbar
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+    }
+}
+
+#new-server-button {
+    background-color: $main;
+    color: $light;
+    &:hover {
+        background-color: $secondary;
+    }
+}

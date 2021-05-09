@@ -1,0 +1,46 @@
+.modal-background {
+    background-color: rgba($dark, $alpha: 0.9);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+}
+
+.modal {
+    z-index: 11;
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $light;
+    padding: $common-padding * 1.2;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    & > input {
+        margin-bottom: $common-padding;
+    }
+}
+
+.modal-title{
+    text-align: center;
+    padding: $common-padding;
+    h1{
+        font-size: 20px;
+    }
+}
+
+.modal-form{
+    input {
+        padding: $common-padding / 3;
+    }
+}

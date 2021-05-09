@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 using Intalk.Models;
 using Intalk.Models.DTOs.Requests;
 using Intalk.Models.DTOs.Responses;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static Intalk.Models.UserServer;
 
 namespace Intalk.Data
 {
@@ -39,7 +38,7 @@ namespace Intalk.Data
         /// <param name="createServerRequest"></param>
         /// <param name="userIdentifier">The identifier of the owner user</param>
         /// <returns>The Id of the new server</returns>
-        public async Task<long> CreateServer
+        public async Task<SingleServerResponseItem> CreateServer
             (CreateServerRequest createServerRequest, string userId)
         {
             // Create server
@@ -56,7 +55,39 @@ namespace Intalk.Data
             user.Servers.Add(server);
             await _context.SaveChangesAsync();
             await AddServerOwner(user.Id, server.Id);
-            return server.Id;
+            return serverToSingleServerResponseItem(server);
+        }
+
+        public async Task<SingleServerResponseItem> GetServerById(long serverId)
+        {
+            // TODO: Check is user is member of this server.
+            Server server = await _context.Server.FindAsync(serverId);
+            if (server == null) return null;
+            return serverToSingleServerResponseItem(server);
+        }
+
+        public async Task<IEnumerable<MultipleUserResponseItem>> GetServerUsers(long serverId)
+        {
+            var server = await _context.Server
+                .Include(s => s.UserServers)
+                .ThenInclude(us => us.User)
+                .FirstOrDefaultAsync(s => s.Id == serverId);
+
+            IEnumerable<MultipleUserResponseItem> res = ServerToMultipleUserResponseItems(server);
+            return res;
+        }
+
+        private IEnumerable<MultipleUserResponseItem> ServerToMultipleUserResponseItems(Server server)
+        {
+            var result = new List<MultipleUserResponseItem>();
+            foreach(var userServer in server.UserServers){
+                result.Add(new MultipleUserResponseItem(){
+                    UserId = userServer.UserId,
+                    UserName = userServer.User.UserName,
+                    Role = (Roles)userServer.Role
+                });
+            }
+            return result;
         }
 
         private async Task AddServerOwner(string userId, long serverId)
@@ -74,14 +105,6 @@ namespace Intalk.Data
             if (server == null) return null;
             var deleted = _context.Server.Remove(server);
             await _context.SaveChangesAsync();
-            return serverToSingleServerResponseItem(server);
-        }
-
-        public async Task<SingleServerResponseItem> GetServerById(long serverId)
-        {
-            // TODO: Check is user is member of this server.
-            Server server = await _context.Server.FindAsync(serverId);
-            if (server == null) return null;
             return serverToSingleServerResponseItem(server);
         }
 
@@ -144,6 +167,20 @@ namespace Intalk.Data
             return userServer != null ? true : false;
         }
 
+        /// <summary>
+        /// Checks to see if the user is either a member or a owner of the server.
+        /// </summary>
+        /// <returns>True if the user is part of the server.</returns>
+        public async Task<bool> userIsMember(string userId, long serverId)
+        {
+            var userServer = await _context.UserServers
+                .FirstOrDefaultAsync(us =>
+                us.UserId == userId
+                && us.ServerId == serverId
+            );
+            return userServer != null ? true : false;
+        }
+
         public void Dispose(bool disposing)
         {
             if (!this._disposed)
@@ -160,6 +197,5 @@ namespace Intalk.Data
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }

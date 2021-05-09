@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using static Intalk.Models.UserServer;
+
 namespace Intalk.Models.DTOs.Responses
 {
 

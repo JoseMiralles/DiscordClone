@@ -4,6 +4,7 @@
 @import "./Style_variables/fonts.scss";
 @import "./Style_variables/vars.scss";
 @import "./Style_variables/colors.scss";
+@import "./Style_variables/modals.scss";
 
 html {
     font-family: "Segoe UI",Arial,sans-serif;
@@ -36,6 +37,7 @@ html {
     padding: $common-padding / 2;
     color: $main;
     border-radius: $bRadius;
+    cursor: default;
 
     &:hover{
         background-color: $secondary-light;
@@ -49,4 +51,10 @@ html {
     &:hover{
         background-color: $secondary;
     }
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

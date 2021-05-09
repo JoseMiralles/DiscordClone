@@ -46,18 +46,22 @@ namespace Intalk.Controllers
             return Ok(serverResponseItem);
         }
 
+        [HttpGet("Users/{id}")]
+        public async Task<ActionResult<IEnumerable<MultipleUserResponseItem>>> getServerUsers(long id)
+        {
+            if (await CheckIfMember(id))
+            {
+                return Ok(await _serverRepo.GetServerUsers(id));
+            }
+            return Unauthorized();
+        } 
+
         [HttpPost]
         public async Task<ActionResult<SingleServerResponseItem>> POST(
             CreateServerRequest createServerRequest)
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            long serverId = await _serverRepo.CreateServer(createServerRequest, userId);
-
-            return CreatedAtAction(
-                nameof(GET),
-                new { id = serverId },
-                serverId
-            );
+            return await _serverRepo.CreateServer(createServerRequest, userId);
         }
 
         [HttpPatch("{id}")]
@@ -92,6 +96,12 @@ namespace Intalk.Controllers
         {
             string userId = _userManager.GetUserId(this.User);
             return await _serverRepo.userIsOwner(userId: userId, serverId: serverId);
+        }
+
+        private async Task<bool> CheckIfMember(long serverId)
+        {
+            string userId = _userManager.GetUserId(this.User);
+            return await _serverRepo.userIsMember(userId: userId, serverId: serverId);
         }
     }
 }

@@ -12,10 +12,12 @@ namespace Intalk.Data
     {
         Task<IEnumerable<MultipleServersResponseItem>> GetUserServers(string userId);
         Task<SingleServerResponseItem> GetServerById(long serverId);
-        Task<long> CreateServer(CreateServerRequest createServerRequest, string userIdentifier);
+        Task<IEnumerable<MultipleUserResponseItem>> GetServerUsers(long serverId);
+        Task<SingleServerResponseItem> CreateServer(CreateServerRequest createServerRequest, string userIdentifier);
         Task<SingleServerResponseItem> DeleteServer(long serverId);
         Task<Server> GetCompleteServerById(long id);
         Task<bool> userIsOwner(string userId, long serverId);
+        Task<bool> userIsMember(string userId, long serverId);
         Task<ApplicationUser> CurrentUser(string id);
         Task SaveChanges();
     }

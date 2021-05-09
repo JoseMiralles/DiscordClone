@@ -8,29 +8,41 @@ import AuthenticationRoute from "./Components/session/AuthenticationRoute";
 import { AppState } from './store';
 import LoginPage from './Components/session/LoginPage';
 import RegisterPage from './Components/session/RegisterPage';
+import Client from './Components/Client';
 
 function App() {
-  
-  const { userId, restoringSession } = useSelector((s: AppState) => s.session);
+
+  const { userId } = useSelector((s: AppState) => s.session);
   const isAuthenticated = userId ? true : false;
-  
+
   return (
     <AuthManager>
       <Router>
 
-        <Header isAuthenticated={isAuthenticated}/>
-        
         <Switch>
-          <ProtectedRoute path="/s" authenticationPath="/login"
-            component={()=>(<h1>test</h1>)}
-            isAuthenticated={isAuthenticated || restoringSession} />
+
+          <ProtectedRoute
+            isAuthenticated={isAuthenticated}
+            path="/app"
+            authenticationPath="/login"
+            component={Client}/>
           
-          <AuthenticationRoute path="/register" redirectTo="/home"
-            component={RegisterPage}
-            isAuthenticated={isAuthenticated} />
-          <AuthenticationRoute path="/login" redirectTo="/home"
-            component={LoginPage}
-            isAuthenticated={isAuthenticated} />
+          <Route path="/">
+            <Header isAuthenticated={isAuthenticated} />
+            <Switch>
+              <ProtectedRoute path="/s" authenticationPath="/login"
+                component={() => (<h1>test</h1>)}
+                isAuthenticated={isAuthenticated} />
+
+              <AuthenticationRoute path="/register" redirectTo="/app"
+                component={RegisterPage}
+                isAuthenticated={isAuthenticated} />
+              <AuthenticationRoute path="/login" redirectTo="/app"
+                component={LoginPage}
+                isAuthenticated={isAuthenticated} />
+            </Switch>
+          </Route>
+
         </Switch>
 
       </Router>

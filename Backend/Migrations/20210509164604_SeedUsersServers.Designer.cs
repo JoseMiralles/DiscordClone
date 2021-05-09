@@ -3,15 +3,17 @@ using System;
 using Intalk.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Intalk.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210509164604_SeedUsersServers")]
+    partial class SeedUsersServers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,15 +89,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "77c22b8e-473f-4bb2-8caf-ba5903a0f98c",
+                            ConcurrencyStamp = "c608676f-86a6-49ff-867d-a99b495a3195",
                             Email = "test0@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST0@TEST.COM",
                             NormalizedUserName = "TESTUSER0",
-                            PasswordHash = "AQAAAAEAACcQAAAAELVLN3Xg/bCAKJaQ9nhdhwxBfBhd4C/qd8Odhnn5DjTlO4Hq7qCeVPkCgVd/oZcNAw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGoPyayiYwMQAzQCRGY8r7pFNuiKd++DZ2hRDwPbSAgnahuCEmrX0QRNsjF9xa9SHQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0d61e5fa-a3bc-4804-8305-3dc33499773e",
+                            SecurityStamp = "7b34bb54-0232-46b4-872e-b12ce8d58934",
                             TwoFactorEnabled = false,
                             UserName = "TestUser0"
                         },
@@ -103,15 +105,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bdd678b4-3fde-47ad-8577-aae960c22d62",
+                            ConcurrencyStamp = "0f8cd75d-0921-4dc9-8e23-6b9278cf6a1b",
                             Email = "test1@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST1@TEST.COM",
                             NormalizedUserName = "TESTUSER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGhlbi9zY033QXEFbG79MAopAN6JPU9EjCPaUyPMwTJ9yQ9C8Rsjiy4fNMhr9zabfQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAuBWZTLWUlbhm5CC0ZqXewrRWXssS34dl3rGzy0bzyeYG8Ro93A806S3kELnWnH4Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3b40d0b3-6869-4194-90bc-8b56da06238e",
+                            SecurityStamp = "a23f4101-b5ab-4847-8ae7-df0fd12d8416",
                             TwoFactorEnabled = false,
                             UserName = "TestUser1"
                         },
@@ -119,15 +121,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f28de7b3-224a-4d3f-90d4-4dc4310a2888",
+                            ConcurrencyStamp = "8dd597a4-075d-4f59-8164-fed735cef7d1",
                             Email = "test2@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST2@TEST.COM",
                             NormalizedUserName = "TESTUSER2",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG6ArLGc331nyKUk0gZu/JNBpSPRCdzYiBo8IFEWpIUxdoEdCjHz59C8RUu2lbvp/A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF1P2xZc7lYlSIT9Z7VA90qBBYDvJTq3eHH1MyllFPrfPIzLuyONnhiyXpgSQ+fIbA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "08b54928-2dd1-44a9-bd13-1af114f42792",
+                            SecurityStamp = "755f7247-8381-4e3b-8709-4f4cdddde430",
                             TwoFactorEnabled = false,
                             UserName = "TestUser2"
                         },
@@ -135,15 +137,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4cf8b35f-9705-40f5-a4d0-d5fcfb384234",
+                            ConcurrencyStamp = "cefbb381-e2ad-4973-9c3a-8c863bab5886",
                             Email = "test3@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST3@TEST.COM",
                             NormalizedUserName = "TESTUSER3",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJIHoLa2D1MbUED123jRL6HXJSnWdCNi5AJNSz+BQ64K8z695HliMdQrCX3ECd23eA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMRDAB0ptoUWBLdV1bJn/tAho+R2gUbtAPOI3B6AjAPAHs8bFNDiV9h5w9SLLnaS9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f969d7b0-dbf7-447c-9f15-823bb330c9a8",
+                            SecurityStamp = "8f82718b-e767-4d00-8394-ed7491fa2e72",
                             TwoFactorEnabled = false,
                             UserName = "TestUser3"
                         });
@@ -193,8 +195,7 @@ namespace Intalk.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("character varying(25)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -237,7 +238,6 @@ namespace Intalk.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -516,9 +516,7 @@ namespace Intalk.Migrations
 
                     b.HasOne("Intalk.Models.ApplicationUser", "User")
                         .WithMany("UserServers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Server");
 
