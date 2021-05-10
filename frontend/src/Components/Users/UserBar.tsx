@@ -30,8 +30,10 @@ const UserBar = () => {
     });
 
     useEffect(() => {
-        if (serverId)
-            dispatch(fetchServerUsers(serverId));
+        if (serverId) {
+            const act = async () => dispatch(await fetchServerUsers(serverId));
+            act();
+        }
     }, [serverId]);
 
     return (
