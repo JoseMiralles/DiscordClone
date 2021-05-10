@@ -201,7 +201,7 @@ namespace Intalk.Controllers
                     // new Claim(JwtRegisteredClaimNames.Sub, existingUser.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
-                Expires = DateTime.UtcNow.AddSeconds(10),
+                Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
@@ -262,7 +262,7 @@ namespace Intalk.Controllers
                     return new AuthResult() {
                         Success = false,
                         Errors = new List<string>() {
-                            "JWT has not yet expired"
+                            "UNEXPIRED_TOKEN: JWT has not yet expired"
                         }
                     };
                 }

@@ -2,9 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, receiveSession } from "../../Actions/SessionActions";
 import { AppState } from "../../store";
-import { refreshAccessToken } from "../../Util/SessionUtil";
+import { decodeUser, refreshAccessToken, setupTokenRefresh } from "../../Util/SessionUtil";
 
 export const AuthManager: React.FC = ({ children }) => {
+
+    setupTokenRefresh();
 
     const restoringSession = useSelector((s: AppState) => s.session.restoringSession);
     const dispatch = useDispatch();
@@ -12,7 +14,8 @@ export const AuthManager: React.FC = ({ children }) => {
     if (restoringSession) {
         try {
             const act = async () => {
-                const user = await refreshAccessToken();
+                const jwt = await refreshAccessToken();
+                const user = decodeUser(jwt);
                 dispatch(receiveSession(user));
             };
             act();

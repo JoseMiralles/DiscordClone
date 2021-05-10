@@ -26,7 +26,7 @@ export const utilLogout = () => {
     localStorage.removeItem("T");
 }
 
-export const refreshAccessToken = async (): Promise<IUser> => {
+export const refreshAccessToken = async (): Promise<string> => {
     const tokenSet = getTokenSet();
     if (!tokenSet.refreshToken) throw (new Error("refreshAccessToken: No refresh token found."));
     try {
@@ -39,8 +39,14 @@ export const refreshAccessToken = async (): Promise<IUser> => {
             reqDTO
         );
         updateTokens(res.data);
-        return decodeUser(res.data.token);
+        return res.data.token;
     } catch (error) {
+        // Retain session if the jwt has not yet expired.
+        const isUnexpired = error.response.data.errors.find((e: string) => e.includes("UNEXPIRED_TOKEN"));
+        if (isUnexpired) {
+            updateTokens({token: tokenSet.jwt, refreshToken: tokenSet.refreshToken});
+            return tokenSet.jwt;
+        }
         utilLogout();
         throw error;
     }
@@ -57,25 +63,7 @@ function updateTokens(data: { token: string, refreshToken: string }): void {
     persistTokens({jwt: data.token, refreshToken: data.refreshToken});
 
     // Update bearer token
-    axios.interceptors.request.use(config => {
-        config.headers["Authorization"] = "Bearer " + data.token;
-        return config;
-    });
-
-    axios.interceptors.response.use(
-        response => response,
-        async (error) => {
-            // Request was not successful.
-            const originalRequest = error.config;
-            if ([401, 403].includes(error.response?.status) && !originalRequest._retry)
-            {
-                originalRequest._retry = true;
-                await refreshAccessToken();
-                return axios(originalRequest);
-            }
-            throw error;
-        }
-    );
+    axios.defaults.headers["Authorization"] = "Bearer " + data.token;
 }
 
 interface ITokenSet {
@@ -105,3 +93,20 @@ export const decodeUser = (jwt: string): IUser => {
         id: decoded.nameid
     };
 };
+
+export function setupTokenRefresh() {
+    axios.interceptors.response.use(
+        response => response,
+        async (error) => {
+            // Request was not successful.
+            const originalRequest = error.config;
+            if ([401, 403].includes(error.response?.status) && !originalRequest._retry) {
+                originalRequest._retry = true;
+                await refreshAccessToken();
+                return axios(originalRequest);
+            }
+            throw error;
+        }
+    );
+}
+
