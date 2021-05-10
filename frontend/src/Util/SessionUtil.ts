@@ -94,7 +94,7 @@ export const decodeUser = (jwt: string): IUser => {
     };
 };
 
-export function setupTokenRefresh() {
+export function setupTokenRefresh(onRefreshFailed: (error: any) => void) {
     axios.interceptors.response.use(
         response => response,
         async (error) => {
@@ -105,7 +105,7 @@ export function setupTokenRefresh() {
                 await refreshAccessToken();
                 return axios(originalRequest);
             }
-            throw error;
+            onRefreshFailed(error);
         }
     );
 }

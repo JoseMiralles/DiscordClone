@@ -6,7 +6,9 @@ import { decodeUser, refreshAccessToken, setupTokenRefresh } from "../../Util/Se
 
 export const AuthManager: React.FC = ({ children }) => {
 
-    setupTokenRefresh();
+    // Setups middleware which automatically refreshes tokens when needed.
+    // It dispatches logout() when a token refresh is failed.
+    setupTokenRefresh(() => dispatch(logout()));
 
     const restoringSession = useSelector((s: AppState) => s.session.restoringSession);
     const dispatch = useDispatch();
