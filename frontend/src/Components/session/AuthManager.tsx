@@ -1,29 +1,26 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, tokensRefreshed } from "../../Actions/SessionActions";
-import { IUser } from "../../Models/UserModel";
+import { logout, receiveSession } from "../../Actions/SessionActions";
 import { AppState } from "../../store";
-import { getTokenSet, refreshAccessToken, setupAxiosTokenRefresh } from "../../Util/SessionUtil";
+import { refreshAccessToken } from "../../Util/SessionUtil";
 
 export const AuthManager: React.FC = ({ children }) => {
-    const dispatch = useDispatch();
-    const { restoringSession } = useSelector((s: AppState) => s.session);
 
-    // Attempt to restore previous session if refresh token exists.
-    const tokens = getTokenSet();
-    if (
-        tokens.refreshToken
-        && tokens.refreshToken !== "null"
-        && restoringSession
-    ) {
-        refreshAccessToken(user => {
-            dispatch(tokensRefreshed(user));
-            setupAxiosTokenRefresh(
-                (userr: IUser) => dispatch(tokensRefreshed(userr)),
-                () => dispatch(logout())
-            );
-        }, () => dispatch(logout()));
+    const restoringSession = useSelector((s: AppState) => s.session.restoringSession);
+    const dispatch = useDispatch();
+
+    if (restoringSession) {
+        try {
+            const act = async () => {
+                const user = await refreshAccessToken();
+                dispatch(receiveSession(user));
+            };
+            act();
+        } catch (error) {
+            dispatch(logout());
+            throw error;
+        }
     }
 
-    return <>{ restoringSession ? <h1>LOADING</h1> : children }</>;
+    return <>{restoringSession ? <h1>LOADING</h1> : children}</>;
 };

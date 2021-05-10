@@ -3,8 +3,7 @@ import { AppActions } from "../Models/AppModel";
 import { ILoginDTO, IRegisterDTO, ISessionErrors, ISessionState } from "../Models/SessionModel";
 import { IUser } from "../Models/UserModel";
 import { AppState } from "../store";
-import { utilLogin, utilLogout, utilRegister, decodeUser, setupAxiosTokenRefresh } from "../Util/SessionUtil";
-import { receiveUser } from "./UserActions";
+import { utilLogin, utilLogout, utilRegister, decodeUser } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).
 export const gettingSession = (): AppActions => ({
@@ -36,10 +35,6 @@ export const login = async (loginDTO: ILoginDTO) =>
         dispatch(gettingSession());
         try {
             const res = await utilLogin(loginDTO);
-            setupAxiosTokenRefresh(() => { }, () => {
-                utilLogout();
-                dispatch(removeSession())
-            })
             const user = decodeUser(res.data.token);
             dispatch(receiveSession(user));
         } catch (error) {
@@ -54,10 +49,6 @@ export const register = async (registerDTO: IRegisterDTO) =>
         dispatch(gettingSession());
         try {
             const res = await utilRegister(registerDTO);
-            setupAxiosTokenRefresh(() => { }, () => {
-                utilLogout();
-                dispatch(removeSession())
-            })
             const user = decodeUser(res.data.token);
             dispatch(receiveSession(user));
         } catch (error) {

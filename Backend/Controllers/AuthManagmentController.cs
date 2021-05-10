@@ -155,6 +155,11 @@ namespace Intalk.Controllers
                     });
                 }
 
+                if (result.Errors != null && result.Errors.Count > 0)
+                {
+                    return BadRequest(result);
+                }
+
                 return Ok(result);
             }
 
@@ -232,9 +237,11 @@ namespace Intalk.Controllers
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
             try
-            {   
+            {
                 // Validation 1 - Validation JWT token format
+                _tokenValidationParameters.ValidateLifetime = false;
                 var tokenInVerification = jwtTokenHandler.ValidateToken(tokenRequest.Token, _tokenValidationParameters, out var validatedToken);
+                _tokenValidationParameters.ValidateLifetime = true;
 
                 // Validation 2 - Validate encryption alg
                 if(validatedToken is JwtSecurityToken jwtSecurityToken)
@@ -246,7 +253,7 @@ namespace Intalk.Controllers
                     }
                 }
 
-                // Validation 3 - validate expiry date
+                // Validation 3 - verify that the JWT is already expired.
                 var utcExpiryDate = long.Parse(tokenInVerification.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
 
                 DateTime expiryDate = UnixTimeStampToDateTime(utcExpiryDate);
@@ -255,7 +262,7 @@ namespace Intalk.Controllers
                     return new AuthResult() {
                         Success = false,
                         Errors = new List<string>() {
-                            "Token has not yet expired"
+                            "JWT has not yet expired"
                         }
                     };
                 }
@@ -343,7 +350,7 @@ namespace Intalk.Controllers
         private DateTime UnixTimeStampToDateTime(long unixTimeStamp)
         {
             var dateTimeVal = new DateTime(1970, 1,1,0,0,0,0, DateTimeKind.Utc);
-            dateTimeVal = dateTimeVal.AddSeconds(unixTimeStamp).ToLocalTime();
+            dateTimeVal = dateTimeVal.AddSeconds(unixTimeStamp).ToUniversalTime();
             return dateTimeVal;
         }
 
