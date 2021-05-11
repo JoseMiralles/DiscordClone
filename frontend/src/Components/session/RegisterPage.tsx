@@ -5,6 +5,7 @@ import { ISessionErrors } from "../../Models/SessionModel";
 import { AppState } from "../../store";
 import ErrorList from "../errors/ErrorList";
 import DemoLoginButton from "./DemoLoginButton";
+import DemoLoginList from "./DemoLoginList";
 
 const RegisterPage = () => {
 
@@ -70,7 +71,7 @@ const RegisterPage = () => {
                         </button>
                     </form>
 
-                    <DemoLoginButton loading={loading} userNumber={1}>user 1</DemoLoginButton>
+                    <DemoLoginList loading={ loading }/>
                 </div>
             </div>
         </section>

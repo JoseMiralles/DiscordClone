@@ -5,6 +5,7 @@ import { clearSessionErrors, login } from "../../Actions/SessionActions";
 import DemoLoginButton from "./DemoLoginButton";
 import { AppState } from "../../store";
 import ErrorList from "../errors/ErrorList";
+import DemoLoginList from "./DemoLoginList";
 
 const LoginPage = () => {
 
@@ -35,7 +36,7 @@ const LoginPage = () => {
         return () => {
             dispatch(clearSessionErrors());
         }
-    });
+    }, []);
 
     return (
         <section className="auth-form-section">
@@ -64,7 +65,7 @@ const LoginPage = () => {
                             className="btn btn-main">{!loading ? "submit" : "submitting..."}</button>
                     </form>
                     
-                    <DemoLoginButton loading={loading} userNumber={1}>User 1</DemoLoginButton>
+                    <DemoLoginList loading={ loading }/>
                 </div>
             </div>
         </section>

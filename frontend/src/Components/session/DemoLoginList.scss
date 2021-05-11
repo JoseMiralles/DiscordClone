@@ -1,0 +1,26 @@
+@import "../../Style_variables/colors.scss";
+
+#demo-login-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+    border: solid #252323 1px;
+    border-radius: 10px;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+
+    button {
+        width: 90%;
+        margin-bottom: 10px;
+        &:last-of-type{
+            margin: 0px;
+        }
+    }
+}
+
+#demo-login-list-title{
+    // ADD Line
+}
