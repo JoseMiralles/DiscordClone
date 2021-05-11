@@ -74,32 +74,34 @@ namespace Intalk
                 jwt.SaveToken = true;
                 jwt.TokenValidationParameters = tokenValidationParams;
                 jwt.Events = new JwtBearerEvents
-            {
-                OnMessageReceived = context =>
                 {
-                    // If the request is for our hub...
-                    var path = context.HttpContext.Request.Path;
-                    var accessToken = context.Request.Query["access_token"];
-                    Console.WriteLine(path);
-                    if (
-                        !string.IsNullOrEmpty(accessToken) &&
-                        (path.StartsWithSegments("/hubs/intalk")))
+                    OnMessageReceived = context =>
                     {
-                        Console.WriteLine("ON MESSSAGE RECEIVED: " + accessToken);
-                        // Read the token out of the query string
-                        context.Token = accessToken;
+                        // If the request is for our hub...
+                        var path = context.HttpContext.Request.Path;
+                        var accessToken = context.Request.Query["access_token"];
+                        Console.WriteLine(path);
+                        if (
+                            !string.IsNullOrEmpty(accessToken) &&
+                            (path.StartsWithSegments("/hubs/intalk")))
+                        {
+                            Console.WriteLine("ON MESSSAGE RECEIVED: " + accessToken);
+                            // Read the token out of the query string
+                            context.Token = accessToken;
+                        }
+                        return Task.CompletedTask;
                     }
-                    return Task.CompletedTask;
-                }
-            };
+                };
             });
 
-            services.Configure<ApiBehaviorOptions>(options => {
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
                 // Prevent model validation from automatically returning errors.
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-            services.AddDefaultIdentity<ApplicationUser>(options => {
+            services.AddDefaultIdentity<ApplicationUser>(options =>
+            {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireDigit = false;
@@ -132,10 +134,10 @@ namespace Intalk
             services.AddCors(options =>
                 options.AddPolicy("CorsPolicy", builder =>
                     builder
+                    .WithOrigins(new string[]{"http://localhost:3000"})
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
-                    .WithOrigins("http://localhost:3000", "https://localhost:3000")
                 )
             );
         }

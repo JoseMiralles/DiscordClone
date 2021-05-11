@@ -14,7 +14,7 @@ const Client = () => {
     useEffect(() => {
         // TODO: Add this to a custom hook.
         const c = new SignalR.HubConnectionBuilder()
-            .withUrl("https://localhosts:5001/hubs/intalk",
+            .withUrl("https://localhost:5001/hubs/intalk",
                 { accessTokenFactory: () => getTokenSet().jwt })
             .build();
 
