@@ -15,10 +15,12 @@ namespace Intalk.RealTime
         {
             List<string> joinedServerIds = new List<string>();
             string userId = this.Context.UserIdentifier;
+            Console.WriteLine("CONNECTED: " + userId);
             foreach (string serverId in joinedServerIds){
                 UserManager.userGroups.AddUserToGroup(userId, serverId);
             }
             // TODO: send list of connected users to the client who just connected.
+            Clients.Caller.SendAsync("messageReceived", "Hi!");
             Clients.Groups(joinedServerIds).SendAsync("IsOnline", userId, true);
             return base.OnConnectedAsync();
         }

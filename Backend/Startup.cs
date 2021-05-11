@@ -77,13 +77,15 @@ namespace Intalk
             {
                 OnMessageReceived = context =>
                 {
-                    var accessToken = context.Request.Query["access_token"];
-
                     // If the request is for our hub...
                     var path = context.HttpContext.Request.Path;
-                    if (!string.IsNullOrEmpty(accessToken) &&
+                    var accessToken = context.Request.Query["access_token"];
+                    Console.WriteLine(path);
+                    if (
+                        !string.IsNullOrEmpty(accessToken) &&
                         (path.StartsWithSegments("/hubs/intalk")))
                     {
+                        Console.WriteLine("ON MESSSAGE RECEIVED: " + accessToken);
                         // Read the token out of the query string
                         context.Token = accessToken;
                     }
@@ -132,6 +134,7 @@ namespace Intalk
                     builder
                     .AllowAnyMethod()
                     .AllowAnyHeader()
+                    .AllowCredentials()
                     .WithOrigins(new string[]{"http://localhost:3000"})
                 )
             );
@@ -159,7 +162,7 @@ namespace Intalk
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<InTalkHub>("/intalk");
+                endpoints.MapHub<InTalkHub>("/hubs/intalk");
                 endpoints.MapControllers();
             });
         }
