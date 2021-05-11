@@ -26,7 +26,9 @@ const DemoLoginList = ({ loading }: Props) => {
 
     return (
         <section id="demo-login-list-section">
-            <div id="demo-login-list-title">Use demo account:</div>
+            <div id="demo-login-list-title-wrapper">
+            <div id="demo-login-list-title">Or A Use Demo Account</div>
+            </div>
             <div id="demo-login-list">
                 {mappedButtons}
             </div>

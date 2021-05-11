@@ -5,7 +5,8 @@
     flex-direction: column;
     margin-top: 20px;
     padding: 20px;
-    border: solid #252323 1px;
+    // border: solid $secondary-light 1px;
+    background: $secondary-light;
     border-radius: 10px;
     flex-wrap: nowrap;
     justify-content: space-evenly;
@@ -21,6 +22,22 @@
     }
 }
 
-#demo-login-list-title{
-    // ADD Line
+#demo-login-list-title-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &::before, &::after {
+        flex-grow: 1;
+        margin-left: 25px;
+        margin-right: 25px;
+        content: "";
+        border-bottom: 1px solid $dark;
+    }
+
+    #demo-login-list-title{
+        line-height: 20px;
+        font-size: 12px;
+    }
 }
