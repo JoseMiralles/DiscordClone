@@ -5,8 +5,10 @@
     flex-direction: column;
     margin-top: 20px;
     padding: 20px;
-    // border: solid $secondary-light 1px;
-    background: $secondary-light;
+    border: solid $secondary-light 1px;
+    // background: $secondary-light;
+    -webkit-box-shadow: 0px 0px 13px -11px $dark, 5px 5px 5px 5px rgba(0,0,0,0); 
+    box-shadow: 0px 0px 13px -11px $dark, 5px 5px 5px 5px rgba(0,0,0,0);
     border-radius: 10px;
     flex-wrap: nowrap;
     justify-content: space-evenly;
@@ -33,7 +35,7 @@
         margin-left: 25px;
         margin-right: 25px;
         content: "";
-        border-bottom: 1px solid $dark;
+        border-bottom: 1px dotted $dark;
     }
 
     #demo-login-list-title{

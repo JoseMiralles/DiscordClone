@@ -51,6 +51,11 @@ html {
     &:hover{
         background-color: $secondary;
     }
+
+    &:disabled{
+        background-color: $secondary-light;
+        color: $dark;
+    }
 }
 
 .row {

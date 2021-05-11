@@ -135,7 +135,7 @@ namespace Intalk
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
-                    .WithOrigins(new string[]{"http://localhost:3000"})
+                    .WithOrigins("http://localhost:3000", "https://localhost:3000")
                 )
             );
         }

@@ -6,7 +6,7 @@ interface Props {
 }
 
 const DemoLoginList = ({ loading }: Props) => {
-    const numberOfUsers = 4;
+    const numberOfUsers = 3;
     const mappedButtons: JSX.Element[] = [];
 
     let userNum: number;
