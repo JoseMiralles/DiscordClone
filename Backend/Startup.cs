@@ -7,6 +7,7 @@ using Intalk.Configuration;
 using Intalk.Data;
 using Intalk.Identity;
 using Intalk.Models;
+using Intalk.RealTime;
 using Intalk.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -72,6 +73,23 @@ namespace Intalk
             {
                 jwt.SaveToken = true;
                 jwt.TokenValidationParameters = tokenValidationParams;
+                jwt.Events = new JwtBearerEvents
+            {
+                OnMessageReceived = context =>
+                {
+                    var accessToken = context.Request.Query["access_token"];
+
+                    // If the request is for our hub...
+                    var path = context.HttpContext.Request.Path;
+                    if (!string.IsNullOrEmpty(accessToken) &&
+                        (path.StartsWithSegments("/hubs/intalk")))
+                    {
+                        // Read the token out of the query string
+                        context.Token = accessToken;
+                    }
+                    return Task.CompletedTask;
+                }
+            };
             });
 
             services.Configure<ApiBehaviorOptions>(options => {
@@ -87,6 +105,8 @@ namespace Intalk
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
             }).AddEntityFrameworkStores<ApiDbContext>();
+
+            services.AddSignalR();
 
             services.AddControllers()
             .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -139,6 +159,7 @@ namespace Intalk
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<InTalkHub>("/intalk");
                 endpoints.MapControllers();
             });
         }
