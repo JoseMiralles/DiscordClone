@@ -38,9 +38,7 @@ export const login = async (loginDTO: ILoginDTO) =>
             const user = decodeUser(res.data.token);
             dispatch(receiveSession(user));
         } catch (error) {
-            dispatch(receiveSessionErrors(
-                error.response.data
-            ));
+            handleAuthErrors(error, dispatch);
         }
     };
 
@@ -52,9 +50,7 @@ export const register = async (registerDTO: IRegisterDTO) =>
             const user = decodeUser(res.data.token);
             dispatch(receiveSession(user));
         } catch (error) {
-            dispatch(receiveSessionErrors(
-                error.response.data.errors
-            ));
+            handleAuthErrors(error, dispatch);
         }
     };
 
@@ -68,3 +64,13 @@ export const tokensRefreshed = (user: IUser) =>
     (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
         dispatch(receiveSession(user));
     };
+
+function handleAuthErrors(error: any, dispatch: Dispatch<AppActions>) {
+    if (error.response?.data) {
+        dispatch(receiveSessionErrors(
+            error.response.data
+        ));
+    } else if (!error.response) {
+        dispatch(receiveSessionErrors({ general: ["Unable to reach server, please check your connection."] }));
+    }
+}

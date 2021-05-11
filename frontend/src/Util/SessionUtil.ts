@@ -70,9 +70,10 @@ export function setupTokenRefresh(onRefreshFailed: (error: any) => void) {
             
             /**
              * At this point, the token refresh failed. So check if it failed because the JWT still
-             * has not yet expired. Which means that there is no need to refresh.
+             * has not yet expired. Which means that there is no need to refresh, and the original tokens
+             * can be returned.
              */ 
-            if (error.response.data.errors.find((e: string) => e.includes("UNEXPIRED_TOKEN"))) {
+            if (error.response?.data.errors.find((e: string) => e.includes("UNEXPIRED_TOKEN"))) {
                 // Return the tokens that are stored locally.
                 const tokens = getTokenSet();
                 return { data: { token: tokens.jwt, refreshToken: tokens.refreshToken } };

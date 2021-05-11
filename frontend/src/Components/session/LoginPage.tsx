@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./AuthPage.scss";
-import { login } from "../../Actions/SessionActions";
+import { clearSessionErrors, login } from "../../Actions/SessionActions";
 import DemoLoginButton from "./DemoLoginButton";
 import { AppState } from "../../store";
 import ErrorList from "../errors/ErrorList";
@@ -30,6 +30,13 @@ const LoginPage = () => {
         act();
     };
 
+    useEffect(() => {
+        // Cleanup function, "ComponentWillUnmount"
+        return () => {
+            dispatch(clearSessionErrors());
+        }
+    });
+
     return (
         <section className="auth-form-section">
             <div className="container">
@@ -53,10 +60,11 @@ const LoginPage = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             value={password} />
 
-                        <button className="btn btn-main">submit</button>
+                        <button disabled = {loading ? true : false}
+                            className="btn btn-main">{!loading ? "submit" : "submitting..."}</button>
                     </form>
                     
-                    <DemoLoginButton userNumber={1}>User 1</DemoLoginButton>
+                    <DemoLoginButton loading={loading} userNumber={1}>User 1</DemoLoginButton>
                 </div>
             </div>
         </section>

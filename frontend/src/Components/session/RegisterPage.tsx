@@ -70,7 +70,7 @@ const RegisterPage = () => {
                         </button>
                     </form>
 
-                    <DemoLoginButton userNumber={1}>user 1</DemoLoginButton>
+                    <DemoLoginButton loading={loading} userNumber={1}>user 1</DemoLoginButton>
                 </div>
             </div>
         </section>
