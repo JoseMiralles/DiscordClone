@@ -9,6 +9,7 @@ import { SessionActionTypes } from "./Models/SessionModel";
 import { UserActionTypes } from "./Models/UserModel";
 import { ModalActionTypes } from "./Models/ModalModel";
 import { serverActionTypes } from "./Models/ServerModel";
+import SignalRMiddleware from "./Middleware/SignalRMiddleware";
 
 // This will be a union type of all potential action types.
 export type AppActions =
@@ -30,7 +31,8 @@ export type AppState = ReturnType<typeof rootReducer>
 export const configureStore = (): Store<AppState> => {
     const store = createStore(rootReducer, applyMiddleware(
         thunk as ThunkMiddleware<AppState, AppActions>,
-        logger
+        logger,
+        SignalRMiddleware
     ));
     return store;
 };
