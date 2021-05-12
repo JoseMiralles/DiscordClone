@@ -20,8 +20,6 @@ const ServerBar = () => {
         }
     });
 
-    console.log(selectedServer);
-
     const barItems = Object.values(servers).map(s => (
         <ServerBarItem key={s.id} server={s} selected={selectedServer} />
     ));

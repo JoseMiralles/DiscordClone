@@ -8,7 +8,12 @@ import { useEffect, useState } from "react";
 
 const Client = () => {
 
-    const selected = useSelector((s: AppState) => s.servers.selected);
+    const { selected, servers } = useSelector((s: AppState) => {
+        return {
+            selected: s.servers.selected,
+            servers: Object.values(s.servers.all).map(s => s.id)
+        }
+    });
     const [connection, setConnection] = useState<SignalR.HubConnection | null>(null);
 
     useEffect(() => {
@@ -22,8 +27,12 @@ const Client = () => {
             console.log(message);
         });
 
+        c.on("WentOnline", (message: string) => {
+            console.log(message);
+        });
+
         c.start().then(() => {
-            c.send("ChangeRole", "hi!");
+            c.send("GoOnline", {groups: [-1,-2,-3]});
             setConnection(c);
         });
     }, []);

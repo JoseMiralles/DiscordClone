@@ -80,12 +80,10 @@ namespace Intalk
                         // If the request is for our hub...
                         var path = context.HttpContext.Request.Path;
                         var accessToken = context.Request.Query["access_token"];
-                        Console.WriteLine(path);
                         if (
                             !string.IsNullOrEmpty(accessToken) &&
                             (path.StartsWithSegments("/hubs/intalk")))
                         {
-                            Console.WriteLine("ON MESSSAGE RECEIVED: " + accessToken);
                             // Read the token out of the query string
                             context.Token = accessToken;
                         }

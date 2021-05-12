@@ -15,7 +15,6 @@ namespace Intalk.RealTime
         {
             List<string> joinedServerIds = new List<string>();
             string userId = this.Context.UserIdentifier;
-            Console.WriteLine("CONNECTED: " + userId);
             foreach (string serverId in joinedServerIds){
                 UserManager.userGroups.AddUserToGroup(userId, serverId);
             }
@@ -35,6 +34,16 @@ namespace Intalk.RealTime
             Clients.Groups(joinedServerIds).SendAsync("IsOnline", userId, false);
             return base.OnConnectedAsync();
         }
+
+        public void GoOnline(List<string> groups)
+        {
+            string userId = this.Context.UserIdentifier;
+            foreach (string group in groups){
+                UserManager.userGroups.AddUserToGroup(userId, group);
+                Clients.Groups(group).SendAsync("WentOnline", userId);
+                Console.WriteLine("NOTIFIED: " + group);
+            }
+        } 
 
         /// <summary>
         /// Notifies server memebers that a user has changed roles.
