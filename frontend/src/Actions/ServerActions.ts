@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
-import { AppActions } from "../Models/AppModel";
 import { ICreateServerDTO, IServer } from "../Models/ServerModel";
 import { IMultipleUserResponseItem } from "../Models/UserModel";
+import { AppActions } from "../store";
 import { fetchServerByIdUtil, fetchServerUsersUtil, fetchUserServersUtil, postNewServerUtil } from "../Util/ServersUtil";
 
 export const fetchingServers = (): AppActions => ({

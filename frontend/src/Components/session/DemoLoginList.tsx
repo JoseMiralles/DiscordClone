@@ -1,3 +1,4 @@
+import React from "react";
 import DemoLoginButton from "./DemoLoginButton";
 import "./DemoLoginList.scss";
 
@@ -5,7 +6,7 @@ interface Props {
     loading: boolean;
 }
 
-const DemoLoginList = ({ loading }: Props) => {
+const _DemoLoginList = ({ loading }: Props) => {
     const numberOfUsers = 3;
     const mappedButtons: JSX.Element[] = [];
 
@@ -35,5 +36,7 @@ const DemoLoginList = ({ loading }: Props) => {
         </section>
     );
 }
+
+const DemoLoginList = React.memo(_DemoLoginList);
 
 export default DemoLoginList;

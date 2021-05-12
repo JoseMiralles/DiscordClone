@@ -1,5 +1,5 @@
-import { AppActions } from "../Models/AppModel";
 import { Modals } from "../Models/ModalModel";
+import { AppActions } from "../store";
 
 export const setModal = (modal: Modals): AppActions => ({
     type: "SET_MODAL",

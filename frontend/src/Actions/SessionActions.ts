@@ -1,8 +1,7 @@
 import { Dispatch } from "redux";
-import { AppActions } from "../Models/AppModel";
 import { ILoginDTO, IRegisterDTO, ISessionErrors } from "../Models/SessionModel";
 import { IUser } from "../Models/UserModel";
-import { AppState } from "../store";
+import { AppActions, AppState } from "../store";
 import { utilLogin, utilLogout, utilRegister, decodeUser } from "../Util/SessionUtil";
 
 // When a login or register form is submitted (show loading anim).

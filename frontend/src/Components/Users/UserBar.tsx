@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchServerUsers } from "../../Actions/ServerActions";
-import { serverRole } from "../../Models/ServerModel";
+import { IUserServer, serverRole } from "../../Models/ServerModel";
 import { IUser } from "../../Models/UserModel";
 import { AppState } from "../../store";
 import UserBarItem from "./UserBarItem";

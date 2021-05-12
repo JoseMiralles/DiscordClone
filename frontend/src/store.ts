@@ -5,7 +5,17 @@ import { sessionReducer } from "./Reducers/SessionReducer";
 import { usersReducer } from "./Reducers/UsersReducer";
 import modalReducer from "./Reducers/ModalReducer";
 import serverReducer from "./Reducers/ServersReducer";
-import { AppActions } from "./Models/AppModel";
+import { SessionActionTypes } from "./Models/SessionModel";
+import { UserActionTypes } from "./Models/UserModel";
+import { ModalActionTypes } from "./Models/ModalModel";
+import { serverActionTypes } from "./Models/ServerModel";
+
+// This will be a union type of all potential action types.
+export type AppActions =
+    SessionActionTypes |
+    UserActionTypes |
+    ModalActionTypes |
+    serverActionTypes;
 
 const rootReducer = combineReducers({
     session: sessionReducer,

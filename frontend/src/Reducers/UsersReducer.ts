@@ -1,5 +1,5 @@
-import { AppActions } from "../Models/AppModel";
 import { IUserState, IUser } from "../Models/UserModel";
+import { AppActions } from "../store";
 
 const initialState: IUserState = {
     users: {}

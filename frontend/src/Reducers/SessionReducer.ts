@@ -1,5 +1,5 @@
-import { AppActions } from "../Models/AppModel";
 import { ISessionErrors, ISessionState } from "../Models/SessionModel";
+import { AppActions } from "../store";
 import { getTokenSet } from "../Util/SessionUtil";
 
 const initialState = {
