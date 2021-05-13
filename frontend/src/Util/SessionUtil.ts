@@ -98,6 +98,7 @@ export const isTokenExpired = (token: string) => {
     try {
         const date = new Date(0);
         const decoded: any = jwtDecode(token);
+        debugger
         date.setUTCSeconds(decoded.exp);
         return date.valueOf() > new Date().valueOf();
     } catch (error) {

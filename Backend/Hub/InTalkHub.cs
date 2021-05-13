@@ -14,7 +14,12 @@ namespace Intalk.RealTime
         {
             // TODO: remove user from UserManager.
             string userId = this.Context.UserIdentifier;
-            return base.OnConnectedAsync();
+            return base.OnDisconnectedAsync(exception);
+        }
+
+        public void Connected(string message)
+        {
+            Console.WriteLine(message);
         }
 
         /// <summary>
