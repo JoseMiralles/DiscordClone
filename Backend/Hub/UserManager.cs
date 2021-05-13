@@ -15,11 +15,12 @@ namespace Intalk.RealTime
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="serverId"></param>
-        public static void AddUserToGroup
+        public static HashSet<string> AddUserToGroup
         (this Dictionary<string, HashSet<string>> self, string userId, string serverId)
         {
             if (!self.ContainsKey(serverId)) self.Add(serverId, new HashSet<string>());
             self[serverId].Add(userId);
+            return self[serverId];
         }
 
         /// <summary>

@@ -6,10 +6,12 @@ using Intalk.Data;
 using Intalk.Models;
 using Intalk.Models.DTOs.Requests;
 using Intalk.Models.DTOs.Responses;
+using Intalk.RealTime;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Intalk.Controllers
 {
@@ -54,7 +56,7 @@ namespace Intalk.Controllers
                 return Ok(await _serverRepo.GetServerUsers(id));
             }
             return Unauthorized();
-        } 
+        }
 
         [HttpPost]
         public async Task<ActionResult<SingleServerResponseItem>> POST(
