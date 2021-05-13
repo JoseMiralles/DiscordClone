@@ -10,6 +10,7 @@ import { UserActionTypes } from "./Models/UserModel";
 import { ModalActionTypes } from "./Models/ModalModel";
 import { serverActionTypes } from "./Models/ServerModel";
 import SignalRMiddleware from "./Middleware/SignalRMiddleware";
+import { isDev } from "./Util/EnviromentUtil";
 
 // This will be a union type of all potential action types.
 export type AppActions =
@@ -29,10 +30,12 @@ const rootReducer = combineReducers({
 export type AppState = ReturnType<typeof rootReducer>
 
 export const configureStore = (): Store<AppState> => {
+
+    const middleware = isDev() ? [logger, SignalRMiddleware] : [SignalRMiddleware];
+
     const store = createStore(rootReducer, applyMiddleware(
         thunk as ThunkMiddleware<AppState, AppActions>,
-        logger,
-        SignalRMiddleware()
+        ...middleware
     ));
     return store;
 };

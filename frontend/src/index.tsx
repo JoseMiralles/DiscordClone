@@ -6,8 +6,9 @@ import "./index.scss";
 import axios from 'axios';
 import { configureStore } from './store';
 import { Provider } from 'react-redux';
+import { baseAPIUrl } from './Util/EnviromentUtil';
 
-axios.defaults.baseURL = "https://localhost:5001";
+axios.defaults.baseURL = baseAPIUrl;
 
 const store = configureStore();
 

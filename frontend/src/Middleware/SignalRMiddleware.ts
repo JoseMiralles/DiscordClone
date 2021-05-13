@@ -1,6 +1,8 @@
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from "@microsoft/signalr";
+import { Console } from "console";
 import { receiveAllOnlineUsers, reveiceUserStatus } from "../Actions/UserActions";
 import { AppActions, AppState } from "../store";
+import { baseAPIUrl } from "../Util/EnviromentUtil";
 import { isTokenExpired, refreshAccessToken } from "../Util/SessionUtil";
 import { Middleware } from "./MiddlewareModel";
 
@@ -9,33 +11,28 @@ import { Middleware } from "./MiddlewareModel";
  * interface with a remote SignalR hub.
  * @returns A curried function with an instance of SignalRHub.
  */
-const SignalRMiddleware = (): Middleware<AppState, AppActions> => {
-    let token = "";
-    let connection: HubConnection = new HubConnectionBuilder()
-        .withUrl("https://localhost:5001/hubs/intalk",
-            { accessTokenFactory: () => isTokenExpired(token) ? refreshAccessToken() : token })
-        .build();
+const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
 
-    return (store) => {
+        let token = "";
+        let connection: HubConnection = new HubConnectionBuilder()
+            .withUrl(baseAPIUrl + "/hubs/intalk",
+                { accessTokenFactory: () => isTokenExpired(token) ? refreshAccessToken() : token })
+            .build();
 
-        const startListeners = () => {
+        connection?.on("ReceiveAllOnlineUsers", (userIds: string[]) => {
+            store.dispatch(receiveAllOnlineUsers(userIds));
+        });
 
-            connection?.on("ReceiveAllOnlineUsers", (userIds: string[]) => {
-                store.dispatch(receiveAllOnlineUsers(userIds));
-            });
-
-            connection?.on("ReveiceUserStatus", (userId: string, isOnline: boolean) => {
-                store.dispatch(reveiceUserStatus(userId, isOnline));
-            });
-
-        };
+        connection?.on("ReveiceUserStatus", (userId: string, isOnline: boolean) => {
+            store.dispatch(reveiceUserStatus(userId, isOnline));
+        });
 
         return (next) => (action) => {
+
             switch (action.type) {
 
                 case "RECEIVE_SESSION": {
                     token = action.token;
-                    startListeners();
                     if (connection.state === HubConnectionState.Disconnected) {
                         connection.start().then(() => {
                             connection?.send("Connected", "hi!");
@@ -63,6 +60,5 @@ const SignalRMiddleware = (): Middleware<AppState, AppActions> => {
             return next(action);
         };
     };
-}
 
 export default SignalRMiddleware;
