@@ -10,38 +10,31 @@ namespace Intalk.RealTime
     [Authorize]
     public class InTalkHub : Hub
     {
-
-        public override Task OnConnectedAsync()
-        {
-            List<string> joinedServerIds = new List<string>();
-            string userId = this.Context.UserIdentifier;
-            foreach (string serverId in joinedServerIds){
-                UserManager.userGroups.AddUserToGroup(userId, serverId);
-            }
-            // TODO: send list of connected users to the client who just connected.
-            Clients.Caller.SendAsync("messageReceived", "Hi!");
-            Clients.Groups(joinedServerIds).SendAsync("IsOnline", userId, true);
-            return base.OnConnectedAsync();
-        }
-
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            List<string> joinedServerIds = new List<string>();
+            // TODO: remove user from UserManager.
             string userId = this.Context.UserIdentifier;
-            foreach (string serverId in joinedServerIds){
-                UserManager.userGroups.RemoveUserFromGroup(userId, serverId);
-            }
-            Clients.Groups(joinedServerIds).SendAsync("IsOnline", userId, false);
             return base.OnConnectedAsync();
         }
 
-        public void GoOnline(List<string> groups)
+        /// <summary>
+        /// Notifies all the members of all the servers in the list,
+        /// that a user went online or offline.
+        /// This method should be calles from the AuthController,
+        /// when the user is authenticated.
+        /// </summary>
+        /// <param name="serverIds">Ids of servers that the user is a member of.</param>
+        /// <param name="isOnline">Wether the user just went online or offline.</param>
+        public void NotifyServerMembers(List<string> serverIds, bool isOnline)
         {
             string userId = this.Context.UserIdentifier;
-            foreach (string group in groups){
+            foreach (string group in serverIds){
                 UserManager.userGroups.AddUserToGroup(userId, group);
                 Clients.Groups(group).SendAsync("WentOnline", userId);
                 Console.WriteLine("NOTIFIED: " + group);
+            }
+            if (isOnline) {
+                Clients.Caller.SendAsync("messageReceived", "Hi!");
             }
         } 
 
@@ -52,8 +45,9 @@ namespace Intalk.RealTime
         /// <param name="serverId"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public Task ChangeRole(string userId, string serverId, Roles role)
+        public Task ChangeRole(string serverId, Roles role)
         {
+            string userId = this.Context.UserIdentifier;
             return Clients.Group(serverId).SendAsync("Role", serverId, userId, role);
         }
     }

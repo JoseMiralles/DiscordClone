@@ -10,8 +10,9 @@ export const gettingSession = (): AppActions => ({
 } as const);
 
 // When the response of the auth request comes back.
-export const receiveSession = (user: IUser): AppActions => ({
+export const receiveSession = (user: IUser, token: string): AppActions => ({
     type: "RECEIVE_SESSION",
+    token,
     user
 } as const);
 
@@ -19,6 +20,11 @@ export const receiveSession = (user: IUser): AppActions => ({
 export const removeSession = () => ({
     type: "REMOVE_SESSION"
 } as const);
+
+export const receiveRefreshedToken = (token: string) => ({
+    type: "RECEIVE_REFRESHED_TOKEN",
+    token
+});
 
 export const receiveSessionErrors = (errors: ISessionErrors) => ({
     type: "RECEIVE_SESSION_ERRORS",
@@ -35,7 +41,7 @@ export const login = async (loginDTO: ILoginDTO) =>
         try {
             const res = await utilLogin(loginDTO);
             const user = decodeUser(res.data.token);
-            dispatch(receiveSession(user));
+            dispatch(receiveSession(user, res.data.token));
         } catch (error) {
             handleAuthErrors(error, dispatch);
         }
@@ -47,7 +53,7 @@ export const register = async (registerDTO: IRegisterDTO) =>
         try {
             const res = await utilRegister(registerDTO);
             const user = decodeUser(res.data.token);
-            dispatch(receiveSession(user));
+            dispatch(receiveSession(user, res.data.token));
         } catch (error) {
             handleAuthErrors(error, dispatch);
         }
@@ -58,11 +64,6 @@ export const logout = () =>
         utilLogout();
         dispatch(removeSession());
     }
-
-export const tokensRefreshed = (user: IUser) =>
-    (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-        dispatch(receiveSession(user));
-    };
 
 function handleAuthErrors(error: any, dispatch: Dispatch<AppActions>) {
     if (error.response?.data) {

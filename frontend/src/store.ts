@@ -32,7 +32,7 @@ export const configureStore = (): Store<AppState> => {
     const store = createStore(rootReducer, applyMiddleware(
         thunk as ThunkMiddleware<AppState, AppActions>,
         logger,
-        SignalRMiddleware
+        SignalRMiddleware()
     ));
     return store;
 };

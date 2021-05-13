@@ -56,7 +56,10 @@ export const refreshAccessToken = async (): Promise<string> => {
  * Sets up middleware that automatically refreshes tokens when needed.
  * @param onRefreshFailed A callback that gets called when a token refresh fails.
  */
-export function setupTokenRefresh(onRefreshFailed: (error: any) => void) {
+export function setupTokenRefresh(
+    onRefreshSuccess: (token: string) => void,
+    onRefreshFailed: (error: any) => void
+) {
     axios.interceptors.response.use(
         response => response,
         async (error) => {
@@ -64,7 +67,8 @@ export function setupTokenRefresh(onRefreshFailed: (error: any) => void) {
             const originalRequest = error.config;
             if ([401, 403].includes(error.response?.status) && !originalRequest._retry) {
                 originalRequest._retry = true;
-                await refreshAccessToken();
+                const newToken = await refreshAccessToken();
+                onRefreshSuccess(newToken);
                 return axios(originalRequest);
             }
             
@@ -76,12 +80,30 @@ export function setupTokenRefresh(onRefreshFailed: (error: any) => void) {
             if (error.response?.data.errors.find((e: string) => e.includes("UNEXPIRED_TOKEN"))) {
                 // Return the tokens that are stored locally.
                 const tokens = getTokenSet();
+                onRefreshSuccess(tokens.jwt);
                 return { data: { token: tokens.jwt, refreshToken: tokens.refreshToken } };
             }
             onRefreshFailed(error);
         }
     );
 }
+
+// TODO: refactor automatic session and token renewal so that it uses this method instead of bad responses.
+/**
+ * Checks to see if the given token has expired.
+ * @param token 
+ * @returns 
+ */
+export const isTokenExpired = (token: string) => {
+    try {
+        const date = new Date(0);
+        const decoded: any = jwtDecode(token);
+        date.setUTCSeconds(decoded.exp);
+        return date.valueOf() > new Date().valueOf();
+    } catch (error) {
+        return false;
+    }
+};
 
 /**
  * Called when tokens are refreshed, or the user is authenticated.
@@ -121,7 +143,8 @@ export const decodeUser = (jwt: string): IUser => {
         = jwtDecode(jwt);
     return {
         userName: decoded.username,
-        id: decoded.nameid
+        id: decoded.nameid,
+        online: true
     };
 };
 

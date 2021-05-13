@@ -5,6 +5,7 @@ export const RECEIVE_SESSION = "RECEIVE_SESSION";
 export const REMOVE_SESSION = "REMOVE_SESSION";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
+export const RECEIVE_REFRESHED_TOKEN = "RECEIVE_REFRESHED_TOKEN";
 
 export interface gettingSession {
     type: typeof GETTING_SESSION;
@@ -12,11 +13,17 @@ export interface gettingSession {
 
 export interface receiveSession {
     type: typeof RECEIVE_SESSION;
+    token: string;
     user: IUser;
 }
 
 export interface removeSession {
     type: typeof REMOVE_SESSION;
+}
+
+export interface receiveRefreshedToken {
+    type: typeof RECEIVE_REFRESHED_TOKEN;
+    token: string;
 }
 
 export interface receiveSessionErrors {
@@ -32,6 +39,7 @@ export type SessionActionTypes =
     gettingSession |
     receiveSession |
     removeSession |
+    receiveRefreshedToken |
     receiveSessionErrors |
     clearSessionErrors;
 
