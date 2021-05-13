@@ -12,8 +12,10 @@ namespace Intalk.RealTime
     {
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            // TODO: remove user from UserManager.
+            // Remove user from servers, and notify them that the user went offline.
             string userId = this.Context.UserIdentifier;
+            var serverIds = UserManager.RemoveUserFromAllGroupsAndGetServers(userId);
+            NotifyServerMembers(serverIds, isOnline: false);
             return base.OnDisconnectedAsync(exception);
         }
 
@@ -54,38 +56,6 @@ namespace Intalk.RealTime
         {
             string userId = this.Context.UserIdentifier;
             return Clients.Group(serverId).SendAsync("Role", serverId, userId, role);
-        }
-    }
-
-    static class UserManager
-    {
-        /// <summary>
-        /// Keeps track of which users are online on each group (server).
-        /// </summary>
-        public static Dictionary<string, HashSet<string>> userGroups = new Dictionary<string, HashSet<string>>();
-
-        /// <summary>
-        /// Adds the given user to the given server list.
-        /// It also creates a new server hash set if one didn't exist.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="serverId"></param>
-        public static void AddUserToGroup
-        (this Dictionary<string, HashSet<string>> self, string userId, string serverId)
-        {
-            if (!self.ContainsKey(serverId)) self.Add(serverId, new HashSet<string>());
-            self[serverId].Add(userId);
-        }
-
-        /// <summary>
-        /// Removes the given user id from the given server group.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="serverId"></param>
-        public static void RemoveUserFromGroup
-        (this Dictionary<string, HashSet<string>> self, string userId, string serverId)
-        {
-            self[serverId]?.Remove(userId);
         }
     }
 }

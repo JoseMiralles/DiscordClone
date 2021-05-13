@@ -51,7 +51,6 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
                 }
 
                 case "RECEIVE_REFRESHED_TOKEN": {
-                    // TODO: find a way to replace the token without killing the connection.
                     token = action.token;
                     break;
                 }
