@@ -41,26 +41,34 @@ namespace Intalk.RealTime
         /// </summary>
         /// <param name="newServer"></param>
         /// <param name="oldServer"></param>
-        public async Task SelectServer(string newServer, string oldServer = null)
+        public async Task RejoinServer(string newServer, string oldServer = null)
         {
-            // TODO: Check if user is part of server.
-            string userId = this.Context.UserIdentifier;
-            if (! await _serverRepo.userIsMember(userId, long.Parse(newServer))){
-                // Leave if the user is not a member of this server.
-                return;
+            if (! await this.JoinServer(newServer, oldServer)){
+                return; // Failed to join server.
             }
 
-            if (oldServer != null){
-                await this.Groups.RemoveFromGroupAsync(
-                    this.Context.ConnectionId, oldServer);
-            }
-            await this.Groups.AddToGroupAsync(this.Context.ConnectionId, newServer);
             var onlineUsers = UserManager.GetOnlineUsersFromServers(newServer);
             if (onlineUsers != null) {
                 await this.Clients.Caller.SendAsync("ReceiveAllOnlineUsers", onlineUsers);
             } else {
                 await this.Clients.Caller.SendAsync( "ReceiveAllOnlineUsers", Array.Empty<string>());
             }
+        }
+
+        public async Task<bool> JoinServer(string newServer, string oldServer = null)
+        {
+            string userId = this.Context.UserIdentifier;
+            if (! await _serverRepo.userIsMember(userId, long.Parse(newServer))){
+                return false; // Leave if the user is not a member of this server.
+            }
+
+            if ( oldServer != null ){
+                await this.Groups.RemoveFromGroupAsync(
+                    this.Context.ConnectionId, oldServer);
+            }
+            await this.Groups.AddToGroupAsync(this.Context.ConnectionId, newServer);
+
+            return true;
         }
 
         public override Task OnDisconnectedAsync(Exception exception)

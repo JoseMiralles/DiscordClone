@@ -22,14 +22,17 @@ namespace Intalk.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private IServerRepository _serverRepo;
+        private IHubContext<InTalkHub> _hubContext;
 
         public ServerController(
             UserManager<ApplicationUser> userManager,
-            IServerRepository serverRepo
+            IServerRepository serverRepo,
+            IHubContext<InTalkHub> hubcontext
             )
         {
             _userManager = userManager;
             _serverRepo = serverRepo;
+            _hubContext = hubcontext;
         }
 
         [HttpGet]
@@ -48,20 +51,24 @@ namespace Intalk.Controllers
             return Ok(serverResponseItem);
         }
 
-        [HttpGet("Users/{id}")]
-        public async Task<ActionResult<IEnumerable<MultipleUserResponseItem>>> getServerUsers(long id)
+        [HttpGet("Users/{serverId}")]
+        public async Task<ActionResult<IEnumerable<MultipleUserResponseItem>>> getServerUsers(
+            long serverId,
+            [FromQuery] string oldServer = null
+        )
         {
             var test = UserManager.userGroups;
-            if (await CheckIfMember(id))
+            if (await CheckIfMember(serverId))
             {
-                var users = await _serverRepo.GetServerUsers(id);
-                var onlineUsers = UserManager.GetOnlineUsersFromServers(id.ToString());
+                var users = await _serverRepo.GetServerUsers(serverId);
+                var onlineUsers = UserManager.GetOnlineUsersFromServers(serverId.ToString());
                 if (onlineUsers != null)
                 {
                     foreach(var user in users){
                         if (onlineUsers.Contains(user.UserId)) user.online = true;
                     }
                 }
+
                 return Ok(users);
             }
             return Unauthorized();

@@ -23,7 +23,8 @@ export interface IReceiveUserStatus {
 export interface IMultipleUserResponseItem {
     userId: string,
     userName: string,
-    role: serverRole
+    role: serverRole,
+    online: boolean
 }
 
 export type UserActionTypes =

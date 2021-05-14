@@ -41,8 +41,8 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
                         const selectedServerId = store.getState().servers.selected;
                         if (selectedServerId) {
                             prevServer
-                                ? connection?.send("SelectServer", selectedServerId)
-                                : connection?.send("SelectServer", selectedServerId, prevServer);
+                                ? connection?.send("RejoinServer", selectedServerId)
+                                : connection?.send("RejoinServer", selectedServerId, prevServer);
                         }
                     }).catch((reason: any) => {
                         // TODO: handle error.
@@ -72,13 +72,13 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
                 try {
                     if (connection.state === HubConnectionState.Connected) {
                         if (prevServer){
-                            connection?.send("SelectServer", action.serverId, prevServer)
+                            connection?.send("JoinServer", action.serverId, prevServer)
                         } else {
-                            connection?.send("SelectServer", action.serverId);
+                            connection?.send("JoinServer", action.serverId);
                         }
                     }
                 } catch (error) {
-                    console.log(error);
+                    throw error;
                 }
             }
         }

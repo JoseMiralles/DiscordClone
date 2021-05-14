@@ -23,7 +23,8 @@ export const usersReducer = (
             const newState = Object.assign({}, state);
             action.users.forEach(u => newState.users[u.userId] = ({
                 id: u.userId,
-                userName: u.userName
+                userName: u.userName,
+                online: u.online
             }));
             return newState;
         }
