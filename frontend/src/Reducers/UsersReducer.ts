@@ -28,6 +28,20 @@ export const usersReducer = (
             return newState;
         }
             
+        case "RECEIVE_ALL_ONLINE_USERS": {
+            const newState = { ...state }
+            action.userIds.forEach(userId => {
+                if (userId) {newState.users[userId].online = true}
+            });
+            return newState;
+        }
+            
+        case "RECEIVE_USER_STATUS": {
+            const newState = { ...state };
+            newState.users[action.userId].online = action.isOnline;
+            return newState;
+        }
+            
         case "REMOVE_SESSION": {
             return { users: {} };
         }

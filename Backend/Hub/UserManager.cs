@@ -18,7 +18,7 @@ namespace Intalk.RealTime
         public static HashSet<string> AddUserToGroup
         (this Dictionary<string, HashSet<string>> self, string userId, string serverId)
         {
-            if (!self.ContainsKey(serverId)) self.Add(serverId, new HashSet<string>());
+            if (!self.ContainsKey(serverId)) self.TryAdd(serverId, new HashSet<string>());
             self[serverId].Add(userId);
             return self[serverId];
         }
@@ -43,9 +43,9 @@ namespace Intalk.RealTime
         public static List<string> RemoveUserFromAllGroupsAndGetServers(string userId)
         {
             List<string> servers = new List<string>();
-            foreach (var p in userGroups)
+            foreach (var server in userGroups)
             {
-                if (p.Value.Remove(userId)) servers.Add(p.Key);
+                if (server.Value.Remove(userId)) servers.Add(server.Key);
             }
             return servers;
         }

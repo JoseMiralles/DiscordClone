@@ -13,61 +13,68 @@ import { Middleware } from "./MiddlewareModel";
  */
 const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
 
-        let token = "";
-        let connection: HubConnection = new HubConnectionBuilder()
-            .withUrl(baseAPIUrl + "/hubs/intalk",
-                { accessTokenFactory: () => isTokenExpired(token) ? refreshAccessToken() : token })
-            .build();
+    let token = "";
+    let prevServer: number | null = null;
 
-        connection?.on("ReceiveAllOnlineUsers", (userIds: string[]) => {
-            store.dispatch(receiveAllOnlineUsers(userIds));
-        });
+    let connection: HubConnection = new HubConnectionBuilder()
+        .withUrl(baseAPIUrl + "/hubs/intalk",
+            { accessTokenFactory: () => isTokenExpired(token) ? refreshAccessToken() : token })
+        .build();
 
-        connection?.on("ReveiceUserStatus", (userId: string, isOnline: boolean) => {
-            store.dispatch(reveiceUserStatus(userId, isOnline));
-        });
+    connection?.on("ReceiveAllOnlineUsers", (userIds: string[]) => {
+        store.dispatch(receiveAllOnlineUsers(userIds));
+    });
 
-        return (next) => (action) => {
+    connection?.on("ReveiceUserStatus", (userId: string, isOnline: boolean) => {
+        store.dispatch(reveiceUserStatus(userId, isOnline));
+    });
 
-            switch (action.type) {
+    return (next) => (action) => {
 
-                case "RECEIVE_SESSION": {
-                    token = action.token;
-                    if (connection.state === HubConnectionState.Disconnected) {
-                        connection.start().catch((reason: any) => {
-                            // TODO: handle error.
-                            throw reason;
-                        });
-                    }
-                    break;
+        switch (action.type) {
+
+            case "RECEIVE_SESSION": {
+                token = action.token;
+                if (connection.state === HubConnectionState.Disconnected) {
+                    connection.start().catch((reason: any) => {
+                        // TODO: handle error.
+                        throw reason;
+                    });
                 }
+                break;
+            }
 
-                case "REMOVE_SESSION": {
-                    // TODO: Close connection.
-                    token = "";
-                    break;
-                }
+            case "REMOVE_SESSION": {
+                connection.stop();
+                token = "";
+                break;
+            }
 
-                case "RECEIVE_REFRESHED_TOKEN": {
-                    token = action.token;
-                    break;
-                }
-                    
-                case "SELECT_SERVER": {
-                    const prevServer = store.getState().servers.selected;
-                    console.log(prevServer);
-                    try {
+            case "RECEIVE_REFRESHED_TOKEN": {
+                token = action.token;
+                break;
+            }
+
+            case "SELECT_SERVER": {
+                prevServer = store.getState().servers.selected;
+                break;
+            }
+                
+            case "RECEIVE_SERVER_USERS": {
+                try {
+                    if (connection.state === HubConnectionState.Connected) {
                         prevServer ?
                         connection?.send("SelectServer", action.serverId, prevServer) :
                         connection?.send("SelectServer", action.serverId);
-                    } catch (error) {
-                        console.log(error);
                     }
+                } catch (error) {
+                    console.log(error);
                 }
             }
+        }
 
-            return next(action);
-        };
+        return next(action);
     };
+};
 
 export default SignalRMiddleware;

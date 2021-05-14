@@ -8,7 +8,10 @@ interface Props {
 
 const UserBarItem = ({ user, role }: Props) => {
     return (
-        <li>{ user.userName + " " + role }</li>
+        <li>
+            <div>{ user.online ? "O" : "X" }</div>
+            <div>{user.userName}</div>
+        </li>
     )
 };
 

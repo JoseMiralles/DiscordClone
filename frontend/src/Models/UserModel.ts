@@ -35,7 +35,7 @@ export type UserActionTypes =
 export interface IUser {
     readonly userName: string;
     readonly id: string;
-    readonly online?: boolean;
+    online?: boolean;
 }
 
 export interface IUserState {
