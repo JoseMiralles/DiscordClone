@@ -50,13 +50,17 @@ namespace Intalk.RealTime
                 return;
             }
 
-            if (oldServer != null) await this.Groups.RemoveFromGroupAsync(
-                this.Context.ConnectionId, oldServer);
+            if (oldServer != null){
+                await this.Groups.RemoveFromGroupAsync(
+                    this.Context.ConnectionId, oldServer);
+            }
             await this.Groups.AddToGroupAsync(this.Context.ConnectionId, newServer);
             var onlineUsers = UserManager.GetOnlineUsersFromServers(newServer);
-            await this.Clients.Caller.SendAsync(
-                "ReceiveAllOnlineUsers",
-                onlineUsers != null ? onlineUsers : Array.Empty<string>());
+            if (onlineUsers != null) {
+                await this.Clients.Caller.SendAsync("ReceiveAllOnlineUsers", onlineUsers);
+            } else {
+                await this.Clients.Caller.SendAsync( "ReceiveAllOnlineUsers", Array.Empty<string>());
+            }
         }
 
         public override Task OnDisconnectedAsync(Exception exception)

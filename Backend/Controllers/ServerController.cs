@@ -51,9 +51,18 @@ namespace Intalk.Controllers
         [HttpGet("Users/{id}")]
         public async Task<ActionResult<IEnumerable<MultipleUserResponseItem>>> getServerUsers(long id)
         {
+            var test = UserManager.userGroups;
             if (await CheckIfMember(id))
             {
-                return Ok(await _serverRepo.GetServerUsers(id));
+                var users = await _serverRepo.GetServerUsers(id);
+                var onlineUsers = UserManager.GetOnlineUsersFromServers(id.ToString());
+                if (onlineUsers != null)
+                {
+                    foreach(var user in users){
+                        if (onlineUsers.Contains(user.UserId)) user.online = true;
+                    }
+                }
+                return Ok(users);
             }
             return Unauthorized();
         }

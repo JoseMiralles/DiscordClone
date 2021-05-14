@@ -6,6 +6,7 @@ namespace Intalk.Models.DTOs.Responses
     {
         public string UserId { get; set; }
         public string UserName { get; set; }
+        public bool online = false;
         public Roles Role { get; set; }
     }
 }
