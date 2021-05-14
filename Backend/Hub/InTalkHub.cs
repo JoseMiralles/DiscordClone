@@ -22,32 +22,42 @@ namespace Intalk.RealTime
         public override async Task OnConnectedAsync()
         {
             string userId = this.Context.UserIdentifier;
-            Console.WriteLine("CONNECTED: " + userId);
             var servers = await _serverRepo.GetUserServers(userId);
-
-            string _tempServerId;
-            HashSet<string> _tempServerUsers;
-            HashSet<string> onlineUsersIds = new HashSet<string>();
-            var serverList = new List<string>();
+            string _tempServerID;
             foreach (var server in servers)
             {
-                _tempServerId = server.Id.ToString();
-                _tempServerUsers = UserManager.userGroups.AddUserToGroup(userId, _tempServerId);
-                await this.Groups.AddToGroupAsync(Context.ConnectionId, _tempServerId);
-                serverList.Add(_tempServerId);
-                foreach (string _userId in _tempServerUsers) onlineUsersIds.Add(_userId);
+                _tempServerID = server.Id.ToString();
+                UserManager.userGroups.AddUserToGroup(userId, _tempServerID);
+                await this.Clients.Groups(_tempServerID)
+                    .SendAsync("ReveiceUserStatus", userId, true);
             }
-
-            await this.Clients.Groups(serverList).SendAsync("ReveiceUserStatus", userId, true);
-            await this.Clients.Caller.SendAsync("ReceiveAllOnlineUsers", onlineUsersIds);
             await base.OnConnectedAsync();
+        }
+
+        /// <summary>
+        /// Sender gets a list of all of the users that are online on newServer, and also
+        /// subscribes to listen for user status changes for this one server.
+        /// It unsubscribes from the oldServer.
+        /// </summary>
+        /// <param name="newServer"></param>
+        /// <param name="oldServer"></param>
+        public async Task SelectServer(string newServer, string oldServer = null)
+        {
+            // TODO: Check if user is part of server.
+            string userId = this.Context.UserIdentifier;
+            if (oldServer != null) await this.Groups.RemoveFromGroupAsync(
+                this.Context.ConnectionId, oldServer);
+            await this.Groups.AddToGroupAsync(this.Context.ConnectionId, newServer);
+            var onlineUsers = UserManager.GetOnlineUsersFromServers(newServer);
+            await this.Clients.Caller.SendAsync(
+                "ReceiveAllOnlineUsers",
+                onlineUsers != null ? onlineUsers : Array.Empty<string>());
         }
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
             // Remove user from servers, and notify them that the user went offline.
             string userId = this.Context.UserIdentifier;
-            Console.WriteLine("DIS-CONNECTED: " + userId);
             var serverIds = UserManager.RemoveUserFromAllGroupsAndGetServers(userId);
             NotifyServerMembers(serverIds, isOnline: false);
 

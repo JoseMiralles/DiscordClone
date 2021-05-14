@@ -34,9 +34,7 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
                 case "RECEIVE_SESSION": {
                     token = action.token;
                     if (connection.state === HubConnectionState.Disconnected) {
-                        connection.start().then(() => {
-                            connection?.send("Connected", "hi!");
-                        }).catch((reason: any) => {
+                        connection.start().catch((reason: any) => {
                             // TODO: handle error.
                             throw reason;
                         });
@@ -53,6 +51,18 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
                 case "RECEIVE_REFRESHED_TOKEN": {
                     token = action.token;
                     break;
+                }
+                    
+                case "SELECT_SERVER": {
+                    const prevServer = store.getState().servers.selected;
+                    console.log(prevServer);
+                    try {
+                        prevServer ?
+                        connection?.send("SelectServer", action.serverId, prevServer) :
+                        connection?.send("SelectServer", action.serverId);
+                    } catch (error) {
+                        console.log(error);
+                    }
                 }
             }
 

@@ -34,6 +34,12 @@ namespace Intalk.RealTime
             self[serverId]?.Remove(userId);
         }
 
+        public static HashSet<string> GetOnlineUsersFromServers(string serverId)
+        {
+            if (userGroups.ContainsKey(serverId)) return userGroups[serverId];
+            return null;
+        }
+
         public static List<string> RemoveUserFromAllGroupsAndGetServers(string userId)
         {
             List<string> servers = new List<string>();
