@@ -1,5 +1,6 @@
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from "@microsoft/signalr";
 import { Console } from "console";
+import { receiveRefreshedToken } from "../Actions/SessionActions";
 import { receiveAllOnlineUsers, reveiceUserStatus } from "../Actions/UserActions";
 import { AppActions, AppState } from "../store";
 import { baseAPIUrl } from "../Util/EnviromentUtil";
@@ -18,17 +19,29 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
 
     let connection: HubConnection = new HubConnectionBuilder()
         .withUrl(baseAPIUrl + "/hubs/intalk",
-            { accessTokenFactory: () => isTokenExpired(token) ? refreshAccessToken() : token })
+            {
+                accessTokenFactory: async () => {
+                    if (isTokenExpired(token)) {
+                        const newToken = await refreshAccessToken();
+                        store.dispatch(receiveRefreshedToken(newToken));
+                        return newToken;
+                    }
+                    return token;
+                }
+            })
         .withAutomaticReconnect()
         .build();
 
-    connection?.on("ReceiveAllOnlineUsers", (userIds: string[]) => {
+    connection.on("ReceiveAllOnlineUsers", (userIds: string[]) => {
         store.dispatch(receiveAllOnlineUsers(userIds));
     });
 
-    connection?.on("ReveiceUserStatus", (userId: string, isOnline: boolean) => {
+    connection.on("ReveiceUserStatus", (userId: string, isOnline: boolean) => {
         store.dispatch(reveiceUserStatus(userId, isOnline));
     });
+
+    connection.on("ServerJoined", (serverId: string) => console.log(
+        "SERVER_JOINED: " + serverId));
 
     return (next) => (action) => {
 
@@ -70,7 +83,7 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
                 
             case "RECEIVE_SERVER_USERS": {
                 try {
-                    if (connection.state === HubConnectionState.Connected) {
+                    if (connection.state !== HubConnectionState.Disconnected) {
                         if (prevServer){
                             connection?.send("JoinServer", action.serverId, prevServer)
                         } else {

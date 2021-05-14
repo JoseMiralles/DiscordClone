@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace Intalk.RealTime
@@ -7,7 +8,7 @@ namespace Intalk.RealTime
         /// <summary>
         /// Keeps track of which users are online on each group (server).
         /// </summary>
-        public static Dictionary<string, HashSet<string>> userGroups = new Dictionary<string, HashSet<string>>();
+        public static ConcurrentDictionary<string, HashSet<string>> userGroups = new ConcurrentDictionary<string, HashSet<string>>();
 
         /// <summary>
         /// Adds the given user to the given server list.
@@ -16,7 +17,7 @@ namespace Intalk.RealTime
         /// <param name="userId"></param>
         /// <param name="serverId"></param>
         public static HashSet<string> AddUserToGroup
-        (this Dictionary<string, HashSet<string>> self, string userId, string serverId)
+        (this ConcurrentDictionary<string, HashSet<string>> self, string userId, string serverId)
         {
             if (!self.ContainsKey(serverId)) self.TryAdd(serverId, new HashSet<string>());
             self[serverId].Add(userId);
@@ -29,7 +30,7 @@ namespace Intalk.RealTime
         /// <param name="userId"></param>
         /// <param name="serverId"></param>
         public static void RemoveUserFromGroup
-        (this Dictionary<string, HashSet<string>> self, string userId, string serverId)
+        (this ConcurrentDictionary<string, HashSet<string>> self, string userId, string serverId)
         {
             self[serverId]?.Remove(userId);
         }

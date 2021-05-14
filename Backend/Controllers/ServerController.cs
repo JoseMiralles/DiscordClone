@@ -53,8 +53,7 @@ namespace Intalk.Controllers
 
         [HttpGet("Users/{serverId}")]
         public async Task<ActionResult<IEnumerable<MultipleUserResponseItem>>> getServerUsers(
-            long serverId,
-            [FromQuery] string oldServer = null
+            long serverId
         )
         {
             var test = UserManager.userGroups;

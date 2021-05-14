@@ -67,6 +67,7 @@ namespace Intalk.RealTime
                     this.Context.ConnectionId, oldServer);
             }
             await this.Groups.AddToGroupAsync(this.Context.ConnectionId, newServer);
+            await this.Clients.Caller.SendAsync("ServerJoined", newServer);
 
             return true;
         }

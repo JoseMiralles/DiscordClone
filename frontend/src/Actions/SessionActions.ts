@@ -24,7 +24,7 @@ export const removeSession = () => ({
 export const receiveRefreshedToken = (token: string) => ({
     type: "RECEIVE_REFRESHED_TOKEN",
     token
-});
+} as const);
 
 export const receiveSessionErrors = (errors: ISessionErrors) => ({
     type: "RECEIVE_SESSION_ERRORS",
@@ -33,7 +33,7 @@ export const receiveSessionErrors = (errors: ISessionErrors) => ({
 
 export const clearSessionErrors = () => ({
     type: "CLEAR_SESSION_ERRORS"
-});
+} as const);
 
 export const login = async (loginDTO: ILoginDTO) =>
     async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
