@@ -45,6 +45,11 @@ namespace Intalk.RealTime
         {
             // TODO: Check if user is part of server.
             string userId = this.Context.UserIdentifier;
+            if (! await _serverRepo.userIsMember(userId, long.Parse(newServer))){
+                // Leave if the user is not a member of this server.
+                return;
+            }
+
             if (oldServer != null) await this.Groups.RemoveFromGroupAsync(
                 this.Context.ConnectionId, oldServer);
             await this.Groups.AddToGroupAsync(this.Context.ConnectionId, newServer);

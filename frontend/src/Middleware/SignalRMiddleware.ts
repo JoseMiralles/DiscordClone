@@ -19,6 +19,7 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
     let connection: HubConnection = new HubConnectionBuilder()
         .withUrl(baseAPIUrl + "/hubs/intalk",
             { accessTokenFactory: () => isTokenExpired(token) ? refreshAccessToken() : token })
+        .withAutomaticReconnect()
         .build();
 
     connection?.on("ReceiveAllOnlineUsers", (userIds: string[]) => {
