@@ -5,4 +5,5 @@ export const isDev = () => {
     return false;
 };
 
-export const baseAPIUrl = isDev() ? "https://localhost:5001" : "ACTUAL_URL";
+// TODO: Replace with published api address.
+export const baseAPIUrl = isDev() ? "https://localhost:5001" : "https://localhost:5001";

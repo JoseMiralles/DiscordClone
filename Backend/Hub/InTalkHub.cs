@@ -19,34 +19,39 @@ namespace Intalk.RealTime
             _serverRepo = serverRepo;
         }
 
-        public override Task OnDisconnectedAsync(Exception exception)
-        {
-            // Remove user from servers, and notify them that the user went offline.
-            string userId = this.Context.UserIdentifier;
-            var serverIds = UserManager.RemoveUserFromAllGroupsAndGetServers(userId);
-            NotifyServerMembers(serverIds, isOnline: false);
-
-            return base.OnDisconnectedAsync(exception);
-        }
-
         public override async Task OnConnectedAsync()
         {
             string userId = this.Context.UserIdentifier;
+            Console.WriteLine("CONNECTED: " + userId);
             var servers = await _serverRepo.GetUserServers(userId);
 
             string _tempServerId;
             HashSet<string> _tempServerUsers;
             HashSet<string> onlineUsersIds = new HashSet<string>();
-            foreach(var server in servers)
+            var serverList = new List<string>();
+            foreach (var server in servers)
             {
                 _tempServerId = server.Id.ToString();
                 _tempServerUsers = UserManager.userGroups.AddUserToGroup(userId, _tempServerId);
-                await this.Clients.Group(_tempServerId).SendAsync("ReveiceUserStatus", userId, true);
                 await this.Groups.AddToGroupAsync(Context.ConnectionId, _tempServerId);
-                foreach(string _userId in _tempServerUsers) onlineUsersIds.Add(_userId);
+                serverList.Add(_tempServerId);
+                foreach (string _userId in _tempServerUsers) onlineUsersIds.Add(_userId);
             }
+
+            await this.Clients.Groups(serverList).SendAsync("ReveiceUserStatus", userId, true);
             await this.Clients.Caller.SendAsync("ReceiveAllOnlineUsers", onlineUsersIds);
             await base.OnConnectedAsync();
+        }
+
+        public override Task OnDisconnectedAsync(Exception exception)
+        {
+            // Remove user from servers, and notify them that the user went offline.
+            string userId = this.Context.UserIdentifier;
+            Console.WriteLine("DIS-CONNECTED: " + userId);
+            var serverIds = UserManager.RemoveUserFromAllGroupsAndGetServers(userId);
+            NotifyServerMembers(serverIds, isOnline: false);
+
+            return base.OnDisconnectedAsync(exception);
         }
 
         /// <summary>
