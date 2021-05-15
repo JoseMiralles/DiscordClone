@@ -1,31 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, tokensRefreshed } from "../../Actions/SessionActions";
-import { IUser } from "../../Models/UserModel";
+import { logout, receiveRefreshedToken, receiveSession } from "../../Actions/SessionActions";
 import { AppState } from "../../store";
-import { getTokenSet, refreshAccessToken, setupAxiosTokenRefresh } from "../../Util/SessionUtil";
+import { decodeUser, refreshAccessToken, setupTokenRefresh } from "../../Util/SessionUtil";
 
 export const AuthManager: React.FC = ({ children }) => {
+
+    // Setups middleware which automatically refreshes tokens when needed.
+    // It's receiveRefreshedToken() is called primarily for the SignalR middleware.
+    // It dispatches logout() when a token refresh is failed.
+    setupTokenRefresh(
+        (token: string) => dispatch(receiveRefreshedToken(token)),
+        () => dispatch(logout())
+    );
+
+    const restoringSession = useSelector((s: AppState) => s.session.restoringSession);
     const dispatch = useDispatch();
-    const { restoringSession } = useSelector((s: AppState) => s.session);
 
-    // Attempt to restore previous session if refresh token exists.
-    const tokens = getTokenSet();
-    if (
-        tokens.refreshToken
-        && tokens.refreshToken !== "null"
-        && restoringSession
-    ) {
-        refreshAccessToken(user => {
-            dispatch(tokensRefreshed(user));
-            setupAxiosTokenRefresh(
-                (userr: IUser) => dispatch(tokensRefreshed(userr)),
-                () => dispatch(logout())
-            );
-        }, () => dispatch(logout()));
-    } else if (restoringSession) {
-        dispatch(logout());
-    }
+    useEffect(() => {
+        if (restoringSession) {
+            try {
+                const act = async () => {
+                    const jwt = await refreshAccessToken();
+                    const user = decodeUser(jwt);
+                    dispatch(receiveSession(user, jwt));
+                };
+                act();
+            } catch (error) {
+                dispatch(logout());
+                throw error;
+            }
+        }
+    }, []);
 
-    return <>{ restoringSession ? <h1>LOADING</h1> : children }</>;
+    return <>{restoringSession ? <h1>LOADING</h1> : children}</>;
 };

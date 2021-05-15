@@ -1,0 +1,12 @@
+#server-view-section{
+    display: flex;
+    flex-direction: row;
+}
+
+#channels-bar-section {
+    max-width: 250px;
+}
+
+#chat-section{
+    flex-grow: 1;
+}

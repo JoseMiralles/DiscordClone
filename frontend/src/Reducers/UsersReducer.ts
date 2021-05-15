@@ -1,5 +1,5 @@
-import { AppActions } from "../Models/AppModel";
 import { IUserState, IUser } from "../Models/UserModel";
+import { AppActions } from "../store";
 
 const initialState: IUserState = {
     users: {}
@@ -23,8 +23,23 @@ export const usersReducer = (
             const newState = Object.assign({}, state);
             action.users.forEach(u => newState.users[u.userId] = ({
                 id: u.userId,
-                userName: u.userName
+                userName: u.userName,
+                online: u.online
             }));
+            return newState;
+        }
+            
+        case "RECEIVE_ALL_ONLINE_USERS": {
+            const newState = { ...state }
+            action.userIds.forEach(userId => {
+                if (userId) {newState.users[userId].online = true}
+            });
+            return newState;
+        }
+            
+        case "RECEIVE_USER_STATUS": {
+            const newState = { ...state };
+            newState.users[action.userId].online = action.isOnline;
             return newState;
         }
             

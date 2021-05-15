@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ErrorList = ({ errors }: Props) => {
-    const mappederrors: JSX.Element[] = errors.map(err => <li>{err}</li>);
+    const mappederrors: JSX.Element[] = errors.map((err, i) => <li key={i}>{err}</li>);
 
     return (
         <div className="errors-list">

@@ -3,10 +3,12 @@ import { login } from "../../Actions/SessionActions";
 
 interface Props {
     userNumber: number;
+    loading: boolean;
 }
 
 const DemoLoginButton: React.FC<Props> = ({
     userNumber,
+    loading,
     children
 }) => {
 
@@ -21,7 +23,8 @@ const DemoLoginButton: React.FC<Props> = ({
         act();
     };
 
-    return <button className="btn btn-main" onClick={clicked}>{children}</button>;
+    return <button disabled = {loading ? true : false}
+        className="btn btn-main" onClick={clicked}>{!loading ? children : "..."}</button>;
 };
 
 export default DemoLoginButton;

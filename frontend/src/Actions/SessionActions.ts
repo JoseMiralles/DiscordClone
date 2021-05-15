@@ -1,10 +1,8 @@
 import { Dispatch } from "redux";
-import { AppActions } from "../Models/AppModel";
-import { ILoginDTO, IRegisterDTO, ISessionErrors, ISessionState } from "../Models/SessionModel";
+import { ILoginDTO, IRegisterDTO, ISessionErrors } from "../Models/SessionModel";
 import { IUser } from "../Models/UserModel";
-import { AppState } from "../store";
+import { AppActions, AppState } from "../store";
 import { utilLogin, utilLogout, utilRegister, decodeUser } from "../Util/SessionUtil";
-import { receiveUser } from "./UserActions";
 
 // When a login or register form is submitted (show loading anim).
 export const gettingSession = (): AppActions => ({
@@ -12,14 +10,20 @@ export const gettingSession = (): AppActions => ({
 } as const);
 
 // When the response of the auth request comes back.
-export const receiveSession = (user: IUser): AppActions => ({
+export const receiveSession = (user: IUser, token: string): AppActions => ({
     type: "RECEIVE_SESSION",
+    token,
     user
 } as const);
 
 // When the user logs out.
 export const removeSession = () => ({
     type: "REMOVE_SESSION"
+} as const);
+
+export const receiveRefreshedToken = (token: string) => ({
+    type: "RECEIVE_REFRESHED_TOKEN",
+    token
 } as const);
 
 export const receiveSessionErrors = (errors: ISessionErrors) => ({
@@ -29,7 +33,7 @@ export const receiveSessionErrors = (errors: ISessionErrors) => ({
 
 export const clearSessionErrors = () => ({
     type: "CLEAR_SESSION_ERRORS"
-});
+} as const);
 
 export const login = async (loginDTO: ILoginDTO) =>
     async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
@@ -37,11 +41,9 @@ export const login = async (loginDTO: ILoginDTO) =>
         try {
             const res = await utilLogin(loginDTO);
             const user = decodeUser(res.data.token);
-            dispatch(receiveSession(user));
+            dispatch(receiveSession(user, res.data.token));
         } catch (error) {
-            dispatch(receiveSessionErrors(
-                error.response.data
-            ));
+            handleAuthErrors(error, dispatch);
         }
     };
 
@@ -51,11 +53,9 @@ export const register = async (registerDTO: IRegisterDTO) =>
         try {
             const res = await utilRegister(registerDTO);
             const user = decodeUser(res.data.token);
-            dispatch(receiveSession(user));
+            dispatch(receiveSession(user, res.data.token));
         } catch (error) {
-            dispatch(receiveSessionErrors(
-                error.response.data.errors
-            ));
+            handleAuthErrors(error, dispatch);
         }
     };
 
@@ -65,7 +65,12 @@ export const logout = () =>
         dispatch(removeSession());
     }
 
-export const tokensRefreshed = (user: IUser) =>
-    (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-        dispatch(receiveSession(user));
-    };
+function handleAuthErrors(error: any, dispatch: Dispatch<AppActions>) {
+    if (error.response?.data) {
+        dispatch(receiveSessionErrors(
+            error.response.data
+        ));
+    } else if (!error.response) {
+        dispatch(receiveSessionErrors({ general: ["Unable to reach server, please check your connection."] }));
+    }
+}

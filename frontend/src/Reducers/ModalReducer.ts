@@ -1,5 +1,5 @@
-import { AppActions } from "../Models/AppModel";
 import { IModalState, Modals } from "../Models/ModalModel";
+import { AppActions } from "../store";
 
 const initialState: IModalState = {
     modal: Modals.closed

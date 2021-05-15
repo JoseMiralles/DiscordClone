@@ -1,26 +1,42 @@
-import { Identifier } from "typescript";
 import { serverRole } from "./ServerModel";
 
 export const RECEIVE_USER = "RECEIVE_USER";
+export const RECEIVE_ALL_ONLINE_USERS = "RECEIVE_ALL_ONLINE_USERS";
+export const RECEIVE_USER_STATUS = "RECEIVE_USER_STATUS";
 
-export interface receiveUser {
+export interface IreceiveUser {
     type: "RECEIVE_USER";
     user: IUser
+}
+
+export interface IreceiveAllOnlineUsers {
+    type: "RECEIVE_ALL_ONLINE_USERS";
+    userIds: string[];
+}
+
+export interface IReceiveUserStatus {
+    type: "RECEIVE_USER_STATUS";
+    userId: string;
+    isOnline: boolean;
 }
 
 export interface IMultipleUserResponseItem {
     userId: string,
     userName: string,
-    role: serverRole
+    role: serverRole,
+    online: boolean
 }
 
 export type UserActionTypes =
-    receiveUser;
+    IreceiveUser |
+    IreceiveAllOnlineUsers |
+    IReceiveUserStatus;
 
 
 export interface IUser {
     readonly userName: string;
     readonly id: string;
+    online?: boolean;
 }
 
 export interface IUserState {

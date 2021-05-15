@@ -6,10 +6,12 @@ using Intalk.Data;
 using Intalk.Models;
 using Intalk.Models.DTOs.Requests;
 using Intalk.Models.DTOs.Responses;
+using Intalk.RealTime;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Intalk.Controllers
 {
@@ -20,14 +22,17 @@ namespace Intalk.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private IServerRepository _serverRepo;
+        private IHubContext<InTalkHub> _hubContext;
 
         public ServerController(
             UserManager<ApplicationUser> userManager,
-            IServerRepository serverRepo
+            IServerRepository serverRepo,
+            IHubContext<InTalkHub> hubcontext
             )
         {
             _userManager = userManager;
             _serverRepo = serverRepo;
+            _hubContext = hubcontext;
         }
 
         [HttpGet]
@@ -46,15 +51,27 @@ namespace Intalk.Controllers
             return Ok(serverResponseItem);
         }
 
-        [HttpGet("Users/{id}")]
-        public async Task<ActionResult<IEnumerable<MultipleUserResponseItem>>> getServerUsers(long id)
+        [HttpGet("Users/{serverId}")]
+        public async Task<ActionResult<IEnumerable<MultipleUserResponseItem>>> getServerUsers(
+            long serverId
+        )
         {
-            if (await CheckIfMember(id))
+            var test = UserManager.userGroups;
+            if (await CheckIfMember(serverId))
             {
-                return Ok(await _serverRepo.GetServerUsers(id));
+                var users = await _serverRepo.GetServerUsers(serverId);
+                var onlineUsers = UserManager.GetOnlineUsersFromServers(serverId.ToString());
+                if (onlineUsers != null)
+                {
+                    foreach(var user in users){
+                        if (onlineUsers.Contains(user.UserId)) user.online = true;
+                    }
+                }
+
+                return Ok(users);
             }
             return Unauthorized();
-        } 
+        }
 
         [HttpPost]
         public async Task<ActionResult<SingleServerResponseItem>> POST(

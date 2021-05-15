@@ -3,93 +3,120 @@ import jwtDecode from "jwt-decode";
 import { IAuthResponseDTO, ILoginDTO, IRefreshTokenRequest, IRegisterDTO } from "../Models/SessionModel";
 import { IUser } from "../Models/UserModel";
 
-export const utilLogin = (loginDTO: ILoginDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
-    const req = axios.post(
+export const utilLogin = async (loginDTO: ILoginDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
+    const res = await axios.post(
         "/api/AuthManagment/Login",
         loginDTO
     );
-    req.then((res: AxiosResponse<IAuthResponseDTO>) => {
-        console.log();
-        updateAxiosBearer(res.data.token);
-        persistTokens({
-            jwt: res.data.token,
-            refreshToken: res.data.refreshToken
-        });
-    });
-    return req;
+    updateTokens({token: res.data.token, refreshToken: res.data.refreshToken});
+    return res;
 };
 
-export const utilRegister = (registerDTO: IRegisterDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
-    const request = axios.post(
+export const utilRegister = async (registerDTO: IRegisterDTO): Promise<AxiosResponse<IAuthResponseDTO>> => {
+    const res = await axios.post(
         "/api/AuthManagment/register",
         registerDTO
     );
-    request.then((res: AxiosResponse<IAuthResponseDTO>) => {
-        updateAxiosBearer(res.data.token);
-        persistTokens({
-            jwt: res.data.token,
-            refreshToken: res.data.refreshToken
-        });
-    });
-    return request;
-};
-
-/**
- * Sets up interceptor for all axios responses and requests new tokens when needed automatically.
- * It then updates the new tokens locally, and attempts to perform the original request with an updated "Authorization" header.
- */
-export const setupAxiosTokenRefresh =
-    async (
-        onSuccess: (user: IUser) => void,
-        onFailure: () => void
-    ) => {
-        axios.interceptors.response.use(response => {
-            return response; // Initial request was successful, return response.
-        }, async (error) => {
-            // Request failed, attempt to refresh tokens if that was the issue.
-            // Call onSuccess if the tokens were refreshed.
-            const originalRequest = error.config;
-            if (error.response?.status === 403 && !originalRequest._retry) {
-                originalRequest._retry = true;
-                await refreshAccessToken((user) => {
-                    onSuccess(user);
-                }, onFailure);
-                return axios(originalRequest);
-            }
-        });
-    };
-
-export const refreshAccessToken = async (
-    onSuccess?: (user: IUser) => void,
-    onFailure?: (reason: any) => void
-) => {
-    const tokenSet = getTokenSet();
-    if (tokenSet.jwt && tokenSet.refreshToken) {
-        const rtr: IRefreshTokenRequest = {
-            token: tokenSet.jwt,
-            refreshToken: tokenSet.refreshToken
-        };
-        try {
-            const res = await axios.post (
-                "/api/AuthManagment/RefreshToken",
-                rtr
-            );
-            updateAxiosBearer(res.data.token);
-            persistTokens({
-                jwt: res.data.token,
-                refreshToken: res.data.refreshToken
-            });
-            const user = decodeUser(res.data.token);
-            if (onSuccess) onSuccess(user);
-        } catch (error) {
-            if (onFailure) onFailure(error);
-        }
-    }
+    updateTokens({token: res.data.token, refreshToken: res.data.refreshToken});
+    return res;
 };
 
 export const utilLogout = () => {
     localStorage.removeItem("RT");
     localStorage.removeItem("T");
+}
+
+export const refreshAccessToken = async (): Promise<string> => {
+    const tokenSet = getTokenSet();
+    if (!tokenSet.refreshToken) throw (new Error("refreshAccessToken: No refresh token found."));
+    try {
+        const reqDTO: IRefreshTokenRequest = {
+            token: tokenSet.jwt,
+            refreshToken: tokenSet.refreshToken
+        };
+        const res = await axios.post(
+            "/api/AuthManagment/RefreshToken",
+            reqDTO
+        );
+        updateTokens(res.data);
+        return res.data.token;
+    } catch (error) {
+        // Retain session if the jwt has not yet expired.
+        const isUnexpired = error.response?.data.errors.find((e: string) => e.includes("UNEXPIRED_TOKEN"));
+        if (isUnexpired) {
+            updateTokens({token: tokenSet.jwt, refreshToken: tokenSet.refreshToken});
+            return tokenSet.jwt;
+        }
+        utilLogout();
+        throw error;
+    }
+};
+
+/**
+ * Sets up middleware that automatically refreshes tokens when needed.
+ * @param onRefreshFailed A callback that gets called when a token refresh fails.
+ */
+export function setupTokenRefresh(
+    onRefreshSuccess: (token: string) => void,
+    onRefreshFailed: (error: any) => void
+) {
+    axios.interceptors.response.use(
+        response => response,
+        async (error) => {
+            // Request was not successful.
+            const originalRequest = error.config;
+            if ([401, 403].includes(error.response?.status) && !originalRequest._retry) {
+                originalRequest._retry = true;
+                const newToken = await refreshAccessToken();
+                onRefreshSuccess(newToken);
+                return axios(originalRequest);
+            }
+            
+            /**
+             * At this point, the token refresh failed. So check if it failed because the JWT still
+             * has not yet expired. Which means that there is no need to refresh, and the original tokens
+             * can be returned.
+             */ 
+            if (error.response?.data.errors.find((e: string) => e.includes("UNEXPIRED_TOKEN"))) {
+                // Return the tokens that are stored locally.
+                const tokens = getTokenSet();
+                onRefreshSuccess(tokens.jwt);
+                return { data: { token: tokens.jwt, refreshToken: tokens.refreshToken } };
+            }
+            onRefreshFailed(error);
+        }
+    );
+}
+
+// TODO: refactor automatic session and token renewal so that it uses this method instead of bad responses.
+/**
+ * Checks to see if the given token has expired.
+ * @param token 
+ * @returns 
+ */
+export const isTokenExpired = (token: string) => {
+    try {
+        const date = new Date(0);
+        const decoded: any = jwtDecode(token);
+        date.setUTCSeconds(decoded.exp);
+        return date.valueOf() > new Date().valueOf();
+    } catch (error) {
+        return false;
+    }
+};
+
+/**
+ * Called when tokens are refreshed, or the user is authenticated.
+ * It updates axios middleware to include the bearer token on each request.
+ * And it also sets up automatic token refreshing.
+ * @param data 
+ */
+function updateTokens(data: { token: string, refreshToken: string }): void {
+    
+    persistTokens({jwt: data.token, refreshToken: data.refreshToken});
+
+    // Update bearer token
+    axios.defaults.headers["Authorization"] = "Bearer " + data.token;
 }
 
 interface ITokenSet {
@@ -116,17 +143,8 @@ export const decodeUser = (jwt: string): IUser => {
         = jwtDecode(jwt);
     return {
         userName: decoded.username,
-        id: decoded.nameid
+        id: decoded.nameid,
+        online: true
     };
 };
 
-/**
- * Updates jwt token for all new requets.
- * @param token The new jwt.
- */
-function updateAxiosBearer(token: string) {
-    axios.interceptors.request.use(config => {
-        config.headers["Authorization"] = "Bearer " + token;
-        return config;
-    });
-}

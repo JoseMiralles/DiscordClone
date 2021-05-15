@@ -1,16 +1,21 @@
 import { useSelector } from "react-redux";
 import { AppState } from "../store";
 import ServerBar from "./Servers/ServerBar"
-import UserBar from "./Users/UserBar";
+import ServerView from "./Servers/ServerView";
+import "./Client.scss";
 
 const Client = () => {
 
-    const selected = useSelector((s: AppState) => s.servers.selected);
+    const { selected } = useSelector((s: AppState) => {
+        return {
+            selected: s.servers.selected,
+        }
+    });
 
     return (
         <section id="client-section">
             <ServerBar />
-            { selected !== null && <UserBar/> }
+            {selected ? <ServerView /> : ""}
         </section>
     );
 };

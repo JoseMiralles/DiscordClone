@@ -1,5 +1,5 @@
-import { AppActions } from "../Models/AppModel";
 import { IServer, IServerState, serverRole } from "../Models/ServerModel";
+import { AppActions } from "../store";
 
 const initialState: IServerState = {
     loading: false,

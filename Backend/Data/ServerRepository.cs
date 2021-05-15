@@ -123,7 +123,6 @@ namespace Intalk.Data
             var User = await _context.Users.OfType<ApplicationUser>()
                 .Include(u => u.Servers)
                 .FirstOrDefaultAsync(u => u.Id == userId);
-            Console.WriteLine(User);
             return await Task.FromResult(
                 User.Servers.Select(
                     // Convert to MultipleServersResponseItem to avoid overposting.

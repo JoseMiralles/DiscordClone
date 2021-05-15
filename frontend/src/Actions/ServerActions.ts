@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
-import { AppActions } from "../Models/AppModel";
 import { ICreateServerDTO, IServer } from "../Models/ServerModel";
 import { IMultipleUserResponseItem } from "../Models/UserModel";
+import { AppActions } from "../store";
 import { fetchServerByIdUtil, fetchServerUsersUtil, fetchUserServersUtil, postNewServerUtil } from "../Util/ServersUtil";
 
 export const fetchingServers = (): AppActions => ({
@@ -37,7 +37,7 @@ export const receiveServerUsers = (
     serverId
 });
 
-export const createServer = (newServer: ICreateServerDTO) => async (
+export const createServer = async (newServer: ICreateServerDTO) => async (
     dispatch: Dispatch<AppActions>
 ) => {
     dispatch(fetchingServers());
@@ -51,7 +51,7 @@ export const createServer = (newServer: ICreateServerDTO) => async (
     }
 };
 
-export const fetchUserServers = () => async (
+export const fetchUserServers = async () => async (
     dispatch: Dispatch<AppActions>
 ) => {
     dispatch(fetchingServers());
@@ -63,7 +63,7 @@ export const fetchUserServers = () => async (
     }
 };
 
-export const fetchServerUsers = (serverId: number) => async (
+export const fetchServerUsers = async (serverId: number) => async (
     dispatch: Dispatch<AppActions>
 ) => {
     dispatch(fetchingServers());

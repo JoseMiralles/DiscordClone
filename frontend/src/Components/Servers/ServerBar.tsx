@@ -20,14 +20,13 @@ const ServerBar = () => {
         }
     });
 
-    console.log(selectedServer);
-
     const barItems = Object.values(servers).map(s => (
         <ServerBarItem key={s.id} server={s} selected={selectedServer} />
     ));
 
     useEffect(() => {
-        dispatch(fetchUserServers());
+        const act = async () => dispatch(await fetchUserServers());
+        act();
     }, []);
 
     const onClick = ({ target }: any) => {
@@ -35,12 +34,12 @@ const ServerBar = () => {
     };
 
     return (
-        <section id="server-bar-section">
+        <section className="padded-component" id="server-bar-section">
             <div className="row">
+                <CreateServerButton />
                 <ul onClick={onClick} id="server-list">
                     {barItems}
                 </ul>
-                <CreateServerButton />
             </div>
             {(selectedModal === Modals.createServer) && <CreateServerModal username={username}/>}
         </section>
