@@ -14,6 +14,8 @@ namespace Intalk.Models
 
         public ICollection<ApplicationUser> Users { get; set; }
         public List<UserServer> UserServers { get; set; }
+
+        public ICollection<TextChannel> TextChannels { get; set; }
     }
 
     /// <summary>

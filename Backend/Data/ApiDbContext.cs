@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Intalk.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace Intalk.Data
 {
@@ -12,6 +11,8 @@ namespace Intalk.Data
         public virtual DbSet<Server> Server { get; set; }
 
         public virtual DbSet<UserServer> UserServers { get; set; }
+
+        public virtual DbSet<TextChannel> TextChannels { get; set; }
 
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {

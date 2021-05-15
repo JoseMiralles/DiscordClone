@@ -3,15 +3,17 @@ using System;
 using Intalk.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Intalk.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210515210051_CreateTextChannels")]
+    partial class CreateTextChannels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,15 +89,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "517c9546-837b-47ce-b536-1d6f65d59b03",
+                            ConcurrencyStamp = "2f677a56-21a2-406a-b153-8d28d160981b",
                             Email = "test0@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST0@TEST.COM",
                             NormalizedUserName = "TESTUSER0",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPMVeI2Q9VBo4fBturgQehmY9yEHi7PAa/rt+DJKyej92IZLUUqy2JiY7tKs6y/gag==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPqVuZNC2oZ8CbzQuDSwEIc5K2Gm89BPj2rkmMsSutXGOGtDgF6yyyRzYHlkNqpi4w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1f08f503-7156-4f07-9cd9-37ac8ed4bba2",
+                            SecurityStamp = "7166cbf9-8cfa-40d3-93a7-3e70390b8f86",
                             TwoFactorEnabled = false,
                             UserName = "TestUser0"
                         },
@@ -103,15 +105,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "29d69510-115d-4c20-8e8b-626201d4228c",
+                            ConcurrencyStamp = "7e4626ae-c32b-4607-b769-18de48fcdf18",
                             Email = "test1@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST1@TEST.COM",
                             NormalizedUserName = "TESTUSER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAED7rHmu3Xt0GdZ7JlrvMz8kOraNv3gYmsEHTrCAQ0BcQfjjeIXuhuajJlCVFXuwYzA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIbCeyX5mhZV3d5+nQRTavl1TpOCVVjw7KEJnpj23O82LdCFIE0P/bTCb8YjFfsrEg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3aea965f-88a9-457f-b4bd-8810fcbe3ddc",
+                            SecurityStamp = "587fbd68-ea3d-4554-abe5-83a5a7522e4c",
                             TwoFactorEnabled = false,
                             UserName = "TestUser1"
                         },
@@ -119,15 +121,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1d78600e-a8ee-4316-b34d-00500374670a",
+                            ConcurrencyStamp = "0a739aab-e3df-42ee-bf0d-cae9b4eb85d5",
                             Email = "test2@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST2@TEST.COM",
                             NormalizedUserName = "TESTUSER2",
-                            PasswordHash = "AQAAAAEAACcQAAAAED16qmjfR2mbgbS6Kct6LZXNl9zvQQ1HwrcbHfcvdmFiUzIiCs5l1qWC6oB6vtrykQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFCopoVButNzKuMZlfRAzGYF8duFHMt2ls0ZGeerqSlNvHzUw2KT51lCGTZZG1v+ZA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d2768f44-8a46-4379-900b-77bf703ca28f",
+                            SecurityStamp = "5c9a2c12-d479-4ec5-b9b6-07ffc19f7dae",
                             TwoFactorEnabled = false,
                             UserName = "TestUser2"
                         },
@@ -135,15 +137,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9b106124-7c7c-4350-ba27-0570a31f318a",
+                            ConcurrencyStamp = "5001b8a5-cb62-4235-9377-5b3873096894",
                             Email = "test3@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST3@TEST.COM",
                             NormalizedUserName = "TESTUSER3",
-                            PasswordHash = "AQAAAAEAACcQAAAAEACfJr2Wcm38cPr1mAJ1zhoHXw58/8k5B+IGMe5SjI/nQCqlpq6XO6Xp7jt4TYnqsA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFKpQh6Yy54ECtVtO+2rJ60RvqsHBMrq5K+uRxBcnWS5/V+WB0PeyDOYwaGGjrliPQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c2c32030-f730-402a-a5de-309bd43438b5",
+                            SecurityStamp = "1a35d21a-1775-4b5c-9edb-2f6eb48d5e4f",
                             TwoFactorEnabled = false,
                             UserName = "TestUser3"
                         });
@@ -230,7 +232,7 @@ namespace Intalk.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long>("ServerId")
+                    b.Property<long?>("ServerId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Title")
@@ -243,104 +245,6 @@ namespace Intalk.Migrations
                     b.HasIndex("ServerId");
 
                     b.ToTable("TextChannels");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = -1,
-                            ServerId = -1L,
-                            Title = "Text Channel #0"
-                        },
-                        new
-                        {
-                            Id = -2,
-                            ServerId = -1L,
-                            Title = "Text Channel #1"
-                        },
-                        new
-                        {
-                            Id = -3,
-                            ServerId = -1L,
-                            Title = "Text Channel #2"
-                        },
-                        new
-                        {
-                            Id = -4,
-                            ServerId = -1L,
-                            Title = "Text Channel #3"
-                        },
-                        new
-                        {
-                            Id = -5,
-                            ServerId = -2L,
-                            Title = "Text Channel #4"
-                        },
-                        new
-                        {
-                            Id = -6,
-                            ServerId = -2L,
-                            Title = "Text Channel #5"
-                        },
-                        new
-                        {
-                            Id = -7,
-                            ServerId = -2L,
-                            Title = "Text Channel #6"
-                        },
-                        new
-                        {
-                            Id = -8,
-                            ServerId = -2L,
-                            Title = "Text Channel #7"
-                        },
-                        new
-                        {
-                            Id = -9,
-                            ServerId = -3L,
-                            Title = "Text Channel #8"
-                        },
-                        new
-                        {
-                            Id = -10,
-                            ServerId = -3L,
-                            Title = "Text Channel #9"
-                        },
-                        new
-                        {
-                            Id = -11,
-                            ServerId = -3L,
-                            Title = "Text Channel #10"
-                        },
-                        new
-                        {
-                            Id = -12,
-                            ServerId = -3L,
-                            Title = "Text Channel #11"
-                        },
-                        new
-                        {
-                            Id = -13,
-                            ServerId = -4L,
-                            Title = "Text Channel #12"
-                        },
-                        new
-                        {
-                            Id = -14,
-                            ServerId = -4L,
-                            Title = "Text Channel #13"
-                        },
-                        new
-                        {
-                            Id = -15,
-                            ServerId = -4L,
-                            Title = "Text Channel #14"
-                        },
-                        new
-                        {
-                            Id = -16,
-                            ServerId = -4L,
-                            Title = "Text Channel #15"
-                        });
                 });
 
             modelBuilder.Entity("Intalk.Models.UserServer", b =>
@@ -630,9 +534,7 @@ namespace Intalk.Migrations
                 {
                     b.HasOne("Intalk.Models.Server", "Server")
                         .WithMany("TextChannels")
-                        .HasForeignKey("ServerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ServerId");
 
                     b.Navigation("Server");
                 });

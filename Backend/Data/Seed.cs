@@ -52,6 +52,23 @@ namespace Intalk.Data
             }
             modelBuilder.Entity<UserServer>().HasData(userServers);
 
+            int channelsPerServer = 4;
+            var textChannels = new TextChannel[servers.Length * channelsPerServer];
+            idx = 0;
+            foreach (Server server in servers)
+            {
+                for (int i = 1; i <= channelsPerServer; i++)
+                {
+                    textChannels[idx] = new TextChannel
+                    {
+                        Id = (-1 - idx),
+                        Title = "Text Channel #" + idx.ToString(),
+                        ServerId = server.Id
+                    };
+                    idx++;
+                }
+            }
+            modelBuilder.Entity<TextChannel>().HasData(textChannels);
         }
     }
 }
