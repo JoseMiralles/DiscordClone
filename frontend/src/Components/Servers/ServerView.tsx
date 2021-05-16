@@ -6,8 +6,8 @@ const ServerView = () => {
 
     return (
         <section id="server-view-section">
-            <section id="channels-bar-section"></section>
             <TextChannelBar/>
+            <section id="chat-section"></section>
             <UserBar/>
         </section>
     );

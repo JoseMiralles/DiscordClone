@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTextChannels } from "../../Actions/TextChannelsActions";
+import { getTextChannels, selectTextChannel } from "../../Actions/TextChannelsActions";
 import { AppState } from "../../store";
+import TextChannelBarItem from "./TextChannelBarItem";
+import "./TextChannelBar.scss";
 
 const TextChannelBar = () => {
 
@@ -19,21 +21,25 @@ const TextChannelBar = () => {
         serverId && dispatch(getTextChannels(serverId));
     }, [serverId]);
 
+    const onClick = (e: any) => {
+        dispatch(selectTextChannel(e.target.value));
+    };
+
     return (
-        <section id="chat-section">
+        <section id="channels-bar-section">
             {
                 loading ?
                     <div>
                         loading ...
                     </div> :
                     <div>
-                        <ul>
+                        <div className="text-channel-bar-title">TEXT CHANNELS</div>
+                        <ul onClick={onClick} className="channel-list">
                             {channels.map(c =>
-                                <li
+                                <TextChannelBarItem
                                     key={c.id}
-                                    className={(c.id === selected) ? "selected" : ""}>
-                                    {c.title}
-                                </li>
+                                    channel={c}
+                                    selected={selected === c.id} />
                             )}
                         </ul>
                     </div>
