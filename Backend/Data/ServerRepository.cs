@@ -12,8 +12,6 @@ namespace Intalk.Data
 {
     public class ServerRepository : InTalkBaseRepository, IServerRepository
     {
-        private ApiDbContext _context;
-
         public ServerRepository(ApiDbContext context) : base(context){}
 
         /// <summary>

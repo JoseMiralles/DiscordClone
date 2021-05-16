@@ -29,6 +29,7 @@ namespace Intalk.Data
         {
             var channel = await _context.TextChannels.FindAsync(id);
             if (channel == null) return null;
+
             var deletedChannel = _context.TextChannels.Remove(channel);
             await _context.SaveChangesAsync();
             return ChannelToChannelResponse(channel);
@@ -39,6 +40,18 @@ namespace Intalk.Data
             return await _context.TextChannels.Where(tc => tc.ServerId == serverId)
                 .Select(tc => ChannelToChannelResponse(tc))
                 .ToListAsync();
+        }
+
+        public async Task<TextChannel> GetTextChannelById(long id)
+        {
+            var tc = await _context.TextChannels.FindAsync(id);
+            return tc;
+        }
+
+        public async Task<bool> UserIsOwnerOfChannelServer(string userId, long textChannelId)
+        {
+            var serverId = (await _context.TextChannels.FindAsync(textChannelId)).ServerId;
+            return await this.userIsOwner(userId, serverId);
         }
 
         private TextChannelResponse ChannelToChannelResponse(TextChannel channel)
