@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Intalk.Data
 {
-    public abstract class InTalkBaseRepository : IDisposable
+    public abstract class InTalkBaseRepository : IIntalkBaseRepostory, IDisposable
     {
         private bool _disposed;
 

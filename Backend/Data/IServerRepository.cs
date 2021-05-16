@@ -7,7 +7,7 @@ using Intalk.Models.DTOs.Responses;
 
 namespace Intalk.Data
 {
-    public interface IServerRepository
+    public interface IServerRepository : IIntalkBaseRepostory, IDisposable
     {
         Task<IEnumerable<MultipleServersResponseItem>> GetUserServers(string userId);
         Task<SingleServerResponseItem> GetServerById(long serverId);

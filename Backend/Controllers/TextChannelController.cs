@@ -19,7 +19,7 @@ namespace Intalk.Controllers
             throw new NotImplementedException();
         }
 
-        [HttpPost("/TextChannels")]
+        [HttpPost("TextChannels")]
         public async Task<TextChannelResponse> POST([FromBody] CreateTextChannelRequest req)
         {
             var channel = new TextChannel
@@ -31,13 +31,13 @@ namespace Intalk.Controllers
             throw new NotImplementedException();
         }
 
-        [HttpDelete("/TextChannels/{id}")]
+        [HttpDelete("TextChannels/{id}")]
         public async Task<TextChannelResponse> DELETE(long id)
         {
             throw new NotImplementedException();
         }
 
-        [HttpPatch("{/TextChannels/id}")]
+        [HttpPatch("TextChannels/{id}")]
         public async Task<TextChannelResponse> PATCH(long id, [FromBody] JsonPatchDocument<TextChannel> pathDoc)
         {
             throw new NotImplementedException();
