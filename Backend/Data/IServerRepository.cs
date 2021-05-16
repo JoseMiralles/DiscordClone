@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 using Intalk.Models;
 using Intalk.Models.DTOs.Requests;
 using Intalk.Models.DTOs.Responses;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace Intalk.Data
 {
-    public interface IServerRepository : IDisposable
+    public interface IServerRepository
     {
         Task<IEnumerable<MultipleServersResponseItem>> GetUserServers(string userId);
         Task<SingleServerResponseItem> GetServerById(long serverId);
@@ -16,9 +15,5 @@ namespace Intalk.Data
         Task<SingleServerResponseItem> CreateServer(CreateServerRequest createServerRequest, string userIdentifier);
         Task<SingleServerResponseItem> DeleteServer(long serverId);
         Task<Server> GetCompleteServerById(long id);
-        Task<bool> userIsOwner(string userId, long serverId);
-        Task<bool> userIsMember(string userId, long serverId);
-        Task<ApplicationUser> CurrentUser(string id);
-        Task SaveChanges();
     }
 }

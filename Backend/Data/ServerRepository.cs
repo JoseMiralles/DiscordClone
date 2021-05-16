@@ -10,27 +10,11 @@ using static Intalk.Models.UserServer;
 
 namespace Intalk.Data
 {
-    public class ServerRepository : IServerRepository, IDisposable
+    public class ServerRepository : InTalkBaseRepository, IServerRepository
     {
         private ApiDbContext _context;
-        private bool _disposed;
 
-        private ApplicationUser _currentUser;
-
-        public async Task<ApplicationUser> CurrentUser(string id)
-        {
-            if (_currentUser == null)
-            {
-                _currentUser = await _context.Users.OfType<ApplicationUser>()
-                    .FirstAsync(u => u.Id == id);
-            }
-            return _currentUser;
-        }
-
-        public ServerRepository(ApiDbContext context)
-        {
-            this._context = context;
-        }
+        public ServerRepository(ApiDbContext context) : base(context){}
 
         /// <summary>
         /// Creates and saves a new server, and adds the given user to it as an owner.
@@ -113,11 +97,6 @@ namespace Intalk.Data
             return await _context.Server.FindAsync(id);
         }
 
-        public async Task SaveChanges()
-        {
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<IEnumerable<MultipleServersResponseItem>> GetUserServers(string userId)
         {
             var User = await _context.Users.OfType<ApplicationUser>()
@@ -149,52 +128,6 @@ namespace Intalk.Data
                 Id = server.Id,
                 Title = server.Title
             };
-        }
-
-        /// <summary>
-        /// Checks to see if the user with the given id, is a owner of the server with the given id.
-        /// </summary>
-        /// <returns>True if the user is an owner, false otherwise.</returns>
-        public async Task<bool> userIsOwner(string userId, long serverId)
-        {
-            var userServer = await _context.UserServers
-                .FirstOrDefaultAsync(us =>
-                us.UserId == userId
-                && us.ServerId == serverId
-                && us.Role == (int) UserServer.Roles.Owner
-            );
-            return userServer != null ? true : false;
-        }
-
-        /// <summary>
-        /// Checks to see if the user is either a member or a owner of the server.
-        /// </summary>
-        /// <returns>True if the user is part of the server.</returns>
-        public async Task<bool> userIsMember(string userId, long serverId)
-        {
-            var userServer = await _context.UserServers
-                .FirstOrDefaultAsync(us =>
-                us.UserId == userId
-                && us.ServerId == serverId
-            );
-            return userServer != null ? true : false;
-        }
-
-        public void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-            }
-            this._disposed = true;
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }
