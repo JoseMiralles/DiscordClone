@@ -11,18 +11,22 @@ import { ModalActionTypes } from "./Models/ModalModel";
 import { serverActionTypes } from "./Models/ServerModel";
 import SignalRMiddleware from "./Middleware/SignalRMiddleware";
 import { isDev } from "./Util/EnviromentUtil";
+import { textChannelActionTypes } from "./Models/TextChannelModel";
+import textChannelsReducer from "./Reducers/TextChannelsReducer";
 
 // This will be a union type of all potential action types.
 export type AppActions =
     SessionActionTypes |
     UserActionTypes |
     ModalActionTypes |
-    serverActionTypes;
+    serverActionTypes |
+    textChannelActionTypes;
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     users: usersReducer,
     servers: serverReducer,
+    textChannels: textChannelsReducer,
     modal: modalReducer,
 });
 

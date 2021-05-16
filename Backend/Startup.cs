@@ -48,6 +48,7 @@ namespace Intalk
 
             // Register repositories.
             services.AddScoped(typeof(IServerRepository), typeof(ServerRepository));
+            services.AddScoped(typeof(ITextChannelRepository), typeof(TextChannelRepository));
 
             var key = Encoding.ASCII.GetBytes(Configuration["JwtConfig:Secret"]);
             var tokenValidationParams = new TokenValidationParameters

@@ -35,7 +35,7 @@ namespace Intalk.Controllers
         [HttpGet("Server/{serverId}/TextChannels")]
         public async Task<ActionResult<IEnumerable<TextChannelResponse>>> Index(long serverId)
         {
-            if (await _tcRepo.userIsOwner(_userManager.GetUserId(this.User), serverId))
+            if (await _tcRepo.userIsMember(_userManager.GetUserId(this.User), serverId))
             {
                 return Ok(await _tcRepo.GetServerTextChannels(serverId));
             }

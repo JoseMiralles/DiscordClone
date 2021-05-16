@@ -54,7 +54,7 @@ namespace Intalk.Data
             return await this.userIsOwner(userId, serverId);
         }
 
-        private TextChannelResponse ChannelToChannelResponse(TextChannel channel)
+        private static TextChannelResponse ChannelToChannelResponse(TextChannel channel)
         {
             return new TextChannelResponse {
                 Id = channel.Id,
