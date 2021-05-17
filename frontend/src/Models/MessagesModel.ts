@@ -35,6 +35,15 @@ export interface IMessage {
     userId: string;
     text: string;
     textChannelId: number;
+    created: Date;
+}
+
+export interface IMessageResponseDTO {
+    id: number;
+    userId: string;
+    text: string;
+    textChannelId: number;
+    created: string;
 }
 
 export interface IMessagePostDTO {

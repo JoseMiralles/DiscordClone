@@ -29,7 +29,10 @@ export const getChannelMessages = async (channelId: number) => async (
     dispatch(fetchingMessages());
     try {
         const messages = await fetchChannelMessagesUtil(channelId);
-        dispatch(receiveAllMessages(messages));
+        dispatch(receiveAllMessages(messages.map(m => ({
+            ...m,
+            created: new Date(m.created)
+        }))));
     } catch (error) {
         throw error;
     }
@@ -41,7 +44,10 @@ export const createMessage = async (messageDTO: IMessagePostDTO) => async (
     dispatch(fetchingMessages());
     try {
         const message = await postMessageUtil(messageDTO);
-        dispatch(receiveOneMessage(message));
+        dispatch(receiveOneMessage({
+            ...message,
+            created: new Date(message.created)
+        }));
     } catch (error) {
         throw error;
     }

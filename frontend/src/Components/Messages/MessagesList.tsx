@@ -11,11 +11,14 @@ interface Props {
 const MessagesList = ({ messages, loading, textChannelId, users }: Props) => {
 
     const mappedMessages: JSX.Element[] = [];
-    Object.values(messages).forEach(m => {
+    Object.values(messages)
+        .sort((a, b) => (+a.created - +b.created))
+        .forEach(m => {
         if (m.textChannelId === textChannelId)
             mappedMessages.push(
                 <li key={m.id}>
                     <div>{users[m.userId]?.userName || "..."}</div>
+                    <div>{m.created.toLocaleDateString()}</div>
                     <div>{m.text}</div>
                 </li>
             );
