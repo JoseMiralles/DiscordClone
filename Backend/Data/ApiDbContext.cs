@@ -14,6 +14,8 @@ namespace Intalk.Data
 
         public virtual DbSet<TextChannel> TextChannels { get; set; }
 
+        public virtual DbSet<Message> Messages { get; set; }
+
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
         }

@@ -69,6 +69,25 @@ namespace Intalk.Data
                 }
             }
             modelBuilder.Entity<TextChannel>().HasData(textChannels);
+
+            int messagesPerChannel = 40;
+            var messages = new Message [textChannels.Length * messagesPerChannel];
+            idx = 0;
+            foreach(var channel in textChannels)
+            {
+                for (int i = 1; i <= messagesPerChannel; i++)
+                {
+                    messages[idx] = new Message
+                    {
+                        Id = (-1 - idx),
+                        Text = "This is message number " + idx.ToString(),
+                        UserId = users[(idx % (users.Length - 1))].Id,
+                        TextChannelId = textChannels[idx % (textChannels.Length - 1)].Id
+                    };
+                    idx++;
+                }
+            }
+            modelBuilder.Entity<Message>().HasData(messages);
         }
     }
 }
