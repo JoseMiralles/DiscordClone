@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Intalk.Models
@@ -9,6 +10,9 @@ namespace Intalk.Models
 
         [Required]
         public string Text { get; set; }
+
+        [Required]
+        public DateTime Created { get; set; }
 
         [Required]
         public string UserId { get; set; }
@@ -31,5 +35,7 @@ namespace Intalk.Models
         public string Text { get; set; }
         public string UserId { get; set; }
         public long TextChannelId { get; set; }
+
+        public DateTime Created { get; set; }
     }
 }

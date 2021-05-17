@@ -50,7 +50,8 @@ namespace Intalk.Data
                 Id = message.Id,
                 Text = message.Text,
                 TextChannelId = message.TextChannelId,
-                UserId = message.UserId
+                UserId = message.UserId,
+                Created = message.Created
             };
         }
 
