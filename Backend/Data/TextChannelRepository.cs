@@ -48,12 +48,6 @@ namespace Intalk.Data
             return tc;
         }
 
-        public async Task<bool> UserIsOwnerOfChannelServer(string userId, long textChannelId)
-        {
-            var serverId = (await _context.TextChannels.FindAsync(textChannelId)).ServerId;
-            return await this.userIsOwner(userId, serverId);
-        }
-
         private static TextChannelResponse ChannelToChannelResponse(TextChannel channel)
         {
             return new TextChannelResponse {

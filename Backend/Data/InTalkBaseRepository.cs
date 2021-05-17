@@ -41,6 +41,18 @@ namespace Intalk.Data
             return userServer != null ? true : false;
         }
 
+        public async Task<bool> UserIsOwnerOfChannelServer(string userId, long textChannelId)
+        {
+            var serverId = (await _context.TextChannels.FindAsync(textChannelId)).ServerId;
+            return await this.userIsOwner(userId, serverId);
+        }
+
+        public async Task<bool> UserIsMemberOfChannelServer(string userId, long textChannelId)
+        {
+            var serverId = (await _context.TextChannels.FindAsync(textChannelId)).ServerId;
+            return await this.userIsMember(userId, serverId);
+        }
+
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
