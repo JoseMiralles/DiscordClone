@@ -38,7 +38,6 @@ export interface IMessage {
 }
 
 export interface IMessagePostDTO {
-    userId: string;
     text: string;
     textChannelId: number;
 }

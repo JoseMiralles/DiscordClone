@@ -9,5 +9,21 @@
 
 #chat-section{
     flex-grow: 1;
+}
+
+#chat-messages-list{
+    flex-grow: 1;
     overflow-y: scroll;
+}
+
+#message-input{
+
+    display: flex;
+    align-items: center;
+
+    input {
+        padding: 7px;
+        margin: 10px;
+        flex-grow: 1;
+    }
 }
