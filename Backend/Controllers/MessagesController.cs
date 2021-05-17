@@ -17,7 +17,7 @@ namespace Intalk.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private IMessageRepository _messageRepo;
-        private IHubContext<InTalkHub> this_hubContext;
+        private IHubContext<InTalkHub> _hubContext;
 
         public MessagesController(
             UserManager<ApplicationUser> userManager,
@@ -27,14 +27,15 @@ namespace Intalk.Controllers
         {
             this._userManager = userManager;
             this._messageRepo = messageRepo;
-            this_hubContext = hubContext;
+            this._hubContext = hubContext;
         }
 
         [HttpGet("TextChannels/{textChannelId}/Messages")]
         public async Task<ActionResult<IEnumerable<MessageResponse>>> Index(long TextChannelId)
         {
             var userId = _userManager.GetUserId(this.User);
-            if (await _messageRepo.UserIsMemberOfChannelServer(userId, TextChannelId))
+            var serverId = await _messageRepo.UserIsMemberOfChannelServer(userId, TextChannelId);
+            if (serverId != null)
             {
                 return Ok(await _messageRepo.GetChannelMessages(TextChannelId));
             }
@@ -45,9 +46,12 @@ namespace Intalk.Controllers
         public async Task<ActionResult<MessageResponse>> POST(CreateMessageRequest req)
         {
             var userId = _userManager.GetUserId(this.User);
-            if (await _messageRepo.UserIsMemberOfChannelServer(userId, req.TextChannelId))
+            var serverId = await _messageRepo.UserIsMemberOfChannelServer(userId, req.TextChannelId);
+            if (serverId != null)
             {
-                return Ok(await _messageRepo.CreateMessage(req, userId));
+                var message = await _messageRepo.CreateMessage(req, userId);
+                await _hubContext.Clients.Group(serverId.ToString()).SendAsync("ReceiveMessage", message);
+                return Ok(message);
             }
             return Unauthorized();
         }

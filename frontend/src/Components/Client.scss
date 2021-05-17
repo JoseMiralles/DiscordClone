@@ -6,4 +6,7 @@
 
 #server-view-section {
     flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100vh;
+    min-height: 0;
 }

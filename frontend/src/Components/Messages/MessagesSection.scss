@@ -1,0 +1,8 @@
+#chat-section {
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-messages-list{
+    flex-grow: 1;
+}
