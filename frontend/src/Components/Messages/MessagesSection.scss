@@ -5,4 +5,23 @@
 
 #chat-messages-list{
     flex-grow: 1;
+    overflow-y: scroll;
+}
+
+#message-input{
+
+    display: flex;
+    align-items: center;
+
+    input {
+        padding: 7px;
+        margin: 10px;
+        width: auto;
+        flex-grow: 1;
+    }
+
+    form {
+        display: flex;
+        width: 100%;
+    }
 }
