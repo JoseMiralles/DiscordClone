@@ -41,6 +41,26 @@ namespace Intalk.Controllers
             return Unauthorized();
         }
 
-        
+        [HttpPost("Messages")]
+        public async Task<ActionResult<MessageResponse>> POST(CreateMessageRequest req)
+        {
+            var userId = _userManager.GetUserId(this.User);
+            if (await _messageRepo.UserIsMemberOfChannelServer(userId, req.TextChannelId))
+            {
+                return Ok(await _messageRepo.CreateMessage(req, userId));
+            }
+            return Unauthorized();
+        }
+
+        [HttpDelete("Messages/{id}")]
+        public async Task<ActionResult<MessageResponse>> DELETE(long id)
+        {
+            var userId = _userManager.GetUserId(this.User);
+            if (await _messageRepo.UserOwnsMessage(id, userId))
+            {
+                return Ok(await _messageRepo.DeleteMessage(id));
+            }
+            return Unauthorized();
+        }
     }
 }

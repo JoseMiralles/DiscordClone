@@ -53,5 +53,10 @@ namespace Intalk.Data
                 UserId = message.UserId
             };
         }
+
+        public async Task<bool> UserOwnsMessage(long messageId, string userId)
+        {
+            return (await _context.Messages.FindAsync(messageId)).UserId == userId;
+        }
     }
 }
