@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace Intalk.Data
             {
                 Text = req.Text,
                 UserId = userId,
-                TextChannelId = req.TextChannelId
+                TextChannelId = req.TextChannelId,
+                Created = DateTime.UtcNow
             };
             _context.Messages.Add(newMessage);
             await SaveChanges();
