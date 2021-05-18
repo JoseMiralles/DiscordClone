@@ -3,7 +3,7 @@ import { AppActions } from "../store";
 
 const initialState: IMessageState = {
     loading: false,
-    all: {}
+    all: []
 };
 
 const MessagesReducer = (
@@ -19,34 +19,35 @@ const MessagesReducer = (
             }
         }
         
-        case "RECEIVE_ALL_MESSAGES": {
-            const all: { [Indexer: number]: IMessage } = {};
-            action.messages.forEach(m => all[m.id] = m);
+        case "RECEIVE_FIRST_MESSAGES": {
             return {
                 ...state,
                 loading: false,
-                all
+                all: action.messages
             };
+        }
+            
+        case "RECEIVE_MORE_MESSAGES": {
+            return {
+                ...state,
+                loading: false,
+                all: state.all.concat(action.messages)
+            }
         }
             
         case "RECEIVE_ONE_MESSAGE": {
             return {
                 ...state,
                 loading: false,
-                all: {
-                    ...state.all,
-                    [action.message.id]: action.message
-                }
+                all: state.all.concat([action.message])
             }
         }
             
         case "REMOVE_MESSAGE": {
-            const all = Object.assign({}, state.all);
-            delete all[action.id];
             return {
                 ...state,
                 loading: false,
-                all
+                all: state.all.filter(m => m.id !== action.id)
             }
         }
             

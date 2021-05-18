@@ -40,9 +40,9 @@ namespace Intalk.Data
         {
             var messages = await _context.Messages
                 .Where(m => m.TextChannelId == channelId)
+                .OrderByDescending(m => m.Created)
                 .Skip(index)
                 .Take(10)
-                .OrderByDescending(m => m.Created)
                 .Select(m => MessageToMessageResponse(m))
                 .ToListAsync();
             return messages;

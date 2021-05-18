@@ -1,6 +1,7 @@
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getChannelMessages } from "../../Actions/MessageActions";
+import { getChannelFirstMessages, getMoreChannelMessages } from "../../Actions/MessageActions";
 import { AppState } from "../../store";
 import MessageInput from "./MessageInput";
 import MessagesList from "./MessagesList";
@@ -21,15 +22,21 @@ const MessagesSection = () => {
 
     useEffect(() => {
         const act = async () => {
-            selectedTextChannelId && dispatch(await getChannelMessages(selectedTextChannelId));
+            selectedTextChannelId && dispatch(await getChannelFirstMessages(selectedTextChannelId));
         };
         act();
     }, [selectedTextChannelId]);
 
+    const onScroll = async (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+        if (e.currentTarget.scrollTop === 0 && selectedTextChannelId) {
+            dispatch(await getMoreChannelMessages(selectedTextChannelId, messages.length));
+        }
+    };
+
     return (
         <section id="chat-section">
             <div id="chat-title">{ channelName }</div>
-            <div id="chat-messages-list">
+            <div id="chat-messages-list" onScroll={onScroll}>
                 {selectedTextChannelId &&
                     <MessagesList
                     messages={messages}

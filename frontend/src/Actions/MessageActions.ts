@@ -8,8 +8,13 @@ export const fetchingMessages = (): AppActions => ({
     type: "FETCHING_MESSAGES"
 });
 
-export const receiveAllMessages = (messages: IMessage[]): AppActions => ({
-    type: "RECEIVE_ALL_MESSAGES",
+export const receiveFirstMessages = (messages: IMessage[]): AppActions => ({
+    type: "RECEIVE_FIRST_MESSAGES",
+    messages
+});
+
+export const receiveMoreMessages = (messages: IMessage[]): AppActions => ({
+    type: "RECEIVE_MORE_MESSAGES",
     messages
 });
 
@@ -23,13 +28,30 @@ export const removeMessage = (id: number): AppActions => ({
     id
 });
 
-export const getChannelMessages = async (channelId: number) => async (
+export const getChannelFirstMessages = async (channelId: number) => async (
     dispatch: Dispatch<AppActions>
 ) => {
     dispatch(fetchingMessages());
     try {
         const messages = await fetchChannelMessagesUtil(channelId);
-        dispatch(receiveAllMessages(messages.map(m => ({
+        dispatch(receiveFirstMessages(messages.map(m => ({
+            ...m,
+            created: new Date(m.created)
+        }))));
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const getMoreChannelMessages = async (
+    channelId: number, offset: number
+) => async (
+    dispatch: Dispatch<AppActions>
+) => {
+    dispatch(fetchingMessages());
+    try {
+        const messages = await fetchChannelMessagesUtil(channelId, offset);
+        dispatch(receiveMoreMessages(messages.map(m => ({
             ...m,
             created: new Date(m.created)
         }))));

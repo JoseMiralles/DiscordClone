@@ -1,5 +1,6 @@
 export const FETCHING_MESSAGES = "FETCHING_MESSAGES";
-export const RECEIVE_ALL_MESSAGES = "RECEIVE_ALL_MESSAGES";
+export const RECEIVE_FIRST_MESSAGES = "RECEIVE_FIRST_MESSAGES";
+export const RECEIVE_MORE_MESSAGES = "RECEIVE_MORE_MESSAGES";
 export const RECEIVE_ONE_MESSAGE = "RECEIVE_ONE_MESSAGE";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 
@@ -7,8 +8,13 @@ export interface IFetchingMessages {
     type: "FETCHING_MESSAGES"
 }
 
-export interface IReceiveAllMessages {
-    type: "RECEIVE_ALL_MESSAGES";
+export interface IReceiveFirstMessages {
+    type: "RECEIVE_FIRST_MESSAGES";
+    messages: IMessage[];
+}
+
+export interface IReceiveMoreMessages {
+    type: "RECEIVE_MORE_MESSAGES";
     messages: IMessage[];
 }
 
@@ -24,10 +30,11 @@ export interface IRemoveMessage {
 
 
 export type MessageActionTypes =
-    IReceiveAllMessages |
+    IReceiveFirstMessages |
     IReceiveOneMessage |
     IRemoveMessage |
-    IFetchingMessages;
+    IFetchingMessages |
+    IReceiveMoreMessages;
 
 
 export interface IMessage {
@@ -53,5 +60,5 @@ export interface IMessagePostDTO {
 
 export interface IMessageState {
     loading: boolean;
-    all: {[Indexer: number]: IMessage};
+    all: IMessage[];
 }
