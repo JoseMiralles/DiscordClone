@@ -1,3 +1,5 @@
+@import "../../Style_variables/colors.scss";
+
 #chat-section {
     display: flex;
     flex-direction: column;
@@ -24,4 +26,49 @@
         display: flex;
         width: 100%;
     }
+}
+
+#messages-ul {
+    li {
+        margin-bottom: 20px;
+    }
+}
+
+.main-message-wrapper {
+    display: flex;
+    flex-direction: row;
+    line-height: 20px;
+}
+
+.user-message-icon {
+    background-color: $main;
+    color: $light;
+    font-weight: 600;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 7px;
+}
+
+.message-detail-row {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+    align-items: flex-end;
+    line-height: 20px;
+    padding-left: 10px;
+
+    .username {
+        font-weight: 600;
+        padding-right: 10px;
+    }
+    .date {
+        font-weight: lighter;
+    }
+}
+
+.message-text{
+    padding-left: 10px;
 }

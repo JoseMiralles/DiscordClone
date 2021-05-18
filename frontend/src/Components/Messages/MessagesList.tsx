@@ -17,15 +17,22 @@ const MessagesList = ({ messages, loading, textChannelId, users }: Props) => {
         if (m.textChannelId === textChannelId)
             mappedMessages.push(
                 <li key={m.id}>
-                    <div>{users[m.userId]?.userName || "..."}</div>
-                    <div>{m.created.toLocaleDateString()}</div>
-                    <div>{m.text}</div>
+                    <div className="main-message-wrapper">
+                        <div className="user-message-icon">{users[m.userId]?.userName[0] || "..."}</div>
+                        <div className="message-contents">
+                            <div className="message-detail-row">
+                                <div className="username">{users[m.userId]?.userName || "..."}</div>
+                                <div className="date">{m.created.toLocaleDateString()}</div>
+                            </div>
+                            <div className="message-text">{m.text}</div>
+                        </div>
+                    </div>
                 </li>
             );
     });
 
     return (
-        <ul>
+        <ul id="messages-ul">
             { loading ? "loading..." : mappedMessages}
         </ul>
     );
