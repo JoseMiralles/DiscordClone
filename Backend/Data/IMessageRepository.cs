@@ -7,7 +7,7 @@ namespace Intalk.Data
 {
     public interface IMessageRepository : IIntalkBaseRepostory, IDisposable
     {
-        Task<IEnumerable<MessageResponse>> GetChannelMessages(long channelId);
+        Task<IEnumerable<MessageResponse>> GetChannelMessages(long channelId, int offset);
         Task<MessageResponse> CreateMessage(CreateMessageRequest req, string userId);
         Task<MessageResponse> DeleteMessage(long messageId);
 

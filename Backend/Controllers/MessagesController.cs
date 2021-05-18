@@ -30,14 +30,17 @@ namespace Intalk.Controllers
             this._hubContext = hubContext;
         }
 
-        [HttpGet("TextChannels/{textChannelId}/Messages")]
-        public async Task<ActionResult<IEnumerable<MessageResponse>>> Index(long TextChannelId)
+        [HttpGet("TextChannels/{textChannelId}/Messages/{offset}")]
+        public async Task<ActionResult<IEnumerable<MessageResponse>>> Index(
+            long TextChannelId,
+            int offset = 0
+        )
         {
             var userId = _userManager.GetUserId(this.User);
             var serverId = await _messageRepo.UserIsMemberOfChannelServer(userId, TextChannelId);
             if (serverId != null)
             {
-                return Ok(await _messageRepo.GetChannelMessages(TextChannelId));
+                return Ok(await _messageRepo.GetChannelMessages(TextChannelId, offset));
             }
             return Unauthorized();
         }

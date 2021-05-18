@@ -36,10 +36,13 @@ namespace Intalk.Data
             return null;
         }
 
-        public async Task<IEnumerable<MessageResponse>> GetChannelMessages(long channelId)
+        public async Task<IEnumerable<MessageResponse>> GetChannelMessages(long channelId, int index = 0)
         {
             var messages = await _context.Messages
                 .Where(m => m.TextChannelId == channelId)
+                .Skip(index)
+                .Take(10)
+                .OrderByDescending(m => m.Created)
                 .Select(m => MessageToMessageResponse(m))
                 .ToListAsync();
             return messages;
