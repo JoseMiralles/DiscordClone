@@ -5,6 +5,12 @@
     flex-direction: column;
 }
 
+#chat-title {
+    padding: 10px;
+    font-weight: bolder;
+    font-size: 17px;
+}
+
 #chat-messages-list{
     flex-grow: 1;
     overflow-y: scroll;

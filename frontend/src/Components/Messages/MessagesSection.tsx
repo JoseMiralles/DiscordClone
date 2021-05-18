@@ -28,6 +28,7 @@ const MessagesSection = () => {
 
     return (
         <section id="chat-section">
+            <div id="chat-title">{ channelName }</div>
             <div id="chat-messages-list">
                 {selectedTextChannelId &&
                     <MessagesList
