@@ -24,10 +24,15 @@ const MessagesSection = () => {
     const innerUl = useRef<HTMLUListElement>(null);
     const [stickToBottom, setStickToBottom] = useState(true);
 
+    // For when messages change.
     useLayoutEffect(() => {
+
+        // Scroll to the bottom if "stickToBottom" is true.
         if (stickToBottom && messagesList.current){
             messagesList.current.scrollTop = messagesList.current.scrollHeight;
         }
+
+        // Request more messages if there aren't enought to fill out the screen.
         if (messagesList.current && innerUl.current &&
             innerUl.current?.clientHeight <= messagesList.current?.clientHeight) {
             if (selectedTextChannelId) {
@@ -35,8 +40,10 @@ const MessagesSection = () => {
                 act();
             }
         }
+
     }, [messages]);
 
+    // When a text channel is selected.
     useEffect(() => {
         const act = async () => {
             selectedTextChannelId && dispatch(await getChannelFirstMessages(selectedTextChannelId));
@@ -45,9 +52,15 @@ const MessagesSection = () => {
     }, [selectedTextChannelId]);
 
     const onScroll = async (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+
+        // Get more channels when the user scrolls to the top.
         if (e.currentTarget.scrollTop === 0 && selectedTextChannelId) {
             dispatch(await getMoreChannelMessages(selectedTextChannelId, messages.length));
-        } else if (e.currentTarget.scrollTop === e.currentTarget.scrollHeight) {
+        }
+        
+        // Toggle "stickToBottom" depending on where the user stops scrolling.
+        else if (e.currentTarget.scrollTop === (e.currentTarget.scrollHeight - e.currentTarget.offsetHeight)) {
+            // The user scrolled to the bottom. So stick to the bottom when new messages come in.
             console.log("true");
             setStickToBottom(true);
         } else {
