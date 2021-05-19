@@ -31,9 +31,9 @@ const MessagesList = ({ messages, loading, textChannelId, users }: Props) => {
     });
 
     return (
-        <ul id="messages-ul">
+        <>
             { loading ? "loading..." : mappedMessages}
-        </ul>
+        </>
     );
 };
 

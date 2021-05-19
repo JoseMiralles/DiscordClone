@@ -20,6 +20,7 @@ const MessageInput = ({ channelName, channelId }: Props) => {
                     text: message,
                     textChannelId: channelId
                 }));
+                setMessage("");
             }
         };
         act();
