@@ -39,7 +39,7 @@ const MessagesReducer = (
             return {
                 ...state,
                 loading: false,
-                all: state.all.concat([action.message])
+                all: [action.message].concat(state.all)
             }
         }
             

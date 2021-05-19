@@ -71,19 +71,20 @@ const MessagesSection = () => {
 
     return (
         <section id="chat-section">
-            <div id="chat-title">{ channelName }</div>
+            <div id="chat-title">{channelName}</div>
+            
             <div id="chat-messages-list" ref={messagesList} onScroll={onScroll}>
-                {selectedTextChannelId &&
-                    <ul ref={innerUl}>
+                <ul ref={innerUl}>
+                    {selectedTextChannelId &&
                         <MessagesList
                         messages={messages}
                         loading={loading}
                         textChannelId={selectedTextChannelId}
                             users={users} />
-                    </ul>
-                }
-                
+                    }
+                </ul>    
             </div>
+
             <MessageInput channelId={selectedTextChannelId} channelName={channelName} />
         </section>
     );

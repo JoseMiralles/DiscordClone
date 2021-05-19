@@ -14,6 +14,11 @@
 #chat-messages-list{
     flex-grow: 1;
     overflow-y: scroll;
+
+    ul {
+        display: flex;
+        flex-direction: column-reverse;
+    }
 }
 
 #message-input{

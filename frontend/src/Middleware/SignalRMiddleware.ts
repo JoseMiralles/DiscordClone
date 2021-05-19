@@ -43,7 +43,8 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
     });
 
     connection.on("ReceiveMessage", (message: IMessage) => {
-        store.dispatch(receiveOneMessage(message));
+        if (message.userId !== store.getState().session.userId)
+            store.dispatch(receiveOneMessage(message));
     });
 
     connection.on("ServerJoined", (serverId: string) => console.log(
