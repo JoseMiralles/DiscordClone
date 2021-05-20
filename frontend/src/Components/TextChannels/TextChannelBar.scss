@@ -3,6 +3,7 @@
 
 #channels-bar-section {
     padding: $appComponentPadding;
+    background-color: $secondary-light;
 }
 
 .channel-list {
@@ -10,17 +11,20 @@
         display: flex;
         flex-direction: row;
         padding: 10px;
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
         color: $dark;
         font-weight: 600;
+        border-radius: 100px;
         &:hover{
-            background-color: $secondary-light;
+            background-color: $main;
+            color: $light;
             cursor:pointer;
         }
     }
     .selected {
-        background-color: $secondary-light;
+        background-color: $main;
+        color: $light;
     }
 }
 
@@ -33,4 +37,5 @@
 
 .text-channel-bar-title {
     letter-spacing: 2px;
+    padding-left: 20px;
 }
