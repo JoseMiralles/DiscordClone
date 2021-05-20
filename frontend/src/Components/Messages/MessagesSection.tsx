@@ -22,6 +22,7 @@ const MessagesSection = () => {
 
     const messagesList = useRef<HTMLDivElement>(null);
     const innerUl = useRef<HTMLUListElement>(null);
+
     const [stickToBottom, setStickToBottom] = useState(true);
 
     // For when messages change.
@@ -54,19 +55,18 @@ const MessagesSection = () => {
     const onScroll = async (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
 
         // Get more channels when the user scrolls to the top.
-        if (e.currentTarget.scrollTop === 0 && selectedTextChannelId) {
+        if (!loading && e.currentTarget.scrollTop === 0 && selectedTextChannelId) {
             dispatch(await getMoreChannelMessages(selectedTextChannelId, messages.length));
         }
         
         // Toggle "stickToBottom" depending on where the user stops scrolling.
         else if (e.currentTarget.scrollTop === (e.currentTarget.scrollHeight - e.currentTarget.offsetHeight)) {
             // The user scrolled to the bottom. So stick to the bottom when new messages come in.
-            console.log("true");
             setStickToBottom(true);
         } else {
-            console.log("false");
             setStickToBottom(false);
         }
+
     };
 
     return (
