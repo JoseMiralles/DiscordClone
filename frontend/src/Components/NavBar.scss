@@ -11,6 +11,10 @@
     justify-content: space-between;
 }
 
+#server-bar-section {
+    background-color: $main;
+}
+
 #nav-logo {
     font-size: 28px;
     padding-left: $common-padding;
@@ -18,7 +22,7 @@
 
 #nav-menu-button{
     padding-right: $common-padding;
-    color: $main;
+    // color: $light;
     &:hover{
         cursor: pointer;
     }

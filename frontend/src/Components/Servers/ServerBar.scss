@@ -3,6 +3,7 @@
 
 #server-bar-section {
     $border-size: 1px;
+    padding-top: 7px;
 
     .btn {
         $size: 15px;
@@ -11,25 +12,25 @@
         line-height: $size;
         text-align: center;
         font-size: 15px;
-        border-radius: 0px;
-        border-bottom: solid $main $border-size;
-        // margin: 3px;
+        border-radius: 2px 2px 0px 0px;
+        color: $light;
+        font-weight: 600;
 
         &:hover{
             cursor: pointer;
+            color: $main;
+            background-color: $light;
         }
     }
 
     .selected{
-        // border-radius: 10px 10px 0px 0px;
         padding-left: 30px;
         padding-right: 30px;
-        border-top: solid $main $border-size;
-        border-right: solid $main $border-size;
-        border-left: solid $main $border-size;
-        border-bottom: 0px;
+        background-color: $light;
+        color: $dark;
         &:hover {
-            background-color: unset;
+            background-color: $light;
+            color: $dark;
         }
     }
 }
