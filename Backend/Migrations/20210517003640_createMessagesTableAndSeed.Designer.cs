@@ -3,15 +3,17 @@ using System;
 using Intalk.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Intalk.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210517003640_createMessagesTableAndSeed")]
+    partial class createMessagesTableAndSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,15 +89,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4e4cd5fa-b652-4ee0-ad24-a69cec3a4603",
+                            ConcurrencyStamp = "9dfee321-be7d-4faa-8f15-5693b90109fa",
                             Email = "test0@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST0@TEST.COM",
                             NormalizedUserName = "TESTUSER0",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKEca9j5pWdV/AcZFas4Kb4Y4QBXqbr8PSatX6UedBjIUgdfKK4VSCaJI/fiz2o7Yg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELcyMGGVEkGBAnj6+/4vvVuoZzSScasW/SHf3dNdYsx1PlFnYriZydmqzCIi6tAp/Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2a55d7d4-b1ff-4b8c-bab9-31975a0b1ec3",
+                            SecurityStamp = "91af06c6-ab25-421b-b37c-3220bb2d42b2",
                             TwoFactorEnabled = false,
                             UserName = "TestUser0"
                         },
@@ -103,15 +105,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c3612500-8e78-4c23-b83f-15ad0f2a9fa2",
+                            ConcurrencyStamp = "2ea25e2e-daa9-4e73-acc4-fb3428959a28",
                             Email = "test1@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST1@TEST.COM",
                             NormalizedUserName = "TESTUSER1",
-                            PasswordHash = "AQAAAAEAACcQAAAAECA7x7js/JQ0+xQ0+a/jzK9LOSeang0sZ4PpwLe5dL8uVMr4lvfDZYbpFwGvrNaDJQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAMSDjzEhN31d70KLnOq6P5ndxIgPC7kNQ1/rAFnFMimQJ9PdtnlSTYeEhsdJBRECA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8f260dbd-6821-4dac-a5e3-ce979638ebc4",
+                            SecurityStamp = "f6fa9d2b-52b3-40b2-b96e-ac45ec20206f",
                             TwoFactorEnabled = false,
                             UserName = "TestUser1"
                         },
@@ -119,15 +121,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "487e125e-a5ad-47fe-a5d3-410d736e010b",
+                            ConcurrencyStamp = "cb8795be-a7ab-4766-93a6-768cc3e83077",
                             Email = "test2@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST2@TEST.COM",
                             NormalizedUserName = "TESTUSER2",
-                            PasswordHash = "AQAAAAEAACcQAAAAED/jSLRyGjsfqF5gE+K1PSFEhRAnU45fLR2cUPh7nK0AxscnwFAaPr1hsobcYFdViQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELNWl15Qi07nDAzkyGJNTCV89u/PmJTlMLXGhuOagvyHd+Kyj0UJ1dS5vUBOduCGXg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "feb9bf98-9385-4233-a11a-5abe1111a70b",
+                            SecurityStamp = "4a4b02a4-e382-4a70-bc1f-d6629f80fd06",
                             TwoFactorEnabled = false,
                             UserName = "TestUser2"
                         },
@@ -135,15 +137,15 @@ namespace Intalk.Migrations
                         {
                             Id = "migrationuserId3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "511e367f-54a3-4e1c-bc31-5ca14b052b65",
+                            ConcurrencyStamp = "5d4d2d0e-4617-448d-a658-7d94b081a4eb",
                             Email = "test3@test.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST3@TEST.COM",
                             NormalizedUserName = "TESTUSER3",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN+Ghov6+Qq4GYFXheEwq5aIM2/jYT26LELXz4O3/JIKgzLFYpvHmj3geVb24IMDTA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBRbA0wKUP1zfL/G/o1MM6x8W8EEUSvxWYcwy9BhDqVbag3OBCHZMaQJkQ/95XrEww==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d67d2ddf-bba1-4bb3-a717-f5e4b58ca2d4",
+                            SecurityStamp = "444cac34-9e7b-4530-9348-f19e1148f6aa",
                             TwoFactorEnabled = false,
                             UserName = "TestUser3"
                         });
@@ -155,9 +157,6 @@ namespace Intalk.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -182,7 +181,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -1L,
-                            Created = new DateTime(2021, 5, 17, 22, 45, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 0",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -190,7 +188,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -2L,
-                            Created = new DateTime(2021, 5, 17, 21, 45, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 1",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -198,7 +195,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -3L,
-                            Created = new DateTime(2021, 5, 17, 19, 45, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 2",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -206,7 +202,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -4L,
-                            Created = new DateTime(2021, 5, 17, 16, 45, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 3",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -214,7 +209,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -5L,
-                            Created = new DateTime(2021, 5, 17, 12, 45, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 4",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -222,7 +216,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -6L,
-                            Created = new DateTime(2021, 5, 17, 7, 45, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 5",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -230,7 +223,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -7L,
-                            Created = new DateTime(2021, 5, 17, 1, 45, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 6",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -238,7 +230,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -8L,
-                            Created = new DateTime(2021, 5, 16, 18, 45, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 7",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -246,7 +237,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -9L,
-                            Created = new DateTime(2021, 5, 16, 10, 45, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 8",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -254,7 +244,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -10L,
-                            Created = new DateTime(2021, 5, 16, 1, 45, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 9",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -262,7 +251,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -11L,
-                            Created = new DateTime(2021, 5, 15, 15, 44, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 10",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -270,7 +258,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -12L,
-                            Created = new DateTime(2021, 5, 15, 4, 44, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 11",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -278,7 +265,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -13L,
-                            Created = new DateTime(2021, 5, 14, 16, 44, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 12",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -286,7 +272,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -14L,
-                            Created = new DateTime(2021, 5, 14, 3, 44, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 13",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -294,7 +279,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -15L,
-                            Created = new DateTime(2021, 5, 13, 13, 44, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 14",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -302,7 +286,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -16L,
-                            Created = new DateTime(2021, 5, 12, 22, 43, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 15",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -310,7 +293,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -17L,
-                            Created = new DateTime(2021, 5, 12, 6, 43, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 16",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -318,7 +300,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -18L,
-                            Created = new DateTime(2021, 5, 11, 13, 43, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 17",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -326,7 +307,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -19L,
-                            Created = new DateTime(2021, 5, 10, 19, 42, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 18",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -334,7 +314,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -20L,
-                            Created = new DateTime(2021, 5, 10, 0, 42, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 19",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -342,7 +321,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -21L,
-                            Created = new DateTime(2021, 5, 9, 4, 42, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 20",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -350,7 +328,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -22L,
-                            Created = new DateTime(2021, 5, 8, 7, 41, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 21",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -358,7 +335,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -23L,
-                            Created = new DateTime(2021, 5, 7, 9, 41, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 22",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -366,7 +342,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -24L,
-                            Created = new DateTime(2021, 5, 6, 10, 41, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 23",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -374,7 +349,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -25L,
-                            Created = new DateTime(2021, 5, 5, 10, 40, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 24",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -382,7 +356,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -26L,
-                            Created = new DateTime(2021, 5, 4, 9, 40, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 25",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -390,7 +363,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -27L,
-                            Created = new DateTime(2021, 5, 3, 7, 39, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 26",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -398,7 +370,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -28L,
-                            Created = new DateTime(2021, 5, 2, 4, 39, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 27",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -406,7 +377,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -29L,
-                            Created = new DateTime(2021, 5, 1, 0, 39, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 28",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -414,7 +384,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -30L,
-                            Created = new DateTime(2021, 4, 29, 19, 38, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 29",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -422,7 +391,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -31L,
-                            Created = new DateTime(2021, 4, 28, 13, 38, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 30",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -430,7 +398,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -32L,
-                            Created = new DateTime(2021, 4, 27, 6, 37, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 31",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -438,7 +405,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -33L,
-                            Created = new DateTime(2021, 4, 25, 22, 37, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 32",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -446,7 +412,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -34L,
-                            Created = new DateTime(2021, 4, 24, 13, 36, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 33",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -454,7 +419,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -35L,
-                            Created = new DateTime(2021, 4, 23, 3, 35, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 34",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -462,7 +426,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -36L,
-                            Created = new DateTime(2021, 4, 21, 16, 35, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 35",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -470,7 +433,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -37L,
-                            Created = new DateTime(2021, 4, 20, 4, 34, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 36",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -478,7 +440,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -38L,
-                            Created = new DateTime(2021, 4, 18, 15, 34, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 37",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -486,7 +447,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -39L,
-                            Created = new DateTime(2021, 4, 17, 1, 33, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 38",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -494,7 +454,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -40L,
-                            Created = new DateTime(2021, 4, 15, 10, 32, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 39",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -502,7 +461,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -41L,
-                            Created = new DateTime(2021, 4, 13, 18, 32, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 40",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -510,7 +468,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -42L,
-                            Created = new DateTime(2021, 4, 12, 1, 31, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 41",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -518,7 +475,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -43L,
-                            Created = new DateTime(2021, 4, 10, 7, 30, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 42",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -526,7 +482,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -44L,
-                            Created = new DateTime(2021, 4, 8, 12, 30, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 43",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -534,7 +489,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -45L,
-                            Created = new DateTime(2021, 4, 6, 16, 29, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 44",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -542,7 +496,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -46L,
-                            Created = new DateTime(2021, 4, 4, 19, 28, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 45",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -550,7 +503,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -47L,
-                            Created = new DateTime(2021, 4, 2, 21, 27, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 46",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -558,7 +510,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -48L,
-                            Created = new DateTime(2021, 3, 31, 22, 27, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 47",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -566,7 +517,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -49L,
-                            Created = new DateTime(2021, 3, 29, 22, 26, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 48",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -574,7 +524,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -50L,
-                            Created = new DateTime(2021, 3, 27, 21, 25, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 49",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -582,7 +531,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -51L,
-                            Created = new DateTime(2021, 3, 25, 19, 24, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 50",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -590,7 +538,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -52L,
-                            Created = new DateTime(2021, 3, 23, 16, 23, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 51",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -598,7 +545,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -53L,
-                            Created = new DateTime(2021, 3, 21, 12, 22, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 52",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -606,7 +552,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -54L,
-                            Created = new DateTime(2021, 3, 19, 7, 21, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 53",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -614,7 +559,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -55L,
-                            Created = new DateTime(2021, 3, 17, 1, 21, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 54",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -622,7 +566,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -56L,
-                            Created = new DateTime(2021, 3, 14, 18, 20, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 55",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -630,7 +573,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -57L,
-                            Created = new DateTime(2021, 3, 12, 10, 19, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 56",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -638,7 +580,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -58L,
-                            Created = new DateTime(2021, 3, 10, 1, 18, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 57",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -646,7 +587,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -59L,
-                            Created = new DateTime(2021, 3, 7, 15, 17, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 58",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -654,7 +594,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -60L,
-                            Created = new DateTime(2021, 3, 5, 4, 16, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 59",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -662,7 +601,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -61L,
-                            Created = new DateTime(2021, 3, 2, 16, 15, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 60",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -670,7 +608,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -62L,
-                            Created = new DateTime(2021, 2, 28, 3, 14, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 61",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -678,7 +615,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -63L,
-                            Created = new DateTime(2021, 2, 25, 13, 13, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 62",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -686,7 +622,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -64L,
-                            Created = new DateTime(2021, 2, 22, 22, 12, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 63",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -694,7 +629,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -65L,
-                            Created = new DateTime(2021, 2, 20, 6, 11, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 64",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -702,7 +636,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -66L,
-                            Created = new DateTime(2021, 2, 17, 13, 10, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 65",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -710,7 +643,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -67L,
-                            Created = new DateTime(2021, 2, 14, 19, 8, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 66",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -718,7 +650,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -68L,
-                            Created = new DateTime(2021, 2, 12, 0, 7, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 67",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -726,7 +657,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -69L,
-                            Created = new DateTime(2021, 2, 9, 4, 6, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 68",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -734,7 +664,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -70L,
-                            Created = new DateTime(2021, 2, 6, 7, 5, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 69",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -742,7 +671,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -71L,
-                            Created = new DateTime(2021, 2, 3, 9, 4, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 70",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -750,7 +678,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -72L,
-                            Created = new DateTime(2021, 1, 31, 10, 3, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 71",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -758,7 +685,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -73L,
-                            Created = new DateTime(2021, 1, 28, 10, 2, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 72",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -766,7 +692,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -74L,
-                            Created = new DateTime(2021, 1, 25, 9, 0, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 73",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -774,7 +699,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -75L,
-                            Created = new DateTime(2021, 1, 22, 6, 59, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 74",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -782,7 +706,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -76L,
-                            Created = new DateTime(2021, 1, 19, 3, 58, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 75",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -790,7 +713,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -77L,
-                            Created = new DateTime(2021, 1, 15, 23, 57, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 76",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -798,7 +720,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -78L,
-                            Created = new DateTime(2021, 1, 12, 18, 55, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 77",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -806,7 +727,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -79L,
-                            Created = new DateTime(2021, 1, 9, 12, 54, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 78",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -814,7 +734,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -80L,
-                            Created = new DateTime(2021, 1, 6, 5, 53, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 79",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -822,7 +741,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -81L,
-                            Created = new DateTime(2021, 1, 2, 21, 51, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 80",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -830,7 +748,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -82L,
-                            Created = new DateTime(2020, 12, 30, 12, 50, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 81",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -838,7 +755,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -83L,
-                            Created = new DateTime(2020, 12, 27, 2, 49, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 82",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -846,7 +762,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -84L,
-                            Created = new DateTime(2020, 12, 23, 15, 47, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 83",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -854,7 +769,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -85L,
-                            Created = new DateTime(2020, 12, 20, 3, 46, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 84",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -862,7 +776,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -86L,
-                            Created = new DateTime(2020, 12, 16, 14, 44, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 85",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -870,7 +783,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -87L,
-                            Created = new DateTime(2020, 12, 13, 0, 43, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 86",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -878,7 +790,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -88L,
-                            Created = new DateTime(2020, 12, 9, 9, 42, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 87",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -886,7 +797,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -89L,
-                            Created = new DateTime(2020, 12, 5, 17, 40, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 88",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -894,7 +804,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -90L,
-                            Created = new DateTime(2020, 12, 2, 0, 39, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 89",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -902,7 +811,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -91L,
-                            Created = new DateTime(2020, 11, 28, 6, 37, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 90",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -910,7 +818,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -92L,
-                            Created = new DateTime(2020, 11, 24, 11, 36, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 91",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -918,7 +825,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -93L,
-                            Created = new DateTime(2020, 11, 20, 15, 34, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 92",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -926,7 +832,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -94L,
-                            Created = new DateTime(2020, 11, 16, 18, 32, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 93",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -934,7 +839,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -95L,
-                            Created = new DateTime(2020, 11, 12, 20, 31, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 94",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -942,7 +846,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -96L,
-                            Created = new DateTime(2020, 11, 8, 21, 29, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 95",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -950,7 +853,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -97L,
-                            Created = new DateTime(2020, 11, 4, 21, 28, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 96",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -958,7 +860,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -98L,
-                            Created = new DateTime(2020, 10, 31, 20, 26, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 97",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -966,7 +867,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -99L,
-                            Created = new DateTime(2020, 10, 27, 18, 24, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 98",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -974,7 +874,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -100L,
-                            Created = new DateTime(2020, 10, 23, 15, 23, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 99",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -982,7 +881,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -101L,
-                            Created = new DateTime(2020, 10, 19, 11, 21, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 100",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -990,7 +888,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -102L,
-                            Created = new DateTime(2020, 10, 15, 6, 19, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 101",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -998,7 +895,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -103L,
-                            Created = new DateTime(2020, 10, 11, 0, 18, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 102",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1006,7 +902,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -104L,
-                            Created = new DateTime(2020, 10, 6, 17, 16, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 103",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1014,7 +909,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -105L,
-                            Created = new DateTime(2020, 10, 2, 9, 14, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 104",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1022,7 +916,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -106L,
-                            Created = new DateTime(2020, 9, 28, 0, 13, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 105",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1030,7 +923,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -107L,
-                            Created = new DateTime(2020, 9, 23, 14, 11, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 106",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1038,7 +930,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -108L,
-                            Created = new DateTime(2020, 9, 19, 3, 9, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 107",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -1046,7 +937,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -109L,
-                            Created = new DateTime(2020, 9, 14, 15, 7, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 108",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -1054,7 +944,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -110L,
-                            Created = new DateTime(2020, 9, 10, 2, 5, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 109",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -1062,7 +951,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -111L,
-                            Created = new DateTime(2020, 9, 5, 12, 4, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 110",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -1070,7 +958,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -112L,
-                            Created = new DateTime(2020, 8, 31, 21, 2, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 111",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -1078,7 +965,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -113L,
-                            Created = new DateTime(2020, 8, 27, 5, 0, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 112",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -1086,7 +972,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -114L,
-                            Created = new DateTime(2020, 8, 22, 11, 58, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 113",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -1094,7 +979,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -115L,
-                            Created = new DateTime(2020, 8, 17, 17, 56, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 114",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -1102,7 +986,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -116L,
-                            Created = new DateTime(2020, 8, 12, 22, 54, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 115",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -1110,7 +993,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -117L,
-                            Created = new DateTime(2020, 8, 8, 2, 52, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 116",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -1118,7 +1000,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -118L,
-                            Created = new DateTime(2020, 8, 3, 5, 50, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 117",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1126,7 +1007,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -119L,
-                            Created = new DateTime(2020, 7, 29, 7, 48, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 118",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1134,7 +1014,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -120L,
-                            Created = new DateTime(2020, 7, 24, 8, 46, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 119",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1142,7 +1021,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -121L,
-                            Created = new DateTime(2020, 7, 19, 8, 44, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 120",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1150,7 +1028,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -122L,
-                            Created = new DateTime(2020, 7, 14, 7, 42, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 121",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1158,7 +1035,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -123L,
-                            Created = new DateTime(2020, 7, 9, 5, 40, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 122",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -1166,7 +1042,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -124L,
-                            Created = new DateTime(2020, 7, 4, 2, 38, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 123",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -1174,7 +1049,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -125L,
-                            Created = new DateTime(2020, 6, 28, 22, 36, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 124",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -1182,7 +1056,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -126L,
-                            Created = new DateTime(2020, 6, 23, 17, 34, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 125",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -1190,7 +1063,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -127L,
-                            Created = new DateTime(2020, 6, 18, 11, 32, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 126",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -1198,7 +1070,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -128L,
-                            Created = new DateTime(2020, 6, 13, 4, 30, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 127",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -1206,7 +1077,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -129L,
-                            Created = new DateTime(2020, 6, 7, 20, 28, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 128",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -1214,7 +1084,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -130L,
-                            Created = new DateTime(2020, 6, 2, 11, 26, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 129",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -1222,7 +1091,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -131L,
-                            Created = new DateTime(2020, 5, 28, 1, 23, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 130",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -1230,7 +1098,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -132L,
-                            Created = new DateTime(2020, 5, 22, 14, 21, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 131",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -1238,7 +1105,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -133L,
-                            Created = new DateTime(2020, 5, 17, 2, 19, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 132",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1246,7 +1112,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -134L,
-                            Created = new DateTime(2020, 5, 11, 13, 17, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 133",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1254,7 +1119,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -135L,
-                            Created = new DateTime(2020, 5, 5, 23, 15, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 134",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1262,7 +1126,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -136L,
-                            Created = new DateTime(2020, 4, 30, 8, 12, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 135",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1270,7 +1133,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -137L,
-                            Created = new DateTime(2020, 4, 24, 16, 10, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 136",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1278,7 +1140,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -138L,
-                            Created = new DateTime(2020, 4, 18, 23, 8, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 137",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -1286,7 +1147,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -139L,
-                            Created = new DateTime(2020, 4, 13, 5, 5, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 138",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -1294,7 +1154,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -140L,
-                            Created = new DateTime(2020, 4, 7, 10, 3, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 139",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -1302,7 +1161,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -141L,
-                            Created = new DateTime(2020, 4, 1, 14, 1, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 140",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -1310,7 +1168,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -142L,
-                            Created = new DateTime(2020, 3, 26, 16, 58, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 141",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -1318,7 +1175,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -143L,
-                            Created = new DateTime(2020, 3, 20, 18, 56, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 142",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -1326,7 +1182,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -144L,
-                            Created = new DateTime(2020, 3, 14, 19, 54, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 143",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -1334,7 +1189,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -145L,
-                            Created = new DateTime(2020, 3, 8, 19, 51, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 144",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -1342,7 +1196,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -146L,
-                            Created = new DateTime(2020, 3, 2, 18, 49, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 145",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -1350,7 +1203,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -147L,
-                            Created = new DateTime(2020, 2, 25, 16, 46, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 146",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -1358,7 +1210,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -148L,
-                            Created = new DateTime(2020, 2, 19, 13, 44, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 147",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1366,7 +1217,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -149L,
-                            Created = new DateTime(2020, 2, 13, 9, 42, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 148",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1374,7 +1224,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -150L,
-                            Created = new DateTime(2020, 2, 7, 4, 39, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 149",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1382,7 +1231,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -151L,
-                            Created = new DateTime(2020, 1, 31, 22, 37, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 150",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1390,7 +1238,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -152L,
-                            Created = new DateTime(2020, 1, 25, 15, 34, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 151",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1398,7 +1245,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -153L,
-                            Created = new DateTime(2020, 1, 19, 7, 32, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 152",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -1406,7 +1252,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -154L,
-                            Created = new DateTime(2020, 1, 12, 22, 29, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 153",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -1414,7 +1259,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -155L,
-                            Created = new DateTime(2020, 1, 6, 12, 26, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 154",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -1422,7 +1266,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -156L,
-                            Created = new DateTime(2019, 12, 31, 1, 24, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 155",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -1430,7 +1273,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -157L,
-                            Created = new DateTime(2019, 12, 24, 13, 21, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 156",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -1438,7 +1280,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -158L,
-                            Created = new DateTime(2019, 12, 18, 0, 19, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 157",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -1446,7 +1287,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -159L,
-                            Created = new DateTime(2019, 12, 11, 10, 16, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 158",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -1454,7 +1294,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -160L,
-                            Created = new DateTime(2019, 12, 4, 19, 13, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 159",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -1462,7 +1301,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -161L,
-                            Created = new DateTime(2019, 11, 28, 3, 11, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 160",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -1470,7 +1308,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -162L,
-                            Created = new DateTime(2019, 11, 21, 10, 8, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 161",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -1478,7 +1315,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -163L,
-                            Created = new DateTime(2019, 11, 14, 16, 5, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 162",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1486,7 +1322,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -164L,
-                            Created = new DateTime(2019, 11, 7, 21, 3, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 163",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1494,7 +1329,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -165L,
-                            Created = new DateTime(2019, 11, 1, 1, 0, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 164",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1502,7 +1336,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -166L,
-                            Created = new DateTime(2019, 10, 25, 3, 57, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 165",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1510,7 +1343,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -167L,
-                            Created = new DateTime(2019, 10, 18, 5, 54, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 166",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1518,7 +1350,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -168L,
-                            Created = new DateTime(2019, 10, 11, 6, 52, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 167",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -1526,7 +1357,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -169L,
-                            Created = new DateTime(2019, 10, 4, 6, 49, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 168",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -1534,7 +1364,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -170L,
-                            Created = new DateTime(2019, 9, 27, 5, 46, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 169",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -1542,7 +1371,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -171L,
-                            Created = new DateTime(2019, 9, 20, 3, 43, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 170",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -1550,7 +1378,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -172L,
-                            Created = new DateTime(2019, 9, 13, 0, 40, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 171",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -1558,7 +1385,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -173L,
-                            Created = new DateTime(2019, 9, 5, 20, 37, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 172",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -1566,7 +1392,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -174L,
-                            Created = new DateTime(2019, 8, 29, 15, 34, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 173",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -1574,7 +1399,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -175L,
-                            Created = new DateTime(2019, 8, 22, 9, 32, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 174",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -1582,7 +1406,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -176L,
-                            Created = new DateTime(2019, 8, 15, 2, 29, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 175",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -1590,7 +1413,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -177L,
-                            Created = new DateTime(2019, 8, 7, 18, 26, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 176",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -1598,7 +1420,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -178L,
-                            Created = new DateTime(2019, 7, 31, 9, 23, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 177",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1606,7 +1427,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -179L,
-                            Created = new DateTime(2019, 7, 23, 23, 20, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 178",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1614,7 +1434,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -180L,
-                            Created = new DateTime(2019, 7, 16, 12, 17, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 179",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1622,7 +1441,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -181L,
-                            Created = new DateTime(2019, 7, 9, 0, 14, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 180",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1630,7 +1448,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -182L,
-                            Created = new DateTime(2019, 7, 1, 11, 11, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 181",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1638,7 +1455,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -183L,
-                            Created = new DateTime(2019, 6, 23, 21, 8, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 182",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -1646,7 +1462,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -184L,
-                            Created = new DateTime(2019, 6, 16, 6, 5, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 183",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -1654,7 +1469,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -185L,
-                            Created = new DateTime(2019, 6, 8, 14, 2, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 184",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -1662,7 +1476,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -186L,
-                            Created = new DateTime(2019, 5, 31, 20, 59, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 185",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -1670,7 +1483,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -187L,
-                            Created = new DateTime(2019, 5, 24, 2, 55, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 186",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -1678,7 +1490,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -188L,
-                            Created = new DateTime(2019, 5, 16, 7, 52, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 187",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -1686,7 +1497,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -189L,
-                            Created = new DateTime(2019, 5, 8, 11, 49, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 188",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -1694,7 +1504,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -190L,
-                            Created = new DateTime(2019, 4, 30, 14, 46, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 189",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -1702,7 +1511,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -191L,
-                            Created = new DateTime(2019, 4, 22, 16, 43, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 190",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -1710,7 +1518,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -192L,
-                            Created = new DateTime(2019, 4, 14, 17, 40, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 191",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -1718,7 +1525,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -193L,
-                            Created = new DateTime(2019, 4, 6, 17, 37, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 192",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1726,7 +1532,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -194L,
-                            Created = new DateTime(2019, 3, 29, 16, 33, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 193",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1734,7 +1539,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -195L,
-                            Created = new DateTime(2019, 3, 21, 14, 30, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 194",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1742,7 +1546,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -196L,
-                            Created = new DateTime(2019, 3, 13, 11, 27, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 195",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1750,7 +1553,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -197L,
-                            Created = new DateTime(2019, 3, 5, 7, 24, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 196",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1758,7 +1560,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -198L,
-                            Created = new DateTime(2019, 2, 25, 2, 20, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 197",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -1766,7 +1567,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -199L,
-                            Created = new DateTime(2019, 2, 16, 20, 17, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 198",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -1774,7 +1574,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -200L,
-                            Created = new DateTime(2019, 2, 8, 13, 14, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 199",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -1782,7 +1581,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -201L,
-                            Created = new DateTime(2019, 1, 31, 5, 10, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 200",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -1790,7 +1588,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -202L,
-                            Created = new DateTime(2019, 1, 22, 20, 7, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 201",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -1798,7 +1595,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -203L,
-                            Created = new DateTime(2019, 1, 14, 10, 4, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 202",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -1806,7 +1602,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -204L,
-                            Created = new DateTime(2019, 1, 5, 23, 0, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 203",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -1814,7 +1609,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -205L,
-                            Created = new DateTime(2018, 12, 28, 10, 57, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 204",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -1822,7 +1616,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -206L,
-                            Created = new DateTime(2018, 12, 19, 21, 53, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 205",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -1830,7 +1623,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -207L,
-                            Created = new DateTime(2018, 12, 11, 7, 50, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 206",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -1838,7 +1630,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -208L,
-                            Created = new DateTime(2018, 12, 2, 16, 47, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 207",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1846,7 +1637,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -209L,
-                            Created = new DateTime(2018, 11, 24, 0, 43, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 208",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1854,7 +1644,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -210L,
-                            Created = new DateTime(2018, 11, 15, 7, 40, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 209",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1862,7 +1651,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -211L,
-                            Created = new DateTime(2018, 11, 6, 13, 36, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 210",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1870,7 +1658,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -212L,
-                            Created = new DateTime(2018, 10, 28, 18, 33, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 211",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1878,7 +1665,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -213L,
-                            Created = new DateTime(2018, 10, 19, 22, 29, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 212",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -1886,7 +1672,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -214L,
-                            Created = new DateTime(2018, 10, 11, 1, 25, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 213",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -1894,7 +1679,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -215L,
-                            Created = new DateTime(2018, 10, 2, 3, 22, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 214",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -1902,7 +1686,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -216L,
-                            Created = new DateTime(2018, 9, 23, 4, 18, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 215",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -1910,7 +1693,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -217L,
-                            Created = new DateTime(2018, 9, 14, 4, 15, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 216",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -1918,7 +1700,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -218L,
-                            Created = new DateTime(2018, 9, 5, 3, 11, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 217",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -1926,7 +1707,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -219L,
-                            Created = new DateTime(2018, 8, 27, 1, 7, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 218",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -1934,7 +1714,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -220L,
-                            Created = new DateTime(2018, 8, 17, 22, 4, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 219",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -1942,7 +1721,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -221L,
-                            Created = new DateTime(2018, 8, 8, 18, 0, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 220",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -1950,7 +1728,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -222L,
-                            Created = new DateTime(2018, 7, 30, 12, 56, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 221",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -1958,7 +1735,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -223L,
-                            Created = new DateTime(2018, 7, 21, 6, 53, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 222",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -1966,7 +1742,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -224L,
-                            Created = new DateTime(2018, 7, 11, 23, 49, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 223",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -1974,7 +1749,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -225L,
-                            Created = new DateTime(2018, 7, 2, 15, 45, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 224",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -1982,7 +1756,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -226L,
-                            Created = new DateTime(2018, 6, 23, 6, 42, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 225",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -1990,7 +1763,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -227L,
-                            Created = new DateTime(2018, 6, 13, 20, 38, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 226",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -1998,7 +1770,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -228L,
-                            Created = new DateTime(2018, 6, 4, 9, 34, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 227",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2006,7 +1777,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -229L,
-                            Created = new DateTime(2018, 5, 25, 21, 30, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 228",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2014,7 +1784,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -230L,
-                            Created = new DateTime(2018, 5, 16, 8, 26, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 229",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2022,7 +1791,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -231L,
-                            Created = new DateTime(2018, 5, 6, 18, 23, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 230",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2030,7 +1798,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -232L,
-                            Created = new DateTime(2018, 4, 27, 3, 19, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 231",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2038,7 +1805,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -233L,
-                            Created = new DateTime(2018, 4, 17, 11, 15, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 232",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -2046,7 +1812,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -234L,
-                            Created = new DateTime(2018, 4, 7, 18, 11, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 233",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -2054,7 +1819,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -235L,
-                            Created = new DateTime(2018, 3, 29, 0, 7, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 234",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -2062,7 +1826,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -236L,
-                            Created = new DateTime(2018, 3, 19, 5, 3, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 235",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -2070,7 +1833,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -237L,
-                            Created = new DateTime(2018, 3, 9, 8, 59, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 236",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -2078,7 +1840,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -238L,
-                            Created = new DateTime(2018, 2, 27, 11, 55, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 237",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -2086,7 +1847,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -239L,
-                            Created = new DateTime(2018, 2, 17, 13, 51, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 238",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -2094,7 +1854,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -240L,
-                            Created = new DateTime(2018, 2, 7, 14, 47, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 239",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -2102,7 +1861,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -241L,
-                            Created = new DateTime(2018, 1, 28, 14, 43, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 240",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -2110,7 +1868,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -242L,
-                            Created = new DateTime(2018, 1, 18, 13, 39, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 241",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -2118,7 +1875,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -243L,
-                            Created = new DateTime(2018, 1, 8, 11, 35, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 242",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2126,7 +1882,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -244L,
-                            Created = new DateTime(2017, 12, 29, 8, 31, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 243",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2134,7 +1889,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -245L,
-                            Created = new DateTime(2017, 12, 19, 4, 27, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 244",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2142,7 +1896,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -246L,
-                            Created = new DateTime(2017, 12, 8, 23, 23, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 245",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2150,7 +1903,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -247L,
-                            Created = new DateTime(2017, 11, 28, 17, 19, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 246",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2158,7 +1910,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -248L,
-                            Created = new DateTime(2017, 11, 18, 10, 15, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 247",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -2166,7 +1917,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -249L,
-                            Created = new DateTime(2017, 11, 8, 2, 11, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 248",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -2174,7 +1924,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -250L,
-                            Created = new DateTime(2017, 10, 28, 17, 7, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 249",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -2182,7 +1931,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -251L,
-                            Created = new DateTime(2017, 10, 18, 7, 2, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 250",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -2190,7 +1938,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -252L,
-                            Created = new DateTime(2017, 10, 7, 19, 58, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 251",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -2198,7 +1945,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -253L,
-                            Created = new DateTime(2017, 9, 27, 7, 54, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 252",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -2206,7 +1952,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -254L,
-                            Created = new DateTime(2017, 9, 16, 18, 50, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 253",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -2214,7 +1959,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -255L,
-                            Created = new DateTime(2017, 9, 6, 4, 46, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 254",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -2222,7 +1966,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -256L,
-                            Created = new DateTime(2017, 8, 26, 13, 41, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 255",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -2230,7 +1973,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -257L,
-                            Created = new DateTime(2017, 8, 15, 21, 37, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 256",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -2238,7 +1980,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -258L,
-                            Created = new DateTime(2017, 8, 5, 4, 33, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 257",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2246,7 +1987,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -259L,
-                            Created = new DateTime(2017, 7, 25, 10, 28, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 258",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2254,7 +1994,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -260L,
-                            Created = new DateTime(2017, 7, 14, 15, 24, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 259",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2262,7 +2001,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -261L,
-                            Created = new DateTime(2017, 7, 3, 19, 20, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 260",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2270,7 +2008,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -262L,
-                            Created = new DateTime(2017, 6, 22, 22, 15, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 261",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2278,7 +2015,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -263L,
-                            Created = new DateTime(2017, 6, 12, 0, 11, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 262",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -2286,7 +2022,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -264L,
-                            Created = new DateTime(2017, 6, 1, 1, 7, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 263",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -2294,7 +2029,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -265L,
-                            Created = new DateTime(2017, 5, 21, 1, 2, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 264",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -2302,7 +2036,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -266L,
-                            Created = new DateTime(2017, 5, 9, 23, 58, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 265",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -2310,7 +2043,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -267L,
-                            Created = new DateTime(2017, 4, 28, 21, 53, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 266",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -2318,7 +2050,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -268L,
-                            Created = new DateTime(2017, 4, 17, 18, 49, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 267",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -2326,7 +2057,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -269L,
-                            Created = new DateTime(2017, 4, 6, 14, 45, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 268",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -2334,7 +2064,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -270L,
-                            Created = new DateTime(2017, 3, 26, 9, 40, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 269",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -2342,7 +2071,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -271L,
-                            Created = new DateTime(2017, 3, 15, 3, 36, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 270",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -2350,7 +2078,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -272L,
-                            Created = new DateTime(2017, 3, 3, 20, 31, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 271",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -2358,7 +2085,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -273L,
-                            Created = new DateTime(2017, 2, 20, 12, 27, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 272",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2366,7 +2092,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -274L,
-                            Created = new DateTime(2017, 2, 9, 3, 22, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 273",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2374,7 +2099,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -275L,
-                            Created = new DateTime(2017, 1, 28, 17, 17, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 274",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2382,7 +2106,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -276L,
-                            Created = new DateTime(2017, 1, 17, 6, 13, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 275",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2390,7 +2113,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -277L,
-                            Created = new DateTime(2017, 1, 5, 18, 8, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 276",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2398,7 +2120,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -278L,
-                            Created = new DateTime(2016, 12, 25, 5, 4, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 277",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -2406,7 +2127,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -279L,
-                            Created = new DateTime(2016, 12, 13, 14, 59, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 278",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -2414,7 +2134,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -280L,
-                            Created = new DateTime(2016, 12, 1, 23, 54, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 279",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -2422,7 +2141,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -281L,
-                            Created = new DateTime(2016, 11, 20, 7, 50, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 280",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -2430,7 +2148,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -282L,
-                            Created = new DateTime(2016, 11, 8, 14, 45, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 281",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -2438,7 +2155,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -283L,
-                            Created = new DateTime(2016, 10, 27, 20, 40, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 282",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -2446,7 +2162,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -284L,
-                            Created = new DateTime(2016, 10, 16, 1, 36, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 283",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -2454,7 +2169,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -285L,
-                            Created = new DateTime(2016, 10, 4, 5, 31, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 284",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -2462,7 +2176,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -286L,
-                            Created = new DateTime(2016, 9, 22, 8, 26, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 285",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -2470,7 +2183,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -287L,
-                            Created = new DateTime(2016, 9, 10, 10, 21, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 286",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -2478,7 +2190,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -288L,
-                            Created = new DateTime(2016, 8, 29, 11, 17, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 287",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2486,7 +2197,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -289L,
-                            Created = new DateTime(2016, 8, 17, 11, 12, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 288",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2494,7 +2204,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -290L,
-                            Created = new DateTime(2016, 8, 5, 10, 7, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 289",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2502,7 +2211,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -291L,
-                            Created = new DateTime(2016, 7, 24, 8, 2, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 290",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2510,7 +2218,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -292L,
-                            Created = new DateTime(2016, 7, 12, 4, 57, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 291",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2518,7 +2225,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -293L,
-                            Created = new DateTime(2016, 6, 30, 0, 52, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 292",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -2526,7 +2232,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -294L,
-                            Created = new DateTime(2016, 6, 17, 19, 47, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 293",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -2534,7 +2239,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -295L,
-                            Created = new DateTime(2016, 6, 5, 13, 43, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 294",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -2542,7 +2246,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -296L,
-                            Created = new DateTime(2016, 5, 24, 6, 38, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 295",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -2550,7 +2253,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -297L,
-                            Created = new DateTime(2016, 5, 11, 22, 33, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 296",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -2558,7 +2260,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -298L,
-                            Created = new DateTime(2016, 4, 29, 13, 28, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 297",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -2566,7 +2267,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -299L,
-                            Created = new DateTime(2016, 4, 17, 3, 23, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 298",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -2574,7 +2274,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -300L,
-                            Created = new DateTime(2016, 4, 4, 16, 18, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 299",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -2582,7 +2281,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -301L,
-                            Created = new DateTime(2016, 3, 23, 4, 13, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 300",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -2590,7 +2288,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -302L,
-                            Created = new DateTime(2016, 3, 10, 15, 8, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 301",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -2598,7 +2295,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -303L,
-                            Created = new DateTime(2016, 2, 27, 1, 3, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 302",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2606,7 +2302,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -304L,
-                            Created = new DateTime(2016, 2, 14, 9, 58, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 303",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2614,7 +2309,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -305L,
-                            Created = new DateTime(2016, 2, 1, 17, 53, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 304",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2622,7 +2316,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -306L,
-                            Created = new DateTime(2016, 1, 20, 0, 48, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 305",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2630,7 +2323,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -307L,
-                            Created = new DateTime(2016, 1, 7, 6, 42, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 306",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2638,7 +2330,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -308L,
-                            Created = new DateTime(2015, 12, 25, 11, 37, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 307",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -2646,7 +2337,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -309L,
-                            Created = new DateTime(2015, 12, 12, 15, 32, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 308",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -2654,7 +2344,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -310L,
-                            Created = new DateTime(2015, 11, 29, 18, 27, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 309",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -2662,7 +2351,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -311L,
-                            Created = new DateTime(2015, 11, 16, 20, 22, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 310",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -2670,7 +2358,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -312L,
-                            Created = new DateTime(2015, 11, 3, 21, 17, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 311",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -2678,7 +2365,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -313L,
-                            Created = new DateTime(2015, 10, 21, 21, 12, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 312",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -2686,7 +2372,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -314L,
-                            Created = new DateTime(2015, 10, 8, 20, 6, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 313",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -2694,7 +2379,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -315L,
-                            Created = new DateTime(2015, 9, 25, 18, 1, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 314",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -2702,7 +2386,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -316L,
-                            Created = new DateTime(2015, 9, 12, 14, 56, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 315",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -2710,7 +2393,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -317L,
-                            Created = new DateTime(2015, 8, 30, 10, 51, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 316",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -2718,7 +2400,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -318L,
-                            Created = new DateTime(2015, 8, 17, 5, 45, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 317",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2726,7 +2407,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -319L,
-                            Created = new DateTime(2015, 8, 3, 23, 40, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 318",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2734,7 +2414,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -320L,
-                            Created = new DateTime(2015, 7, 21, 16, 35, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 319",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2742,7 +2421,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -321L,
-                            Created = new DateTime(2015, 7, 8, 8, 29, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 320",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2750,7 +2428,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -322L,
-                            Created = new DateTime(2015, 6, 24, 23, 24, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 321",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2758,7 +2435,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -323L,
-                            Created = new DateTime(2015, 6, 11, 13, 19, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 322",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -2766,7 +2442,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -324L,
-                            Created = new DateTime(2015, 5, 29, 2, 13, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 323",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -2774,7 +2449,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -325L,
-                            Created = new DateTime(2015, 5, 15, 14, 8, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 324",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -2782,7 +2456,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -326L,
-                            Created = new DateTime(2015, 5, 2, 1, 2, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 325",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -2790,7 +2463,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -327L,
-                            Created = new DateTime(2015, 4, 18, 10, 57, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 326",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -2798,7 +2470,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -328L,
-                            Created = new DateTime(2015, 4, 4, 19, 52, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 327",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -2806,7 +2477,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -329L,
-                            Created = new DateTime(2015, 3, 22, 3, 46, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 328",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -2814,7 +2484,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -330L,
-                            Created = new DateTime(2015, 3, 8, 10, 41, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 329",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -2822,7 +2491,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -331L,
-                            Created = new DateTime(2015, 2, 22, 16, 35, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 330",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -2830,7 +2498,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -332L,
-                            Created = new DateTime(2015, 2, 8, 21, 30, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 331",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -2838,7 +2505,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -333L,
-                            Created = new DateTime(2015, 1, 26, 1, 24, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 332",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2846,7 +2512,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -334L,
-                            Created = new DateTime(2015, 1, 12, 4, 18, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 333",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2854,7 +2519,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -335L,
-                            Created = new DateTime(2014, 12, 29, 6, 13, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 334",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2862,7 +2526,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -336L,
-                            Created = new DateTime(2014, 12, 15, 7, 7, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 335",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2870,7 +2533,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -337L,
-                            Created = new DateTime(2014, 12, 1, 7, 2, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 336",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2878,7 +2540,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -338L,
-                            Created = new DateTime(2014, 11, 17, 5, 56, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 337",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -2886,7 +2547,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -339L,
-                            Created = new DateTime(2014, 11, 3, 3, 50, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 338",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -2894,7 +2554,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -340L,
-                            Created = new DateTime(2014, 10, 20, 0, 45, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 339",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -2902,7 +2561,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -341L,
-                            Created = new DateTime(2014, 10, 5, 20, 39, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 340",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -2910,7 +2568,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -342L,
-                            Created = new DateTime(2014, 9, 21, 15, 33, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 341",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -2918,7 +2575,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -343L,
-                            Created = new DateTime(2014, 9, 7, 9, 28, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 342",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -2926,7 +2582,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -344L,
-                            Created = new DateTime(2014, 8, 24, 2, 22, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 343",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -2934,7 +2589,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -345L,
-                            Created = new DateTime(2014, 8, 9, 18, 16, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 344",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -2942,7 +2596,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -346L,
-                            Created = new DateTime(2014, 7, 26, 9, 11, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 345",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -2950,7 +2603,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -347L,
-                            Created = new DateTime(2014, 7, 11, 23, 5, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 346",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -2958,7 +2610,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -348L,
-                            Created = new DateTime(2014, 6, 27, 11, 59, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 347",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -2966,7 +2617,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -349L,
-                            Created = new DateTime(2014, 6, 12, 23, 53, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 348",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -2974,7 +2624,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -350L,
-                            Created = new DateTime(2014, 5, 29, 10, 47, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 349",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -2982,7 +2631,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -351L,
-                            Created = new DateTime(2014, 5, 14, 20, 42, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 350",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -2990,7 +2638,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -352L,
-                            Created = new DateTime(2014, 4, 30, 5, 36, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 351",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -2998,7 +2645,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -353L,
-                            Created = new DateTime(2014, 4, 15, 13, 30, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 352",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3006,7 +2652,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -354L,
-                            Created = new DateTime(2014, 3, 31, 20, 24, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 353",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3014,7 +2659,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -355L,
-                            Created = new DateTime(2014, 3, 17, 2, 18, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 354",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3022,7 +2666,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -356L,
-                            Created = new DateTime(2014, 3, 2, 7, 12, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 355",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3030,7 +2673,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -357L,
-                            Created = new DateTime(2014, 2, 15, 11, 6, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 356",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3038,7 +2680,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -358L,
-                            Created = new DateTime(2014, 1, 31, 14, 0, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 357",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -3046,7 +2687,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -359L,
-                            Created = new DateTime(2014, 1, 16, 15, 54, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 358",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -3054,7 +2694,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -360L,
-                            Created = new DateTime(2014, 1, 1, 16, 48, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 359",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -3062,7 +2701,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -361L,
-                            Created = new DateTime(2013, 12, 17, 16, 42, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 360",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -3070,7 +2708,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -362L,
-                            Created = new DateTime(2013, 12, 2, 15, 36, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 361",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -3078,7 +2715,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -363L,
-                            Created = new DateTime(2013, 11, 17, 13, 30, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 362",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -3086,7 +2722,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -364L,
-                            Created = new DateTime(2013, 11, 2, 10, 24, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 363",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -3094,7 +2729,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -365L,
-                            Created = new DateTime(2013, 10, 18, 6, 18, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 364",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -3102,7 +2736,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -366L,
-                            Created = new DateTime(2013, 10, 3, 1, 12, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 365",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -3110,7 +2743,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -367L,
-                            Created = new DateTime(2013, 9, 17, 19, 6, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 366",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -3118,7 +2750,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -368L,
-                            Created = new DateTime(2013, 9, 2, 12, 0, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 367",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3126,7 +2757,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -369L,
-                            Created = new DateTime(2013, 8, 18, 3, 54, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 368",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3134,7 +2764,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -370L,
-                            Created = new DateTime(2013, 8, 2, 18, 48, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 369",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3142,7 +2771,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -371L,
-                            Created = new DateTime(2013, 7, 18, 8, 41, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 370",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3150,7 +2778,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -372L,
-                            Created = new DateTime(2013, 7, 2, 21, 35, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 371",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3158,7 +2785,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -373L,
-                            Created = new DateTime(2013, 6, 17, 9, 29, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 372",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -3166,7 +2792,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -374L,
-                            Created = new DateTime(2013, 6, 1, 20, 23, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 373",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -3174,7 +2799,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -375L,
-                            Created = new DateTime(2013, 5, 17, 6, 17, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 374",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -3182,7 +2806,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -376L,
-                            Created = new DateTime(2013, 5, 1, 15, 10, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 375",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -3190,7 +2813,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -377L,
-                            Created = new DateTime(2013, 4, 15, 23, 4, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 376",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -3198,7 +2820,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -378L,
-                            Created = new DateTime(2013, 3, 31, 5, 58, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 377",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -3206,7 +2827,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -379L,
-                            Created = new DateTime(2013, 3, 15, 11, 51, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 378",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -3214,7 +2834,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -380L,
-                            Created = new DateTime(2013, 2, 27, 16, 45, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 379",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -3222,7 +2841,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -381L,
-                            Created = new DateTime(2013, 2, 11, 20, 39, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 380",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -3230,7 +2848,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -382L,
-                            Created = new DateTime(2013, 1, 26, 23, 32, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 381",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -3238,7 +2855,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -383L,
-                            Created = new DateTime(2013, 1, 11, 1, 26, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 382",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3246,7 +2862,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -384L,
-                            Created = new DateTime(2012, 12, 26, 2, 20, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 383",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3254,7 +2869,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -385L,
-                            Created = new DateTime(2012, 12, 10, 2, 13, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 384",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3262,7 +2876,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -386L,
-                            Created = new DateTime(2012, 11, 24, 1, 7, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 385",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3270,7 +2883,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -387L,
-                            Created = new DateTime(2012, 11, 7, 23, 0, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 386",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3278,7 +2890,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -388L,
-                            Created = new DateTime(2012, 10, 22, 19, 54, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 387",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -3286,7 +2897,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -389L,
-                            Created = new DateTime(2012, 10, 6, 15, 48, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 388",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -3294,7 +2904,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -390L,
-                            Created = new DateTime(2012, 9, 20, 10, 41, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 389",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -3302,7 +2911,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -391L,
-                            Created = new DateTime(2012, 9, 4, 4, 35, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 390",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -3310,7 +2918,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -392L,
-                            Created = new DateTime(2012, 8, 18, 21, 28, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 391",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -3318,7 +2925,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -393L,
-                            Created = new DateTime(2012, 8, 2, 13, 22, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 392",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -3326,7 +2932,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -394L,
-                            Created = new DateTime(2012, 7, 17, 4, 15, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 393",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -3334,7 +2939,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -395L,
-                            Created = new DateTime(2012, 6, 30, 18, 8, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 394",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -3342,7 +2946,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -396L,
-                            Created = new DateTime(2012, 6, 14, 7, 2, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 395",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -3350,7 +2953,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -397L,
-                            Created = new DateTime(2012, 5, 28, 18, 55, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 396",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -3358,7 +2960,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -398L,
-                            Created = new DateTime(2012, 5, 12, 5, 49, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 397",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3366,7 +2967,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -399L,
-                            Created = new DateTime(2012, 4, 25, 15, 42, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 398",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3374,7 +2974,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -400L,
-                            Created = new DateTime(2012, 4, 9, 0, 35, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 399",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3382,7 +2981,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -401L,
-                            Created = new DateTime(2012, 3, 23, 8, 29, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 400",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3390,7 +2988,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -402L,
-                            Created = new DateTime(2012, 3, 6, 15, 22, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 401",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3398,7 +2995,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -403L,
-                            Created = new DateTime(2012, 2, 18, 21, 15, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 402",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -3406,7 +3002,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -404L,
-                            Created = new DateTime(2012, 2, 2, 2, 9, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 403",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -3414,7 +3009,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -405L,
-                            Created = new DateTime(2012, 1, 16, 6, 2, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 404",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -3422,7 +3016,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -406L,
-                            Created = new DateTime(2011, 12, 30, 8, 55, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 405",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -3430,7 +3023,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -407L,
-                            Created = new DateTime(2011, 12, 13, 10, 48, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 406",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -3438,7 +3030,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -408L,
-                            Created = new DateTime(2011, 11, 26, 11, 42, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 407",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -3446,7 +3037,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -409L,
-                            Created = new DateTime(2011, 11, 9, 11, 35, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 408",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -3454,7 +3044,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -410L,
-                            Created = new DateTime(2011, 10, 23, 10, 28, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 409",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -3462,7 +3051,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -411L,
-                            Created = new DateTime(2011, 10, 6, 8, 21, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 410",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -3470,7 +3058,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -412L,
-                            Created = new DateTime(2011, 9, 19, 5, 14, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 411",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -3478,7 +3065,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -413L,
-                            Created = new DateTime(2011, 9, 2, 1, 7, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 412",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3486,7 +3072,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -414L,
-                            Created = new DateTime(2011, 8, 15, 20, 0, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 413",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3494,7 +3079,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -415L,
-                            Created = new DateTime(2011, 7, 29, 13, 54, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 414",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3502,7 +3086,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -416L,
-                            Created = new DateTime(2011, 7, 12, 6, 47, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 415",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3510,7 +3093,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -417L,
-                            Created = new DateTime(2011, 6, 24, 22, 40, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 416",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3518,7 +3100,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -418L,
-                            Created = new DateTime(2011, 6, 7, 13, 33, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 417",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -3526,7 +3107,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -419L,
-                            Created = new DateTime(2011, 5, 21, 3, 26, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 418",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -3534,7 +3114,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -420L,
-                            Created = new DateTime(2011, 5, 3, 16, 19, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 419",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -3542,7 +3121,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -421L,
-                            Created = new DateTime(2011, 4, 16, 4, 12, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 420",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -3550,7 +3128,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -422L,
-                            Created = new DateTime(2011, 3, 29, 15, 5, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 421",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -3558,7 +3135,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -423L,
-                            Created = new DateTime(2011, 3, 12, 0, 58, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 422",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -3566,7 +3142,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -424L,
-                            Created = new DateTime(2011, 2, 22, 9, 51, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 423",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -3574,7 +3149,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -425L,
-                            Created = new DateTime(2011, 2, 4, 17, 44, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 424",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -3582,7 +3156,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -426L,
-                            Created = new DateTime(2011, 1, 18, 0, 37, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 425",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -3590,7 +3163,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -427L,
-                            Created = new DateTime(2010, 12, 31, 6, 29, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 426",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -3598,7 +3170,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -428L,
-                            Created = new DateTime(2010, 12, 13, 11, 22, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 427",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3606,7 +3177,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -429L,
-                            Created = new DateTime(2010, 11, 25, 15, 15, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 428",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3614,7 +3184,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -430L,
-                            Created = new DateTime(2010, 11, 7, 18, 8, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 429",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3622,7 +3191,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -431L,
-                            Created = new DateTime(2010, 10, 20, 20, 1, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 430",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3630,7 +3198,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -432L,
-                            Created = new DateTime(2010, 10, 2, 20, 54, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 431",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3638,7 +3205,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -433L,
-                            Created = new DateTime(2010, 9, 14, 20, 47, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 432",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -3646,7 +3212,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -434L,
-                            Created = new DateTime(2010, 8, 27, 19, 39, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 433",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -3654,7 +3219,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -435L,
-                            Created = new DateTime(2010, 8, 9, 17, 32, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 434",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -3662,7 +3226,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -436L,
-                            Created = new DateTime(2010, 7, 22, 14, 25, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 435",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -3670,7 +3233,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -437L,
-                            Created = new DateTime(2010, 7, 4, 10, 18, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 436",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -3678,7 +3240,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -438L,
-                            Created = new DateTime(2010, 6, 16, 5, 10, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 437",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -3686,7 +3247,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -439L,
-                            Created = new DateTime(2010, 5, 28, 23, 3, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 438",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -3694,7 +3254,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -440L,
-                            Created = new DateTime(2010, 5, 10, 15, 56, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 439",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -3702,7 +3261,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -441L,
-                            Created = new DateTime(2010, 4, 22, 7, 48, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 440",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -3710,7 +3268,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -442L,
-                            Created = new DateTime(2010, 4, 3, 22, 41, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 441",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -3718,7 +3275,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -443L,
-                            Created = new DateTime(2010, 3, 16, 12, 34, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 442",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3726,7 +3282,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -444L,
-                            Created = new DateTime(2010, 2, 26, 1, 26, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 443",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3734,7 +3289,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -445L,
-                            Created = new DateTime(2010, 2, 7, 13, 19, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 444",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3742,7 +3296,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -446L,
-                            Created = new DateTime(2010, 1, 20, 0, 11, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 445",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3750,7 +3303,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -447L,
-                            Created = new DateTime(2010, 1, 1, 10, 4, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 446",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3758,7 +3310,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -448L,
-                            Created = new DateTime(2009, 12, 13, 18, 57, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 447",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -3766,7 +3317,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -449L,
-                            Created = new DateTime(2009, 11, 25, 2, 49, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 448",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -3774,7 +3324,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -450L,
-                            Created = new DateTime(2009, 11, 6, 9, 42, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 449",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -3782,7 +3331,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -451L,
-                            Created = new DateTime(2009, 10, 18, 15, 34, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 450",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -3790,7 +3338,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -452L,
-                            Created = new DateTime(2009, 9, 29, 20, 27, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 451",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -3798,7 +3345,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -453L,
-                            Created = new DateTime(2009, 9, 11, 0, 19, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 452",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -3806,7 +3352,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -454L,
-                            Created = new DateTime(2009, 8, 23, 3, 11, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 453",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -3814,7 +3359,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -455L,
-                            Created = new DateTime(2009, 8, 4, 5, 4, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 454",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -3822,7 +3366,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -456L,
-                            Created = new DateTime(2009, 7, 16, 5, 56, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 455",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -3830,7 +3373,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -457L,
-                            Created = new DateTime(2009, 6, 27, 5, 49, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 456",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -3838,7 +3380,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -458L,
-                            Created = new DateTime(2009, 6, 8, 4, 41, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 457",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3846,7 +3387,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -459L,
-                            Created = new DateTime(2009, 5, 20, 2, 33, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 458",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3854,7 +3394,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -460L,
-                            Created = new DateTime(2009, 4, 30, 23, 26, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 459",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3862,7 +3401,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -461L,
-                            Created = new DateTime(2009, 4, 11, 19, 18, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 460",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3870,7 +3408,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -462L,
-                            Created = new DateTime(2009, 3, 23, 14, 10, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 461",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3878,7 +3415,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -463L,
-                            Created = new DateTime(2009, 3, 4, 8, 3, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 462",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -3886,7 +3422,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -464L,
-                            Created = new DateTime(2009, 2, 13, 0, 55, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 463",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -3894,7 +3429,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -465L,
-                            Created = new DateTime(2009, 1, 24, 16, 47, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 464",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -3902,7 +3436,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -466L,
-                            Created = new DateTime(2009, 1, 5, 7, 40, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 465",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -3910,7 +3443,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -467L,
-                            Created = new DateTime(2008, 12, 16, 21, 32, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 466",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -3918,7 +3450,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -468L,
-                            Created = new DateTime(2008, 11, 27, 10, 24, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 467",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -3926,7 +3457,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -469L,
-                            Created = new DateTime(2008, 11, 7, 22, 16, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 468",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -3934,7 +3464,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -470L,
-                            Created = new DateTime(2008, 10, 19, 9, 8, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 469",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -3942,7 +3471,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -471L,
-                            Created = new DateTime(2008, 9, 29, 19, 1, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 470",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -3950,7 +3478,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -472L,
-                            Created = new DateTime(2008, 9, 10, 3, 53, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 471",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -3958,7 +3485,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -473L,
-                            Created = new DateTime(2008, 8, 21, 11, 45, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 472",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -3966,7 +3492,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -474L,
-                            Created = new DateTime(2008, 8, 1, 18, 37, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 473",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -3974,7 +3499,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -475L,
-                            Created = new DateTime(2008, 7, 13, 0, 29, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 474",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -3982,7 +3506,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -476L,
-                            Created = new DateTime(2008, 6, 23, 5, 21, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 475",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -3990,7 +3513,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -477L,
-                            Created = new DateTime(2008, 6, 3, 9, 13, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 476",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -3998,7 +3520,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -478L,
-                            Created = new DateTime(2008, 5, 14, 12, 5, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 477",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4006,7 +3527,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -479L,
-                            Created = new DateTime(2008, 4, 24, 13, 57, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 478",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4014,7 +3534,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -480L,
-                            Created = new DateTime(2008, 4, 4, 14, 49, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 479",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4022,7 +3541,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -481L,
-                            Created = new DateTime(2008, 3, 15, 14, 41, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 480",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4030,7 +3548,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -482L,
-                            Created = new DateTime(2008, 2, 24, 13, 33, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 481",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4038,7 +3555,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -483L,
-                            Created = new DateTime(2008, 2, 4, 11, 25, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 482",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -4046,7 +3562,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -484L,
-                            Created = new DateTime(2008, 1, 15, 8, 17, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 483",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -4054,7 +3569,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -485L,
-                            Created = new DateTime(2007, 12, 26, 4, 9, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 484",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -4062,7 +3576,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -486L,
-                            Created = new DateTime(2007, 12, 5, 23, 1, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 485",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -4070,7 +3583,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -487L,
-                            Created = new DateTime(2007, 11, 15, 16, 53, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 486",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -4078,7 +3590,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -488L,
-                            Created = new DateTime(2007, 10, 26, 9, 45, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 487",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -4086,7 +3597,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -489L,
-                            Created = new DateTime(2007, 10, 6, 1, 37, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 488",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -4094,7 +3604,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -490L,
-                            Created = new DateTime(2007, 9, 15, 16, 29, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 489",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -4102,7 +3611,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -491L,
-                            Created = new DateTime(2007, 8, 26, 6, 20, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 490",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -4110,7 +3618,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -492L,
-                            Created = new DateTime(2007, 8, 5, 19, 12, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 491",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -4118,7 +3625,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -493L,
-                            Created = new DateTime(2007, 7, 16, 7, 4, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 492",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4126,7 +3632,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -494L,
-                            Created = new DateTime(2007, 6, 25, 17, 56, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 493",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4134,7 +3639,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -495L,
-                            Created = new DateTime(2007, 6, 5, 3, 48, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 494",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4142,7 +3646,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -496L,
-                            Created = new DateTime(2007, 5, 15, 12, 39, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 495",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4150,7 +3653,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -497L,
-                            Created = new DateTime(2007, 4, 24, 20, 31, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 496",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4158,7 +3660,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -498L,
-                            Created = new DateTime(2007, 4, 4, 3, 23, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 497",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -4166,7 +3667,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -499L,
-                            Created = new DateTime(2007, 3, 14, 9, 14, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 498",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -4174,7 +3674,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -500L,
-                            Created = new DateTime(2007, 2, 21, 14, 6, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 499",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -4182,7 +3681,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -501L,
-                            Created = new DateTime(2007, 1, 31, 17, 58, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 500",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -4190,7 +3688,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -502L,
-                            Created = new DateTime(2007, 1, 10, 20, 49, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 501",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -4198,7 +3695,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -503L,
-                            Created = new DateTime(2006, 12, 20, 22, 41, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 502",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -4206,7 +3702,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -504L,
-                            Created = new DateTime(2006, 11, 29, 23, 33, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 503",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -4214,7 +3709,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -505L,
-                            Created = new DateTime(2006, 11, 8, 23, 24, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 504",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -4222,7 +3716,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -506L,
-                            Created = new DateTime(2006, 10, 18, 22, 16, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 505",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -4230,7 +3723,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -507L,
-                            Created = new DateTime(2006, 9, 27, 20, 7, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 506",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -4238,7 +3730,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -508L,
-                            Created = new DateTime(2006, 9, 6, 16, 59, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 507",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4246,7 +3737,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -509L,
-                            Created = new DateTime(2006, 8, 16, 12, 51, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 508",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4254,7 +3744,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -510L,
-                            Created = new DateTime(2006, 7, 26, 7, 42, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 509",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4262,7 +3751,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -511L,
-                            Created = new DateTime(2006, 7, 5, 1, 34, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 510",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4270,7 +3758,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -512L,
-                            Created = new DateTime(2006, 6, 13, 18, 25, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 511",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4278,7 +3765,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -513L,
-                            Created = new DateTime(2006, 5, 23, 10, 17, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 512",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -4286,7 +3772,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -514L,
-                            Created = new DateTime(2006, 5, 2, 1, 8, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 513",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -4294,7 +3779,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -515L,
-                            Created = new DateTime(2006, 4, 10, 14, 59, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 514",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -4302,7 +3786,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -516L,
-                            Created = new DateTime(2006, 3, 20, 3, 51, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 515",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -4310,7 +3793,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -517L,
-                            Created = new DateTime(2006, 2, 26, 15, 42, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 516",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -4318,7 +3800,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -518L,
-                            Created = new DateTime(2006, 2, 5, 2, 34, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 517",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -4326,7 +3807,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -519L,
-                            Created = new DateTime(2006, 1, 14, 12, 25, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 518",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -4334,7 +3814,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -520L,
-                            Created = new DateTime(2005, 12, 23, 21, 16, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 519",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -4342,7 +3821,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -521L,
-                            Created = new DateTime(2005, 12, 2, 5, 8, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 520",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -4350,7 +3828,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -522L,
-                            Created = new DateTime(2005, 11, 10, 11, 59, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 521",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -4358,7 +3835,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -523L,
-                            Created = new DateTime(2005, 10, 19, 17, 50, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 522",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4366,7 +3842,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -524L,
-                            Created = new DateTime(2005, 9, 27, 22, 42, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 523",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4374,7 +3849,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -525L,
-                            Created = new DateTime(2005, 9, 6, 2, 33, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 524",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4382,7 +3856,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -526L,
-                            Created = new DateTime(2005, 8, 15, 5, 24, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 525",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4390,7 +3863,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -527L,
-                            Created = new DateTime(2005, 7, 24, 7, 15, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 526",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4398,7 +3870,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -528L,
-                            Created = new DateTime(2005, 7, 2, 8, 7, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 527",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -4406,7 +3877,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -529L,
-                            Created = new DateTime(2005, 6, 10, 7, 58, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 528",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -4414,7 +3884,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -530L,
-                            Created = new DateTime(2005, 5, 19, 6, 49, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 529",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -4422,7 +3891,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -531L,
-                            Created = new DateTime(2005, 4, 27, 4, 40, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 530",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -4430,7 +3898,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -532L,
-                            Created = new DateTime(2005, 4, 5, 1, 31, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 531",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -4438,7 +3905,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -533L,
-                            Created = new DateTime(2005, 3, 13, 21, 22, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 532",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -4446,7 +3912,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -534L,
-                            Created = new DateTime(2005, 2, 19, 16, 13, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 533",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -4454,7 +3919,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -535L,
-                            Created = new DateTime(2005, 1, 28, 10, 5, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 534",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -4462,7 +3926,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -536L,
-                            Created = new DateTime(2005, 1, 6, 2, 56, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 535",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -4470,7 +3933,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -537L,
-                            Created = new DateTime(2004, 12, 14, 18, 47, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 536",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -4478,7 +3940,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -538L,
-                            Created = new DateTime(2004, 11, 22, 9, 38, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 537",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4486,7 +3947,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -539L,
-                            Created = new DateTime(2004, 10, 30, 23, 29, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 538",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4494,7 +3954,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -540L,
-                            Created = new DateTime(2004, 10, 8, 12, 20, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 539",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4502,7 +3961,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -541L,
-                            Created = new DateTime(2004, 9, 16, 0, 11, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 540",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4510,7 +3968,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -542L,
-                            Created = new DateTime(2004, 8, 24, 11, 2, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 541",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4518,7 +3975,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -543L,
-                            Created = new DateTime(2004, 8, 1, 20, 53, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 542",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -4526,7 +3982,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -544L,
-                            Created = new DateTime(2004, 7, 10, 5, 44, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 543",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -4534,7 +3989,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -545L,
-                            Created = new DateTime(2004, 6, 17, 13, 35, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 544",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -4542,7 +3996,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -546L,
-                            Created = new DateTime(2004, 5, 25, 20, 26, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 545",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -4550,7 +4003,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -547L,
-                            Created = new DateTime(2004, 5, 3, 2, 16, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 546",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -4558,7 +4010,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -548L,
-                            Created = new DateTime(2004, 4, 10, 7, 7, 52, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 547",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -4566,7 +4017,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -549L,
-                            Created = new DateTime(2004, 3, 18, 10, 58, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 548",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -4574,7 +4024,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -550L,
-                            Created = new DateTime(2004, 2, 24, 13, 49, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 549",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -4582,7 +4031,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -551L,
-                            Created = new DateTime(2004, 2, 1, 15, 40, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 550",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -4590,7 +4038,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -552L,
-                            Created = new DateTime(2004, 1, 9, 16, 31, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 551",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -4598,7 +4045,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -553L,
-                            Created = new DateTime(2003, 12, 17, 16, 22, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 552",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4606,7 +4052,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -554L,
-                            Created = new DateTime(2003, 11, 24, 15, 12, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 553",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4614,7 +4059,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -555L,
-                            Created = new DateTime(2003, 11, 1, 13, 3, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 554",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4622,7 +4066,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -556L,
-                            Created = new DateTime(2003, 10, 9, 9, 54, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 555",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4630,7 +4073,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -557L,
-                            Created = new DateTime(2003, 9, 16, 5, 45, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 556",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4638,7 +4080,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -558L,
-                            Created = new DateTime(2003, 8, 24, 0, 35, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 557",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -4646,7 +4087,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -559L,
-                            Created = new DateTime(2003, 7, 31, 18, 26, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 558",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -4654,7 +4094,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -560L,
-                            Created = new DateTime(2003, 7, 8, 11, 17, 10, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 559",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -4662,7 +4101,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -561L,
-                            Created = new DateTime(2003, 6, 15, 3, 7, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 560",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -4670,7 +4108,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -562L,
-                            Created = new DateTime(2003, 5, 22, 17, 58, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 561",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -4678,7 +4115,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -563L,
-                            Created = new DateTime(2003, 4, 29, 7, 49, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 562",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -4686,7 +4122,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -564L,
-                            Created = new DateTime(2003, 4, 5, 20, 39, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 563",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -4694,7 +4129,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -565L,
-                            Created = new DateTime(2003, 3, 13, 8, 30, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 564",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -4702,7 +4136,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -566L,
-                            Created = new DateTime(2003, 2, 17, 19, 20, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 565",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -4710,7 +4143,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -567L,
-                            Created = new DateTime(2003, 1, 25, 5, 11, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 566",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -4718,7 +4150,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -568L,
-                            Created = new DateTime(2003, 1, 1, 14, 2, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 567",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4726,7 +4157,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -569L,
-                            Created = new DateTime(2002, 12, 8, 21, 52, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 568",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4734,7 +4164,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -570L,
-                            Created = new DateTime(2002, 11, 15, 4, 43, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 569",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4742,7 +4171,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -571L,
-                            Created = new DateTime(2002, 10, 22, 10, 33, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 570",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4750,7 +4178,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -572L,
-                            Created = new DateTime(2002, 9, 28, 15, 24, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 571",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4758,7 +4185,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -573L,
-                            Created = new DateTime(2002, 9, 4, 19, 14, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 572",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -4766,7 +4192,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -574L,
-                            Created = new DateTime(2002, 8, 11, 22, 4, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 573",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -4774,7 +4199,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -575L,
-                            Created = new DateTime(2002, 7, 18, 23, 55, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 574",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -4782,7 +4206,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -576L,
-                            Created = new DateTime(2002, 6, 25, 0, 45, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 575",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -4790,7 +4213,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -577L,
-                            Created = new DateTime(2002, 6, 1, 0, 36, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 576",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -4798,7 +4220,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -578L,
-                            Created = new DateTime(2002, 5, 7, 23, 26, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 577",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -4806,7 +4227,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -579L,
-                            Created = new DateTime(2002, 4, 13, 21, 16, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 578",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -4814,7 +4234,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -580L,
-                            Created = new DateTime(2002, 3, 20, 18, 7, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 579",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -4822,7 +4241,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -581L,
-                            Created = new DateTime(2002, 2, 24, 13, 57, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 580",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -4830,7 +4248,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -582L,
-                            Created = new DateTime(2002, 1, 31, 8, 47, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 581",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -4838,7 +4255,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -583L,
-                            Created = new DateTime(2002, 1, 7, 2, 38, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 582",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4846,7 +4262,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -584L,
-                            Created = new DateTime(2001, 12, 13, 19, 28, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 583",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4854,7 +4269,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -585L,
-                            Created = new DateTime(2001, 11, 19, 11, 18, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 584",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4862,7 +4276,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -586L,
-                            Created = new DateTime(2001, 10, 26, 2, 9, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 585",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4870,7 +4283,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -587L,
-                            Created = new DateTime(2001, 10, 1, 15, 59, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 586",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4878,7 +4290,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -588L,
-                            Created = new DateTime(2001, 9, 7, 4, 49, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 587",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -4886,7 +4297,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -589L,
-                            Created = new DateTime(2001, 8, 13, 16, 39, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 588",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -4894,7 +4304,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -590L,
-                            Created = new DateTime(2001, 7, 20, 3, 29, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 589",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -4902,7 +4311,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -591L,
-                            Created = new DateTime(2001, 6, 25, 13, 20, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 590",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -4910,7 +4318,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -592L,
-                            Created = new DateTime(2001, 5, 31, 22, 10, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 591",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -4918,7 +4325,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -593L,
-                            Created = new DateTime(2001, 5, 7, 6, 0, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 592",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -4926,7 +4332,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -594L,
-                            Created = new DateTime(2001, 4, 12, 12, 50, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 593",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -4934,7 +4339,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -595L,
-                            Created = new DateTime(2001, 3, 18, 18, 40, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 594",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -4942,7 +4346,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -596L,
-                            Created = new DateTime(2001, 2, 21, 23, 30, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 595",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -4950,7 +4353,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -597L,
-                            Created = new DateTime(2001, 1, 28, 3, 20, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 596",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -4958,7 +4360,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -598L,
-                            Created = new DateTime(2001, 1, 3, 6, 10, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 597",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -4966,7 +4367,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -599L,
-                            Created = new DateTime(2000, 12, 9, 8, 0, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 598",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -4974,7 +4374,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -600L,
-                            Created = new DateTime(2000, 11, 14, 8, 50, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 599",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -4982,7 +4381,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -601L,
-                            Created = new DateTime(2000, 10, 20, 8, 40, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 600",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -4990,7 +4388,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -602L,
-                            Created = new DateTime(2000, 9, 25, 7, 30, 49, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 601",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -4998,7 +4395,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -603L,
-                            Created = new DateTime(2000, 8, 31, 5, 20, 47, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 602",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -5006,7 +4402,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -604L,
-                            Created = new DateTime(2000, 8, 6, 2, 10, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 603",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -5014,7 +4409,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -605L,
-                            Created = new DateTime(2000, 7, 11, 22, 0, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 604",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -5022,7 +4416,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -606L,
-                            Created = new DateTime(2000, 6, 16, 16, 50, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 605",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -5030,7 +4423,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -607L,
-                            Created = new DateTime(2000, 5, 22, 10, 40, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 606",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -5038,7 +4430,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -608L,
-                            Created = new DateTime(2000, 4, 27, 3, 30, 22, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 607",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -5046,7 +4437,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -609L,
-                            Created = new DateTime(2000, 4, 1, 19, 20, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 608",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -5054,7 +4444,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -610L,
-                            Created = new DateTime(2000, 3, 7, 10, 10, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 609",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -5062,7 +4451,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -611L,
-                            Created = new DateTime(2000, 2, 10, 23, 59, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 610",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -5070,7 +4458,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -612L,
-                            Created = new DateTime(2000, 1, 16, 12, 49, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 611",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -5078,7 +4465,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -613L,
-                            Created = new DateTime(1999, 12, 22, 0, 39, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 612",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -5086,7 +4472,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -614L,
-                            Created = new DateTime(1999, 11, 26, 11, 29, 19, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 613",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -5094,7 +4479,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -615L,
-                            Created = new DateTime(1999, 10, 31, 21, 19, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 614",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -5102,7 +4486,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -616L,
-                            Created = new DateTime(1999, 10, 6, 6, 8, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 615",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -5110,7 +4493,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -617L,
-                            Created = new DateTime(1999, 9, 10, 13, 58, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 616",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -5118,7 +4500,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -618L,
-                            Created = new DateTime(1999, 8, 15, 20, 48, 17, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 617",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -5126,7 +4507,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -619L,
-                            Created = new DateTime(1999, 7, 21, 2, 37, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 618",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -5134,7 +4514,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -620L,
-                            Created = new DateTime(1999, 6, 25, 7, 27, 40, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 619",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -5142,7 +4521,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -621L,
-                            Created = new DateTime(1999, 5, 30, 11, 17, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 620",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -5150,7 +4528,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -622L,
-                            Created = new DateTime(1999, 5, 4, 14, 6, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 621",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -5158,7 +4535,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -623L,
-                            Created = new DateTime(1999, 4, 8, 15, 56, 37, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 622",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -5166,7 +4542,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -624L,
-                            Created = new DateTime(1999, 3, 13, 16, 46, 14, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 623",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -5174,7 +4549,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -625L,
-                            Created = new DateTime(1999, 2, 15, 16, 35, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 624",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"
@@ -5182,7 +4556,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -626L,
-                            Created = new DateTime(1999, 1, 20, 15, 25, 25, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 625",
                             TextChannelId = -11L,
                             UserId = "migrationuserId1"
@@ -5190,7 +4563,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -627L,
-                            Created = new DateTime(1998, 12, 25, 13, 14, 59, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 626",
                             TextChannelId = -12L,
                             UserId = "migrationuserId2"
@@ -5198,7 +4570,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -628L,
-                            Created = new DateTime(1998, 11, 29, 10, 4, 32, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 627",
                             TextChannelId = -13L,
                             UserId = "migrationuserId0"
@@ -5206,7 +4577,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -629L,
-                            Created = new DateTime(1998, 11, 3, 5, 54, 4, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 628",
                             TextChannelId = -14L,
                             UserId = "migrationuserId1"
@@ -5214,7 +4584,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -630L,
-                            Created = new DateTime(1998, 10, 8, 0, 43, 35, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 629",
                             TextChannelId = -15L,
                             UserId = "migrationuserId2"
@@ -5222,7 +4591,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -631L,
-                            Created = new DateTime(1998, 9, 11, 18, 33, 5, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 630",
                             TextChannelId = -1L,
                             UserId = "migrationuserId0"
@@ -5230,7 +4598,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -632L,
-                            Created = new DateTime(1998, 8, 16, 11, 22, 34, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 631",
                             TextChannelId = -2L,
                             UserId = "migrationuserId1"
@@ -5238,7 +4605,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -633L,
-                            Created = new DateTime(1998, 7, 21, 3, 12, 2, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 632",
                             TextChannelId = -3L,
                             UserId = "migrationuserId2"
@@ -5246,7 +4612,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -634L,
-                            Created = new DateTime(1998, 6, 24, 18, 1, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 633",
                             TextChannelId = -4L,
                             UserId = "migrationuserId0"
@@ -5254,7 +4619,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -635L,
-                            Created = new DateTime(1998, 5, 29, 7, 50, 55, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 634",
                             TextChannelId = -5L,
                             UserId = "migrationuserId1"
@@ -5262,7 +4626,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -636L,
-                            Created = new DateTime(1998, 5, 2, 20, 40, 20, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 635",
                             TextChannelId = -6L,
                             UserId = "migrationuserId2"
@@ -5270,7 +4633,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -637L,
-                            Created = new DateTime(1998, 4, 6, 8, 29, 44, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 636",
                             TextChannelId = -7L,
                             UserId = "migrationuserId0"
@@ -5278,7 +4640,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -638L,
-                            Created = new DateTime(1998, 3, 10, 19, 19, 7, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 637",
                             TextChannelId = -8L,
                             UserId = "migrationuserId1"
@@ -5286,7 +4647,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -639L,
-                            Created = new DateTime(1998, 2, 12, 5, 8, 29, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 638",
                             TextChannelId = -9L,
                             UserId = "migrationuserId2"
@@ -5294,7 +4654,6 @@ namespace Intalk.Migrations
                         new
                         {
                             Id = -640L,
-                            Created = new DateTime(1998, 1, 16, 13, 57, 50, 920, DateTimeKind.Utc).AddTicks(3977),
                             Text = "This is message number 639",
                             TextChannelId = -10L,
                             UserId = "migrationuserId0"

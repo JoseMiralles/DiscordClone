@@ -48,15 +48,16 @@ namespace api_tests
             var newUser = new ApplicationUser()
             {
                 Email = "test@test.com",
-                UserName = "testUser"
+                UserName = "testUserOne"
             };
             var createdUser = _userManager.CreateAsync(newUser, "!testPassword123456");
             newUser = new ApplicationUser()
             {
                 Email = "test2@test2.com",
-                UserName = "testUser2"
+                UserName = "testUserTwo"
             };
             createdUser = _userManager.CreateAsync(newUser, "!testPassword123456");
+            Console.WriteLine(createdUser.Result.GetType());
         }
     }
 }

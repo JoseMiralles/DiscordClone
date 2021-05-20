@@ -8,6 +8,7 @@ using Intalk;
 using Intalk.Controllers;
 using Intalk.Data;
 using Intalk.Models;
+using Intalk.Models.DTOs.Responses;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -50,14 +51,14 @@ namespace api_tests
                 "/api/Server",
                 new StringContent(json, Encoding.UTF8, "application/json"));
             var content = await response.Content.ReadAsStringAsync();
-            var serverId = JsonConvert.DeserializeObject<long>(content);
+            var serverRes = JsonConvert.DeserializeObject<SingleServerResponseItem>(content);
 
             // Check if returned server id is bigger than 0.
-            Assert.InRange(serverId, 1, long.MaxValue);
+            Assert.InRange(serverRes.Id, 1, long.MaxValue);
 
             // Get server
             response = await _client.GetAsync(
-                "/api/Server/" + serverId);
+                "/api/Server/" + serverRes.Id);
             content = await response.Content.ReadAsStringAsync();
             var server = JsonConvert.DeserializeObject
                 <Intalk.Models.DTOs.Responses.SingleServerResponseItem>
@@ -119,7 +120,7 @@ namespace api_tests
                 <Intalk.Models.DTOs.Responses.SingleServerResponseItem>
                 (stringContent);
             // Asssert that the title from the patch response is the new title.
-            Assert.Equal(responseServer.Title, newTitle);
+            Assert.Equal(newTitle, responseServer.Title);
 
             var server = await GetServer(serverId);
             // Assert that the title of the server from the get request is the new title.
@@ -138,7 +139,7 @@ namespace api_tests
                 (responseString);
 
             // Assert that delete response contains id field.
-            Assert.Equal(deletedServer.Id, serverId);
+            Assert.Equal(serverId, deletedServer.Id);
 
             var server = await GetServer(serverId);
             Assert.Null(server);

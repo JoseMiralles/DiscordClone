@@ -1,7 +1,9 @@
 import { HubConnection, HubConnectionBuilder, HubConnectionState } from "@microsoft/signalr";
 import { Console } from "console";
+import { receiveOneMessage } from "../Actions/MessageActions";
 import { receiveRefreshedToken } from "../Actions/SessionActions";
 import { receiveAllOnlineUsers, reveiceUserStatus } from "../Actions/UserActions";
+import { IMessage } from "../Models/MessagesModel";
 import { AppActions, AppState } from "../store";
 import { baseAPIUrl } from "../Util/EnviromentUtil";
 import { isTokenExpired, refreshAccessToken } from "../Util/SessionUtil";
@@ -36,8 +38,13 @@ const SignalRMiddleware: Middleware<AppState, AppActions> = (store) => {
         store.dispatch(receiveAllOnlineUsers(userIds));
     });
 
-    connection.on("ReveiceUserStatus", (userId: string, isOnline: boolean) => {
+    connection.on("ReceiveUserStatus", (userId: string, isOnline: boolean) => {
         store.dispatch(reveiceUserStatus(userId, isOnline));
+    });
+
+    connection.on("ReceiveMessage", (message: IMessage) => {
+        if (message.userId !== store.getState().session.userId)
+            store.dispatch(receiveOneMessage(message));
     });
 
     connection.on("ServerJoined", (serverId: string) => console.log(

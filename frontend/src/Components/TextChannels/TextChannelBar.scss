@@ -1,0 +1,36 @@
+@import "../../Style_variables/colors.scss";
+@import "../../Style_variables/vars.scss";
+
+#channels-bar-section {
+    padding: $appComponentPadding;
+}
+
+.channel-list {
+    li {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+        color: $dark;
+        font-weight: 600;
+        &:hover{
+            background-color: $secondary-light;
+            cursor:pointer;
+        }
+    }
+    .selected {
+        background-color: $secondary-light;
+    }
+}
+
+.text-channel-icon {
+    font-size: 20px;
+    line-height: 15px;
+    font-weight: 1000;
+    margin-right: 5px;
+}
+
+.text-channel-bar-title {
+    letter-spacing: 2px;
+}

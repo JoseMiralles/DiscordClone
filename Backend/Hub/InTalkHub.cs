@@ -29,7 +29,7 @@ namespace Intalk.RealTime
                 _tempServerID = server.Id.ToString();
                 UserManager.userGroups.AddUserToGroup(userId, _tempServerID);
                 await this.Clients.Groups(_tempServerID)
-                    .SendAsync("ReveiceUserStatus", userId, true);
+                    .SendAsync("ReceiveUserStatus", userId, true);
             }
             await base.OnConnectedAsync();
         }
@@ -95,7 +95,7 @@ namespace Intalk.RealTime
             string userId = this.Context.UserIdentifier;
             foreach (string group in serverIds){
                 UserManager.userGroups.AddUserToGroup(userId, group);
-                Clients.Group(group).SendAsync("ReveiceUserStatus", userId, isOnline);
+                Clients.Group(group).SendAsync("ReceiveUserStatus", userId, isOnline);
             }
         } 
 

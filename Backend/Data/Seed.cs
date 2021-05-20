@@ -1,3 +1,4 @@
+using System;
 using Intalk.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +53,45 @@ namespace Intalk.Data
             }
             modelBuilder.Entity<UserServer>().HasData(userServers);
 
+            int channelsPerServer = 4;
+            var textChannels = new TextChannel[servers.Length * channelsPerServer];
+            idx = 0;
+            foreach (Server server in servers)
+            {
+                for (int i = 1; i <= channelsPerServer; i++)
+                {
+                    textChannels[idx] = new TextChannel
+                    {
+                        Id = (-1 - idx),
+                        Title = "Text Channel #" + idx.ToString(),
+                        ServerId = server.Id
+                    };
+                    idx++;
+                }
+            }
+            modelBuilder.Entity<TextChannel>().HasData(textChannels);
+
+            int messagesPerChannel = 40;
+            var messages = new Message [textChannels.Length * messagesPerChannel];
+            idx = 0;
+            var date = DateTime.UtcNow;
+            foreach(var channel in textChannels)
+            {
+                for (int i = 1; i <= messagesPerChannel; i++)
+                {
+                    date = date.AddHours(-idx).AddSeconds(-idx);
+                    messages[idx] = new Message
+                    {
+                        Id = (-1 - idx),
+                        Text = "This is message number " + idx.ToString(),
+                        UserId = users[(idx % (users.Length - 1))].Id,
+                        TextChannelId = textChannels[idx % (textChannels.Length - 1)].Id,
+                        Created = date
+                };
+                    idx++;
+                }
+            }
+            modelBuilder.Entity<Message>().HasData(messages);
         }
     }
 }
