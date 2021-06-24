@@ -46,11 +46,11 @@ const UserBar = () => {
         dispatch(setUserVarVisibility(!visible));
     };
 
-    const extraClass = visible ? "" : "no-padding";
+    const extraClass = visible ? "" : " no-padding";
     const btnIcon = visible ? "chevron_right" : "people";
 
     return (
-        <section id={"user-bar-section " + extraClass}>
+        <section id={"user-bar-section" + extraClass}>
             <div className="relative">
                 <div
                     onClick={onUserBarVisibilityButtonClick}

@@ -1,6 +1,10 @@
 @import "../../Style_variables/colors.scss";
 
 #user-bar-section {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
     text-align: left;
     padding: 10px;
     background-color: $secondary-light;
@@ -46,7 +50,7 @@
 
 #user-bar-show-button{
     position: absolute;
-    left: -52px;
+    left: -45px;
     top: 50px;
     padding: 10px;
     background-color: $secondary-light;
