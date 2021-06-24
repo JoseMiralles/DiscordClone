@@ -9,9 +9,14 @@ export interface ISetChannelBarVisibility {
     visible: boolean;
 }
 
+export interface ICloseAllBars {
+    type: "CLOSE_ALL_BARS";
+}
+
 export type UIActionTypes =
     ISetUserBarVisibility |
-    ISetChannelBarVisibility;
+    ISetChannelBarVisibility |
+    ICloseAllBars;
 
 export interface IUIState {
     userBarVisibility: boolean;

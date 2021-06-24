@@ -9,3 +9,7 @@ export const setChannelBarVisibility = (visible: boolean): AppActions => ({
     type: "SET_CHANNEL_BAR_VISIBILITY",
     visible
 });
+
+export const closeAllBars = (): AppActions => ({
+    type: "CLOSE_ALL_BARS"
+});

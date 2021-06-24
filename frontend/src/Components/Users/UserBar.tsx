@@ -6,7 +6,7 @@ import { IUser } from "../../Models/UserModel";
 import { AppState } from "../../store";
 import UserBarItem from "./UserBarItem";
 import "./UserBar.scss"
-import { setUserVarVisibility } from "../../Actions/UIActions";
+import { closeAllBars, setUserVarVisibility } from "../../Actions/UIActions";
 
 const UserBar = () => {
 
@@ -43,6 +43,7 @@ const UserBar = () => {
     }, [serverId]);
 
     const onUserBarVisibilityButtonClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (visible === false) dispatch(closeAllBars());
         dispatch(setUserVarVisibility(!visible));
     };
 

@@ -4,7 +4,7 @@ import { getTextChannels, selectTextChannel } from "../../Actions/TextChannelsAc
 import { AppState } from "../../store";
 import TextChannelBarItem from "./TextChannelBarItem";
 import "./TextChannelBar.scss";
-import { setChannelBarVisibility } from "../../Actions/UIActions";
+import { closeAllBars, setChannelBarVisibility } from "../../Actions/UIActions";
 
 const TextChannelBar = () => {
     const dispatch = useDispatch();
@@ -23,10 +23,12 @@ const TextChannelBar = () => {
     }, [serverId]);
 
     const onClick = (e: any) => {
+        dispatch(closeAllBars());
         dispatch(selectTextChannel(e.target.value));
     };
 
     const onVisivilityButtonClick = () => {
+        if (visible === false) dispatch(closeAllBars());
         dispatch(setChannelBarVisibility(!visible));
     };
 

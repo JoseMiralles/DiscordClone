@@ -26,6 +26,14 @@ const UIReducer = (
             }
         }
 
+        case "CLOSE_ALL_BARS": {
+            return {
+                ...state,
+                channelBarVisibility: false,
+                userBarVisibility: false
+            }
+        }
+
         default: { return state; }
 
     }
