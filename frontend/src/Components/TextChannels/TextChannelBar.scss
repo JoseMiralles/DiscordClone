@@ -2,7 +2,12 @@
 @import "../../Style_variables/vars.scss";
 
 #channels-bar-section {
+    position:absolute;
+    top:0;
+    bottom: 0;
+    left:0;
     padding: $appComponentPadding;
+    background-color: $secondary-light;
 }
 
 .channel-list {
@@ -10,17 +15,20 @@
         display: flex;
         flex-direction: row;
         padding: 10px;
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
         color: $dark;
         font-weight: 600;
+        border-radius: 100px;
         &:hover{
-            background-color: $secondary-light;
+            background-color: $main;
+            color: $light;
             cursor:pointer;
         }
     }
     .selected {
-        background-color: $secondary-light;
+        background-color: $main;
+        color: $light;
     }
 }
 
@@ -33,4 +41,17 @@
 
 .text-channel-bar-title {
     letter-spacing: 2px;
+    padding-left: 20px;
+}
+
+#text-channel-visibility-button {
+    position: absolute;
+    right: -45px;
+    top: 50px;
+    padding: 10px;
+    background-color: $secondary-light;
+    border-radius: 0px 100px 100px 0px;
+    &:hover {
+        cursor: pointer;
+    }
 }

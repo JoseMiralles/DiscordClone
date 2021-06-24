@@ -15,6 +15,8 @@ import { textChannelActionTypes } from "./Models/TextChannelModel";
 import textChannelsReducer from "./Reducers/TextChannelsReducer";
 import { MessageActionTypes } from "./Models/MessagesModel";
 import MessagesReducer from "./Reducers/MessagesReducer";
+import { UIActionTypes } from "./Models/UIModel";
+import UIReducer from "./Reducers/UIReducer";
 
 // This will be a union type of all potential action types.
 export type AppActions =
@@ -23,7 +25,8 @@ export type AppActions =
     ModalActionTypes |
     serverActionTypes |
     textChannelActionTypes |
-    MessageActionTypes;
+    MessageActionTypes|
+    UIActionTypes;
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -32,6 +35,7 @@ const rootReducer = combineReducers({
     servers: serverReducer,
     textChannels: textChannelsReducer,
     modal: modalReducer,
+    ui: UIReducer
 });
 
 // Automatically infer type from reducer's return type.
