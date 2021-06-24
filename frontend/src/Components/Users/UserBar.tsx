@@ -47,6 +47,7 @@ const UserBar = () => {
     };
 
     const extraClass = visible ? "" : "no-padding";
+    const btnIcon = visible ? "chevron_right" : "people";
 
     return (
         <section id={"user-bar-section " + extraClass}>
@@ -54,7 +55,7 @@ const UserBar = () => {
                 <div
                     onClick={onUserBarVisibilityButtonClick}
                     id="user-bar-show-button">
-                    <span className="material-icons">people</span>
+                    <span className="material-icons">{btnIcon}</span>
                 </div>
             </div>
             {visible &&
