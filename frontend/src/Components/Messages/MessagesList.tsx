@@ -14,6 +14,7 @@ const MessagesList = ({ messages, loading, textChannelId, users }: Props) => {
     Object.values(messages)
         // .sort((a, b) => (+a.created - +b.created))
         .forEach(m => {
+            debugger
             mappedMessages.push(
                 <li key={m.id}>
                     <div className="main-message-wrapper">

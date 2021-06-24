@@ -43,3 +43,15 @@
 .offline-list{
     opacity: 19%;
 }
+
+#user-bar-show-button{
+    position: absolute;
+    left: -52px;
+    top: 50px;
+    padding: 10px;
+    background-color: $secondary-light;
+    border-radius: 100px 0px 0px 100px;
+    &:hover {
+        cursor:pointer;
+    }
+}
