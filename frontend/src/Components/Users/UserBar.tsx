@@ -50,7 +50,7 @@ const UserBar = () => {
     const btnIcon = visible ? "chevron_right" : "people";
 
     return (
-        <section id={"user-bar-section" + extraClass}>
+        <section id={"user-bar-section"} className={extraClass}>
             <div className="relative">
                 <div
                     onClick={onUserBarVisibilityButtonClick}

@@ -4,3 +4,8 @@ export const setUserVarVisibility = (visible: boolean): AppActions => ({
     type: "SET_USER_BAR_VISIBILITY",
     visible
 });
+
+export const setChannelBarVisibility = (visible: boolean): AppActions => ({
+    type: "SET_CHANNEL_BAR_VISIBILITY",
+    visible
+});

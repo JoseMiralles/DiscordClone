@@ -2,7 +2,8 @@ import { IUIState } from "../Models/UIModel";
 import { AppActions } from "../store";
 
 const defaultState: IUIState = {
-    userBarVisibility: false
+    userBarVisibility: false,
+    channelBarVisibility: true
 }
 
 const UIReducer = (
@@ -15,6 +16,13 @@ const UIReducer = (
             return {
                 ...state,
                 userBarVisibility: action.visible
+            }
+        }
+
+        case "SET_CHANNEL_BAR_VISIBILITY": {
+            return {
+                ...state,
+                channelBarVisibility: action.visible
             }
         }
 
